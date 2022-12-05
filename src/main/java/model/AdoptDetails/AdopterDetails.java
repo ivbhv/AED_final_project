@@ -31,7 +31,7 @@ public class AdopterDetails implements Serializable {
     
     @OneToMany
     @JoinColumn(name = "adoptor_ssn")
-    private List<AdoptionHistory> history;
+    private List<AdoptHistory> history;
 
     public AdopterDetails() {
     }
@@ -54,11 +54,11 @@ public class AdopterDetails implements Serializable {
         this.ssnNumber = ssnNumber;
     }
 
-    public List<AdoptionHistory> getHistory() {
+    public List<AdoptHistory> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<AdoptionHistory> history) {
+    public void setHistory(ArrayList<AdoptHistory> history) {
         this.history = history;
     }
 
