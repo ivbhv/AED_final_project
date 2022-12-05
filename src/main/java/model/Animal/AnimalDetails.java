@@ -5,14 +5,19 @@
 package model.Animal;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import model.TreatmentRecord.TreatmentRecord;
 
 /**
  *
@@ -44,27 +49,43 @@ public class AnimalDetails implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date nextCheck;
-//    private TreatmentRecordDetailsDirectory treatmentDirectory;
-//    private AnimalStatusDetailsDirectory statusDirectory;
     
+    @OneToMany(mappedBy = "animalDeatils")
+    private List<TreatmentRecord> treatmentRecord;
+    
+    @OneToMany
+    @JoinColumn(name = "animal_id")
+    private List<AnimalStatusDetails> statusDirectory;
 
     public AnimalDetails() {
-        
-//        this.statusDirectory = new AnimalStatusDetailsDirectory();
-//        this.animalstatus = UNREADY_STATUS;
-//        this.nextcheck = new Date();
-//        this.treatmentDirectory = new TreatmentRecordDetailsDirectory();
-//        this.statusDirectory = new AnimalStatusDetailsDirectory();
     }
     
-    public AnimalDetails(int age, boolean isSterilized, String color, String gender, AnimalType type, String status, Date nextCheck) {
+    public AnimalDetails(int age, boolean isSterilized, String color, String gender, AnimalType type) {
         this.age = age;
         this.isSterilized = isSterilized;
         this.color = color;
         this.gender = gender;
         this.type = type;
         this.status = Status.NOT_READY;
-        this.nextCheck = nextCheck;
+        this.nextCheck = new Date();
+        this.treatmentRecord = new ArrayList();
+        this.statusDirectory = new ArrayList();
+    }
+
+    public List<AnimalStatusDetails> getStatusDirectory() {
+        return statusDirectory;
+    }
+
+    public void setStatusDirectory(ArrayList<AnimalStatusDetails> statusDirectory) {
+        this.statusDirectory = statusDirectory;
+    }
+    
+    public List<TreatmentRecord> getTreatmentRecord() {
+        return treatmentRecord;
+    }
+
+    public void setTreatmentRecord(List<TreatmentRecord> treatmentRecord) {
+        this.treatmentRecord = treatmentRecord;
     }
 
     public int getId() {

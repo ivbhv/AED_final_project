@@ -22,7 +22,7 @@ import model.Animal.AnimalDetails;
  */
 
 @Entity
-public class AdoptionHistory implements Serializable {
+public class AdoptHistory implements Serializable {
     
     public enum Status {
     Submitted, Assigned, Approved, Rejected, InProgress
@@ -43,7 +43,7 @@ public class AdoptionHistory implements Serializable {
     
     private Status status;
     
-    public AdoptionHistory(String message, Date adoptDate, Status status, AnimalDetails details) {
+    public AdoptHistory(String message, Date adoptDate, Status status, AnimalDetails details) {
         this.message = message;
         this.adoptDate = adoptDate;
         this.status = status;
@@ -58,7 +58,7 @@ public class AdoptionHistory implements Serializable {
         this.details = details;
     }
 
-    public AdoptionHistory() {
+    public AdoptHistory() {
     }
     
     public int getId() {
