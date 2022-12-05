@@ -29,6 +29,9 @@
       
       <!-- List of XML mapping files -->
       <mapping class = "model.AdoptDetails.AdopterDetails"/>
+      <mapping class = "model.UserAccount.VisitorAccount"/>
+      <mapping class = "model.AdoptDetails.AdoptionHistory"/>
+      <mapping class = "model.Animal.AnimalDetails"/>
       
    </session-factory>
 </hibernate-configuration>

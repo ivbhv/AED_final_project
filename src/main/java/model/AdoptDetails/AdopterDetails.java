@@ -5,8 +5,12 @@
 package model.AdoptDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,7 +28,10 @@ public class AdopterDetails implements Serializable {
     private String phoneNumber;
     private AddressDetails address;
     private String email;
-//    private AdoptionHistoryDirectory historyDirectory;
+    
+    @OneToMany
+    @JoinColumn(name = "adoptor_ssn")
+    private List<AdoptionHistory> history;
 
     public AdopterDetails() {
     }
@@ -36,11 +43,25 @@ public class AdopterDetails implements Serializable {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
+        this.history = new ArrayList();
     }
 
-//    public AdopterDetail() {
-//        historyDirectory = new AdoptionHistoryDirectory();
-//    }
+    public String getSsnNumber() {
+        return ssnNumber;
+    }
+
+    public void setSsnNumber(String ssnNumber) {
+        this.ssnNumber = ssnNumber;
+    }
+
+    public List<AdoptionHistory> getHistory() {
+        return history;
+    }
+
+    public void setHistory(ArrayList<AdoptionHistory> history) {
+        this.history = history;
+    }
+
 
     public String getSsnnumber() {
         return ssnNumber;
@@ -89,12 +110,4 @@ public class AdopterDetails implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    public AdoptionHistoryDirectory getHistoryDirectory() {
-//        return historyDirectory;
-//    }
-//
-//    public void setHistoryDirectory(AdoptionHistoryDirectory historyDirectory) {
-//        this.historyDirectory = historyDirectory;
-//    }
 }
