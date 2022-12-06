@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import model.Animal.AnimalDetails;
 import model.Employees.EmployeeDetails;
 import model.Place.PlaceDetails;
@@ -30,6 +32,8 @@ public class RescueRecordDetails implements Serializable {
     @Column(name="record_id")
     private int id;
     
+    @Temporal(TemporalType.DATE)
+    @Column(name="rescue_date")
     private Date date;
     
     @OneToOne
@@ -45,7 +49,15 @@ public class RescueRecordDetails implements Serializable {
     private boolean health;
 
     public RescueRecordDetails() {
+    }
+
+    public RescueRecordDetails(AnimalDetails rescuedanimal, PlaceDetails rescueroom, EmployeeDetails rescuername, String foundlocation, boolean health) {
         this.date = new Date();
+        this.rescuedanimal = rescuedanimal;
+        this.rescueroom = rescueroom;
+        this.rescuername = rescuername;
+        this.foundlocation = foundlocation;
+        this.health = health;
     }
 
     public Date getDate() {
