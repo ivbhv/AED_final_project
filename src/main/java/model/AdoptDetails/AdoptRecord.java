@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import model.Animal.AnimalDetails;
 import model.Employees.EmployeeDetails;
 
@@ -41,6 +43,8 @@ public class AdoptRecord implements Serializable {
     @OneToOne
     private AnimalDetails animal;
     
+    @Temporal(TemporalType.DATE)
+    @Column(name="Adopt_date")
     private Date date;
     
     private Status status;

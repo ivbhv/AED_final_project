@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.AdoptDetails;
+package model.Deliver;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,7 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import model.AdoptDetails.AdopterDetails;
 import model.Animal.AnimalDetails;
+import model.Employees.EmployeeDetails;
 
 /**
  *
@@ -23,33 +25,49 @@ import model.Animal.AnimalDetails;
  */
 
 @Entity
-public class AdoptionOffered implements Serializable {
+public class DeliveryDetails implements Serializable {
     
     public enum Status {
-        Open, Close
+        WAITING, ASSIGNED, RECEIVED
     }
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="offered_id")
+    @Column(name="delivery_id")
     private int id;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name="delivery_date")
+    private Date date;
+    
+    @OneToOne
+    private EmployeeDetails courierdetail;
     
     @OneToOne
     private AnimalDetails animal;
     
-    @Temporal(TemporalType.DATE)
-    @Column(name="offered_date")
-    private Date publishDate;
+    @OneToOne
+    private AdopterDetails adoptername;
     
     private Status status;
 
-    public AdoptionOffered(AnimalDetails animal, Date publishDate) {
-        this.animal = animal;
-        this.publishDate = publishDate;
-        this.status = Status.Open;
+    public DeliveryDetails() {
     }
 
-    public AdoptionOffered() {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date d) {
+        this.date = d;
+    }
+
+    public EmployeeDetails getCourierdetail() {
+        return courierdetail;
+    }
+
+    public void setCourierdetail(EmployeeDetails courierdetail) {
+        this.courierdetail = courierdetail;
     }
 
     public AnimalDetails getAnimal() {
@@ -60,12 +78,12 @@ public class AdoptionOffered implements Serializable {
         this.animal = animal;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    public AdopterDetails getAdoptername() {
+        return adoptername;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setAdoptername(AdopterDetails adoptername) {
+        this.adoptername = adoptername;
     }
 
     public Status getStatus() {
@@ -75,13 +93,10 @@ public class AdoptionOffered implements Serializable {
     public void setStatus(Status status) {
         this.status = status;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    
+    @Override
+    public String toString() {
+        return date.getYear() + "/" + date.getDate() + "/" + date.getYear();
     }
     
 }
