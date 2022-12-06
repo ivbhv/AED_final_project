@@ -21,7 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import model.Animal.AnimalDetails;
 import model.Medicines.MedicineDetails;
-import model.place.PlaceDetails;
+import model.Place.PlaceDetails;
 
 /**
  *
