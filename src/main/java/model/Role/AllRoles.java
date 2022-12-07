@@ -8,6 +8,7 @@ package model.Role;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.swing.JPanel;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -53,7 +54,7 @@ public abstract class AllRoles implements Serializable {
    public abstract JPanel createWorkArea(JPanel container, 
             EnterpriseDetails enterprise, 
             OrganisationMain organization, 
-            UserAccountDetails account, 
+            UserAccount account, 
             EcoSystem business);
    
 
