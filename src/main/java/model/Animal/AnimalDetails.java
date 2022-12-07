@@ -17,7 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import model.TreatmentRecord.TreatmentRecord;
+import model.Treatment.TreatmentRecord;
 
 /**
  *
