@@ -15,6 +15,10 @@ import javax.persistence.Entity;
 @Entity
 public class AntibioticsDetails extends MedicineDetails {
 
+    public AntibioticsDetails(String medname, String medvendor, MedicineType medtype) {
+        super(medname, medvendor, medtype);
+    }
+
     public AntibioticsDetails() {
     }
     

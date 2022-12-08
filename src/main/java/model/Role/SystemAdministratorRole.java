@@ -5,6 +5,9 @@
  */
 package model.Role;
 import javax.swing.JPanel;
+
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
 
 /**
@@ -13,13 +16,11 @@ import model.UserAccount.UserAccount;
  */
 public class SystemAdministratorRole extends AllRoles 
 {
-    @Override
     
-    public JPanel createWorkArea(JPanel container, 
-            EnterpriseDetails enterprise, 
-            OrganisationMain organization, 
-            UserAccount userAccount, 
-            EcoSystem business) {
-        return new SystemAdminWorkAreaJPanel(container, business);
+    public JPanel createWorkArea(JPanel container,
+            EnterpriseDetails enterprise,
+            OrganisationMain organization,
+            UserAccount userAccount) {
+        return new JPanel();
     }
 }

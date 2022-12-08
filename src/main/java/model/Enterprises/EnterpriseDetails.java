@@ -66,7 +66,7 @@ public class EnterpriseDetails implements Serializable {
         return enterpriseType;
     }
     
-    public void addOrganisation(OrganisationMain.Type type) {
+    public OrganisationMain addOrganisation(OrganisationMain.Type type) {
         OrganisationMain organization = null;
         if (type.getValue().equals(OrganisationMain.Type.CenterRegistration.getValue())){
             organization = new CenterRegistrationOrganisation();
@@ -89,9 +89,10 @@ public class EnterpriseDetails implements Serializable {
         else if (type.getValue().equals(OrganisationMain.Type.Adoption.getValue())){
             organization = new AdoptionOrganisation();
         }
-        System.err.println(organization);
         Main.controller.saveObject(organization);
         this.organisationDirectory.add(organization);
+        
+        return organization;
     }
     
     public enum EnterpriseType {

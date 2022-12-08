@@ -52,7 +52,9 @@ public class AddressDetails implements Serializable {
         this.stateName = stateName;
     }
 
-    
+    public AddressDetails getAddressByName(String cityName) {
+        return null;
+    }
     
     
 }
