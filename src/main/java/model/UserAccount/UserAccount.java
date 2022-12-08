@@ -50,11 +50,11 @@ public class UserAccount implements Serializable {
     public UserAccount() {
     }
 
-    public UserAccount(String username, String pass, AllRoles role, ArrayList<AllWorkRequest> workQueue, EmployeeDetails employee) {
+    public UserAccount(String username, String pass, AllRoles role, EmployeeDetails employee) {
         this.username = username;
         this.pass = pass;
         this.roles = role;
-        this.workQueue = workQueue;
+        this.workQueue = new ArrayList<>();
         this.employee = employee;
     }
 

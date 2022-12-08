@@ -11,7 +11,13 @@ package model.Medicines;
  */
 public class VaccinationDetails extends MedicineDetails {
 
-    public VaccinationDetails() {
+    public VaccinationDetails(String medname, String medvendor, MedicineType medtype) {
+        super(medname, medvendor, medtype);
     }
+
+    public VaccinationDetails() {
+
+    }
+
     
 }

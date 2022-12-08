@@ -51,10 +51,24 @@
       <mapping class = "model.AdoptDetails.AdoptionOffered"/>
       <mapping class = "model.Organisation.VeterinarianOrganisation"/>
       <mapping class = "model.Organisation.AdoptionOrganisation"/>
-      <mapping class = "model.UserAccount.UserAccount"/>
-      <mapping class = "model.UserAccount.UserAccount"/>
-      <mapping class = "model.UserAccount.UserAccount"/>
-      <mapping class = "model.UserAccount.UserAccount"/>
+      <mapping class = "model.AdoptDetails.AdoptRecord"/>
+      <mapping class = "model.Organisation.CageOrganisation"/>
+      <mapping class = "model.Organisation.CenterRegistrationOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Deliver.VehicleDetails"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.PharmacyOrganisation"/>
+      <mapping class = "model.Organisation.ShelterOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      <mapping class = "model.Organisation.DeliveryOrganisation"/>
+      
       
 
       

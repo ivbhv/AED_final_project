@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import model.Enterprises.EnterpriseDetails;
+import org.hibernate.Session;
+import view.Main.Main;
 
 /**
  *
@@ -31,6 +33,7 @@ public class NetworkDetails implements Serializable {
     @Column(name="network_id")
     private int id;
     
+    @Column(unique = true)
     private String name;
     
     @OneToMany(fetch = FetchType.EAGER)
@@ -72,5 +75,20 @@ public class NetworkDetails implements Serializable {
     @Override
     public String toString() {
         return name;
+    }
+    
+    public NetworkDetails getOrCreateByName(String name) {
+        Session s = Main.controller.getSession();
+        NetworkDetails n = (NetworkDetails) s.createQuery("from NetworkDetails n where n.name = :name ").setParameter("name", name).uniqueResult();
+        s.close();
+        if (n != null) {
+            return n;
+
+        } else {
+            n = new NetworkDetails(name);
+        }
+        Main.controller.saveObject(n);
+        
+        return new NetworkDetails(name);
     }
 }

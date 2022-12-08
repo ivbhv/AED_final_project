@@ -6,6 +6,7 @@
 package model.Organisation;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import model.Cages.CageDetail;
@@ -16,6 +17,8 @@ import model.Role.VetAssistantRole;
  *
  * @author vaibhav
  */
+
+@Entity
 public class CageOrganisation extends OrganisationMain{
     
     @OneToMany

@@ -7,6 +7,7 @@ package model.Role;
 
 import javax.swing.JPanel;
 import model.Enterprises.EnterpriseDetails;
+import model.Organisation.AdoptionOrganisation;
 import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
 
@@ -23,7 +24,7 @@ public class AdoptionManagerRole extends AllRoles
             UserAccount userAccount) 
     {
         
-        return new AdoptInspectorWorkpage(container, enterprise, (AdoptionOrganisation)organization, userAccount, business);
+        return new AdoptInspectorWorkpage(container, enterprise, (AdoptionOrganisation)organization, userAccount);
         
     }
 }

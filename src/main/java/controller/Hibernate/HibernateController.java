@@ -74,4 +74,16 @@ public class HibernateController {
         this.session.close();
     }
 
+    public void saveOrUpdateArray(Object[] args) {
+        this.startSession();
+        this.session.beginTransaction();
+
+        for (Object o : args) {
+            this.saveOrUpdate(o);
+        }
+
+        this.session.getTransaction().commit();
+        this.session.close();
+    }
+
 }

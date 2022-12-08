@@ -6,13 +6,20 @@
 package model.Cages;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
 import model.Animal.AnimalDetails;
+import model.Network.NetworkDetails;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import view.Main.Main;
 
 /**
  *
@@ -21,22 +28,22 @@ import model.Animal.AnimalDetails;
 
 @Entity
 public class CageDetail implements Serializable {
-    
+
     public enum Status {
         OCCUPIED, AVAILABLE
     }
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="cage_number")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cage_number")
     private int cellno;
-    
+
     private String cagelocation;
     private Status cagestatus;
-    
+
     @OneToOne
     private AnimalDetails animal;
-    
+
     public CageDetail() {
     }
 
@@ -78,6 +85,23 @@ public class CageDetail implements Serializable {
         this.animal = animal;
     }
 
-    
+    public CageDetail getOrCreateByName(String name) {
+        Session s = Main.controller.getSession();
+        Criteria criteria = s.createCriteria(CageDetail.class);
+        criteria.add(Restrictions.eq("cagelocation", name));
+        List result = criteria.list();
+        s.close();
 
+        if(result.size() < 10){
+            CageDetail cageDetail = new CageDetail();
+            cageDetail.setCagelocation(name);
+            cageDetail.setCagestatus(Status.AVAILABLE);
+            Main.controller.saveObject(cageDetail);
+
+            return cageDetail;
+        }
+
+        return null;
+    }
 }
+
