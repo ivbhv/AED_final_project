@@ -38,7 +38,6 @@ public class AdoptHistory implements Serializable {
     private Date adoptDate;
     
     @OneToOne
-    @Column(name="animal_details")
     private AnimalDetails details;
     
     private Status status;

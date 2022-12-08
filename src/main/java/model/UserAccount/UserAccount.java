@@ -37,7 +37,7 @@ public class UserAccount implements Serializable {
     
     private String pass;
     
-    
+    @OneToOne
     private AllRoles roles;
     
     @OneToMany

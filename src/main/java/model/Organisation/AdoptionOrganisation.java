@@ -6,6 +6,7 @@
 package model.Organisation;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import model.AdoptDetails.AdoptRecord;
@@ -18,6 +19,8 @@ import model.Role.AllRoles;
  *
  * @author vaibhav
  */
+
+@Entity
 public class AdoptionOrganisation extends OrganisationMain{
     
     @OneToMany
@@ -63,10 +66,10 @@ public class AdoptionOrganisation extends OrganisationMain{
         this.adoptionlist = adoptionlist;
     }
 
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList<>();
-        roles.add(new AdoptionManagerRole());
-        return roles;
-    }
+//    public ArrayList<AllRoles> getSupportedRole() {
+//        ArrayList<AllRoles> roles = new ArrayList<>();
+//        roles.add(new AdoptionManagerRole());
+//        return roles;
+//    }
  
 }

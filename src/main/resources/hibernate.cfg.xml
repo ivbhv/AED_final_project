@@ -30,8 +30,34 @@
       <!-- List of XML mapping files -->
       <mapping class = "model.AdoptDetails.AdopterDetails"/>
       <mapping class = "model.UserAccount.VisitorAccount"/>
-      <mapping class = "model.AdoptDetails.AdoptionHistory"/>
+      <mapping class = "model.AdoptDetails.AdoptHistory"/>
       <mapping class = "model.Animal.AnimalDetails"/>
+      <mapping class = "model.Network.NetworkDetails"/>
+      <mapping class = "model.Enterprises.EnterpriseDetails"/>
+      <mapping class = "model.WorkQueue.AllWorkRequest"/>
+      <mapping class = "model.UserAccount.UserAccount"/>
+      <mapping class = "model.Employees.EmployeeDetails"/>
+      <mapping class = "model.Animal.AnimalStatusDetails"/>
+      <mapping class = "model.Treatment.TreatmentRecord"/>
+      <mapping class = "model.Place.PlaceDetails"/>
+      <mapping class = "model.Medicines.MedicineDetails"/>
+      <mapping class = "model.Role.AllRoles"/>
+      <mapping class = "model.Organisation.OrganisationMain"/>
+      <mapping class = "model.Enterprises.RescueCenterEntDetails"/>
+      <mapping class = "model.ShelterCell.ShelterCellDetails"/>
+      <mapping class = "model.RescueRecord.RescueRecordDetails"/>
+      <mapping class = "model.Deliver.DeliveryDetails"/>
+      <mapping class = "model.Cages.CageDetail"/>
+      <mapping class = "model.AdoptDetails.AdoptionOffered"/>
+      <mapping class = "model.Organisation.VeterinarianOrganisation"/>
+      <mapping class = "model.Organisation.AdoptionOrganisation"/>
+      <mapping class = "model.UserAccount.UserAccount"/>
+      <mapping class = "model.UserAccount.UserAccount"/>
+      <mapping class = "model.UserAccount.UserAccount"/>
+      <mapping class = "model.UserAccount.UserAccount"/>
+      
+
+      
       
    </session-factory>
 </hibernate-configuration>

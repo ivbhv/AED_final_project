@@ -6,6 +6,8 @@
 package model.Role;
 
 import javax.swing.JPanel;
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
 
 /**
@@ -18,8 +20,7 @@ public class AdoptionManagerRole extends AllRoles
     public JPanel createWorkArea(JPanel container, 
             EnterpriseDetails enterprise, 
             OrganisationMain organization, 
-            UserAccount userAccount, 
-            EcoSystem business) 
+            UserAccount userAccount) 
     {
         
         return new AdoptInspectorWorkpage(container, enterprise, (AdoptionOrganisation)organization, userAccount, business);
