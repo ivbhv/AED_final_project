@@ -6,6 +6,7 @@
 package model.WorkQueue;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
@@ -13,6 +14,8 @@ import javax.persistence.OneToMany;
  *
  * @author sejal
  */
+
+@Entity
 public class PharmacyWre extends AllWorkRequest {
     
     private boolean assigned;
