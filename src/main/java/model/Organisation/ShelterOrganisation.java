@@ -37,9 +37,9 @@ public class ShelterOrganisation extends OrganisationMain{
         this.shelterCellDirectory = shelterCellDirectory;
     }
     
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList();
-        roles.add(new ShelterEmpRole());
-        return roles;
-    }
+//    public ArrayList<AllRoles> getSupportedRole() {
+//        ArrayList<AllRoles> roles = new ArrayList();
+//        roles.add(new ShelterEmpRole());
+//        return roles;
+//    }
 }

@@ -74,7 +74,4 @@ public class RescueCenterEntDetails extends EnterpriseDetails{
         deliveryHistoryDirectory = new ArrayList();
     }
     
-    public ArrayList<AllRoles> getSupportedRole() {
-        return null;
-    }
 }

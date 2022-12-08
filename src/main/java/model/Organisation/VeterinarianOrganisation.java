@@ -38,10 +38,10 @@ public class VeterinarianOrganisation extends OrganisationMain{
         this.treatmentRecordDir = treatmentRecordDir;
     }
     
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList();
-        roles.add(new VeterinarianRole());
-        return roles;
-    }
+//    public ArrayList<AllRoles> getSupportedRole() {
+//        ArrayList<AllRoles> roles = new ArrayList();
+//        roles.add(new VeterinarianRole());
+//        return roles;
+//    }
 
 }

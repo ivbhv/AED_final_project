@@ -22,8 +22,14 @@ public class HibernateController {
     private Transaction transaction;
     private SessionFactory factory;
     
+    public void startFactory() {
+        if (this.factory == null) {
+            this.factory = new Configuration().configure().buildSessionFactory();
+        }
+    }
+    
     public void startSession()  {
-        this.factory = new Configuration().configure().buildSessionFactory();
+        this.startFactory();
         this.session = this.factory.openSession();
     }
     
@@ -31,12 +37,25 @@ public class HibernateController {
         this.transaction = this.session.getTransaction();
     }
     
+    public Session getSession() {
+        this.startFactory();
+        return this.factory.openSession();
+    }
+    
+    public void closeTransation() {
+        this.session.close();
+    }
+    
     public void commitTransaction() {
         this.transaction.commit();
     }
     
-    public void closeSession() {
-        this.session.close();
+    public void closeSession(Session s) {
+        s.close();
+    }
+    
+    public void closeFactory() {
+        this.factory.close();
     }
     
     public void saveObject(Object o) {
@@ -45,7 +64,14 @@ public class HibernateController {
         this.session.save(o);
         this.session.getTransaction().commit();
         this.session.close();
-        this.factory.close();
+    }
+    
+    public void saveOrUpdate(Object o) {
+        this.startSession();
+        this.session.beginTransaction();
+        this.session.saveOrUpdate(o);
+        this.session.getTransaction().commit();
+        this.session.close();
     }
 
 }

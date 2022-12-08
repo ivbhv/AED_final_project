@@ -35,10 +35,10 @@ public class CenterRegistrationOrganisation extends OrganisationMain {
         this.rescueRecordDirectory = rescueRecordDirectory;
     }
     
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList<>();
-        roles.add(new ReceptionistRole());
-        return roles;
-    }
+//    public ArrayList<AllRoles> getSupportedRole() {
+//        ArrayList<AllRoles> roles = new ArrayList<>();
+//        roles.add(new ReceptionistRole());
+//        return roles;
+//    }
 
 }

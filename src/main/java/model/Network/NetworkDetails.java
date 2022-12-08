@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +33,19 @@ public class NetworkDetails implements Serializable {
     
     private String name;
     
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="network_id")
     private List<EnterpriseDetails> enterpriseDirectory;
 
     public NetworkDetails() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public NetworkDetails(String name) {
@@ -56,7 +65,7 @@ public class NetworkDetails implements Serializable {
         return enterpriseDirectory;
     }
 
-    public void setEnterpriseDirectory(ArrayList<EnterpriseDetails> enterpriseDirectory) {
+    public void setEnterpriseDirectory(List<EnterpriseDetails> enterpriseDirectory) {
         this.enterpriseDirectory = enterpriseDirectory;
     }
     

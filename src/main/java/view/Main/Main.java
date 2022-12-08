@@ -4,6 +4,7 @@
  */
 package view.Main;
 
+import controller.Configure.PreConfigure;
 import controller.Hibernate.HibernateController;
 import model.AdoptDetails.AddressDetails;
 import model.AdoptDetails.AdopterDetails;
@@ -18,8 +19,10 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    public static HibernateController controller = new HibernateController();
     public Main() {
         initComponents(); 
+        PreConfigure.configure();
     }
 
     /**
@@ -113,13 +116,13 @@ public class Main extends javax.swing.JFrame {
         
         /* Create and display the form */
         
-        HibernateController h = new HibernateController();
-        AddressDetails a = new AddressDetails("515", "Indore", "mp");
-        AdopterDetails ad = new AdopterDetails("123324", "Vaibhav", "Mahajan", "1234567892", a, "i.vaibhavmahajan@gmail.com");
-        h.saveObject(ad);
-        VisitorAccount va = new VisitorAccount("vbhv", "vbhv10", "i.vaibhavmahajan@gmail.com", ad);
-        
-        h.saveObject(va);
+//        HibernateController h = new HibernateController();
+//        AddressDetails a = new AddressDetails("515", "Indore", "mp");
+//        AdopterDetails ad = new AdopterDetails("123324", "Vaibhav", "Mahajan", "1234567892", a, "i.vaibhavmahajan@gmail.com");
+//        h.saveObject(ad);
+//        VisitorAccount va = new VisitorAccount("vbhv", "vbhv10", "i.vaibhavmahajan@gmail.com", ad);
+//        
+//        h.saveObject(va);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
