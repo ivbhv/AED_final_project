@@ -5,6 +5,7 @@
      */
 package model.Role;
 import javax.swing.JPanel;
+import model.UserAccount.UserAccount;
 
     /**
  *
@@ -15,7 +16,7 @@ public class VetAssistantRole extends AllRoles
     public JPanel createWorkArea(JPanel container, 
             EnterpriseDetails enterprise, 
             OrganisationMain organization, 
-            UserAccountDetails userAccount, 
+            UserAccount userAccount, 
             EcoSystem business) {
         return new VeteAssistantWorkAreaJPanel(container, enterprise, (CageOrganisation)organization, userAccount);
     }
