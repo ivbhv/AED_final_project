@@ -15,9 +15,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import model.Employees.EmployeeDetails;
 import model.Role.AllRoles;
 import model.WorkQueue.AllWorkRequest;
+import org.hibernate.Session;
+import view.Main.Main;
 
 /**
  *
@@ -96,6 +102,26 @@ public class UserAccount implements Serializable {
 
     public void setEmployee(EmployeeDetails employee) {
         this.employee = employee;
+    }
+
+    public UserAccount getOrCreate(String username, String password, AllRoles role, EmployeeDetails employee) {
+        
+        UserAccount u;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<UserAccount> criteriaQuery = criteriaBuilder.createQuery(UserAccount.class);
+            Root<UserAccount> root = criteriaQuery.from(UserAccount.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
+            u = s.createQuery(criteriaQuery).uniqueResult();
+            s.close();
+        }
+
+        if(u != null) {
+            return u;
+        }
+        u = new UserAccount(username, password, role, employee);
+        Main.controller.saveObject(u);
+        return u;
     }
     
 }

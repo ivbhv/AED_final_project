@@ -7,10 +7,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.criterion.CriteriaQuery;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import view.Main.Main;
 
 public class Helper {
     public ArrayList<String> getCities() {

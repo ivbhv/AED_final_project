@@ -13,12 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import model.Animal.AnimalDetails;
-import model.Network.NetworkDetails;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import view.Main.Main;
 
 /**
@@ -85,12 +85,17 @@ public class CageDetail implements Serializable {
         this.animal = animal;
     }
 
-    public CageDetail getOrCreateByName(String name) {
-        Session s = Main.controller.getSession();
-        Criteria criteria = s.createCriteria(CageDetail.class);
-        criteria.add(Restrictions.eq("cagelocation", name));
-        List result = criteria.list();
-        s.close();
+    public CageDetail getByName(String name) {
+        
+        List<CageDetail> result;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<CageDetail> criteriaQuery = criteriaBuilder.createQuery(CageDetail.class);
+            Root<CageDetail> root = criteriaQuery.from(CageDetail.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("cagelocation"), name));
+            result = s.createQuery(criteriaQuery).getResultList();
+            s.close();
+        }
 
         if(result.size() < 10){
             CageDetail cageDetail = new CageDetail();

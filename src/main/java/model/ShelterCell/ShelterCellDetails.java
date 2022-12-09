@@ -13,11 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import model.Animal.AnimalDetails;
-import model.Cages.CageDetail;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import view.Main.Main;
 
 /**
@@ -80,22 +80,28 @@ public class ShelterCellDetails implements Serializable {
         return String.valueOf(cellno);
     }
 
-    public ShelterCellDetails getOrCreateByName(String name) {
-        Session s = Main.controller.getSession();
-        Criteria criteria = s.createCriteria(ShelterCellDetails.class);
-        criteria.add(Restrictions.eq("location", name));
-        List result = criteria.list();
-        s.close();
+    public ShelterCellDetails getByLocation(String name) {
+        
+        
+        List<ShelterCellDetails> result;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<ShelterCellDetails> criteriaQuery = criteriaBuilder.createQuery(ShelterCellDetails.class);
+            Root<ShelterCellDetails> root = criteriaQuery.from(ShelterCellDetails.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("location"), name));
+            result = s.createQuery(criteriaQuery).getResultList();
+            s.close();
+        }
 
         if(result.size() < 10){
             ShelterCellDetails shel = new ShelterCellDetails();
             shel.setLocation(name);
             shel.setStatus(Status.AVAILABLE);
-            Main.controller.saveObject(s);
+            Main.controller.saveObject(shel);
 
             return shel;
         }
-        s.close();
+        
         return null;
     }
 }

@@ -4,23 +4,28 @@
  * and open the template in the editor.
  */
 package model.Role;
+import javax.persistence.Entity;
 import javax.swing.JPanel;
+
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
 
 /**
  *
  * @author manohar
  */
+
+@Entity
 public class PharmacistRole extends AllRoles
 {
     @Override
     
     public JPanel createWorkArea(JPanel container, 
-            EnterpriseDetails enterprise, 
-            OrganisationMain organization, 
-            UserAccount userAccount, 
-            EcoSystem business) 
+            EnterpriseDetails enterprise,
+            OrganisationMain organization,
+            UserAccount userAccount)
     {
-        return new PharmacistWorkAreaJPanel(container, enterprise, (PharmacyOrganisation)organization, userAccount, business);
+        return new JPanel();
     }
 }

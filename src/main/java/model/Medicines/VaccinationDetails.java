@@ -5,10 +5,14 @@
  */
 package model.Medicines;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author sejal
  */
+
+@Entity
 public class VaccinationDetails extends MedicineDetails {
 
     public VaccinationDetails(String medname, String medvendor, MedicineType medtype) {

@@ -5,7 +5,6 @@
 package controller.Configure;
 
 import controller.Helper.Helper;
-import controller.Hibernate.HibernateController;
 
 import java.util.*;
 
@@ -15,7 +14,6 @@ import model.Animal.AnimalDetails;
 import model.Animal.DogDetails;
 import model.Cages.CageDetail;
 import model.Employees.EmployeeDetails;
-import model.Enterprises.EnterpriseDetails;
 import model.Enterprises.RescueCenterEntDetails;
 import model.Medicines.*;
 import model.Network.NetworkDetails;
@@ -26,11 +24,8 @@ import model.Role.*;
 import model.ShelterCell.ShelterCellDetails;
 import model.UserAccount.UserAccount;
 import model.UserAccount.VisitorAccount;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import view.Main.Main;
 
-import javax.print.attribute.standard.MediaSize;
 
 /**
  *
@@ -63,27 +58,35 @@ public class PreConfigure {
         // Add employees
 
         //1
-        EmployeeDetails systemdManager = new EmployeeDetails("Professor");
-        UserAccount systemManager = new UserAccount("sysadmin", "sysadmin", new SystemAdministratorRole(), systemdManager);
-
+        EmployeeDetails systemdManager = new EmployeeDetails().getOrCreateByEmail("Professor", "professor@gmail.com");
         Main.controller.saveOrUpdate(systemdManager);
-        Main.controller.saveOrUpdate(systemManager);
+        AllRoles sar = new SystemAdministratorRole();
+        Main.controller.saveOrUpdate(sar);
 
         //2
-        EmployeeDetails reception = new EmployeeDetails("Vaibhav Mahajan");
-        UserAccount receptionManager = new UserAccount("reception", "reception", new ReceptionistRole(), reception);
-
+        UserAccount systemManager = new UserAccount().getOrCreate("sysadmin", "sysadmin", sar, systemdManager);
+        Main.controller.saveOrUpdate(systemManager);
+        EmployeeDetails reception = new EmployeeDetails().getOrCreateByEmail("Vaibhav Mahajan", "vaibhav@gmail.com");
         Main.controller.saveOrUpdate(reception);
-        Main.controller.saveOrUpdate(receptionManager);
+        AllRoles rr = new ReceptionistRole();
+        Main.controller.saveOrUpdate(rr);
 
+        //3
+        UserAccount receptionManager = new UserAccount().getOrCreate("reception", "reception", rr, reception);
+        Main.controller.saveOrUpdate(receptionManager);
         centerOrg.getEmployeeDir().add(reception);
         centerOrg.getUserAccountDir().add(receptionManager);
         Main.controller.saveOrUpdate(centerOrg);
 
         //3
-        EmployeeDetails pharmacist = new EmployeeDetails("Manohar Verma");
-        UserAccount pharmaUser = new UserAccount("pharmacist", "pharmacist", new PharmacistRole(), pharmacist);
+        EmployeeDetails pharmacist = new EmployeeDetails().getOrCreateByEmail("Manohar Verma", "manohar@gmail.com");
         Main.controller.saveOrUpdate(pharmacist);
+        AllRoles pr = new PharmacistRole();
+        Main.controller.saveOrUpdate(pr);
+
+        //4
+        UserAccount pharmaUser = new UserAccount().getOrCreate("pharmacist", "pharmacist", pr, pharmacist);
+
         Main.controller.saveOrUpdate(pharmaUser);
 
         pharmacyOrg.getUserAccountDir().add(pharmaUser);
@@ -91,9 +94,14 @@ public class PreConfigure {
         Main.controller.saveOrUpdate(pharmacyOrg);
 
         //4
-        EmployeeDetails shelter = new EmployeeDetails("Sejal Deopura");
-        UserAccount shelterManager = new UserAccount("shelter", "shelter", new ShelterEmpRole(), shelter);
+        EmployeeDetails shelter = new EmployeeDetails().getOrCreateByEmail("Sejal Deopura", "sejal@gmail.com");
         Main.controller.saveOrUpdate(shelter);
+        AllRoles sr = new ShelterEmpRole();
+        Main.controller.saveOrUpdate(sr);
+
+        //4
+        UserAccount shelterManager = new UserAccount().getOrCreate("shelter", "shelter", sr, shelter);
+
         Main.controller.saveOrUpdate(shelterManager);
         shelterOrg.getUserAccountDir().add(shelterManager);
         shelterOrg.getEmployeeDir().add(shelter);
@@ -101,27 +109,40 @@ public class PreConfigure {
 
 
         //5
-        EmployeeDetails adopter = new EmployeeDetails("Mahima Rao");
-        UserAccount adopterManager = new UserAccount("adopter", "adopter", new AdoptionManagerRole(), adopter);
+        EmployeeDetails adopter = new EmployeeDetails().getOrCreateByEmail("Mahima Rao", "mahima@gmail.com");
         Main.controller.saveOrUpdate(adopter);
+        AllRoles ar = new AdoptionManagerRole();
+        Main.controller.saveOrUpdate(ar);
+
+        //5
+        UserAccount adopterManager = new UserAccount().getOrCreate("adopter", "adopter", ar, adopter);
+
         Main.controller.saveOrUpdate(adopterManager);
         adoptOrg.getUserAccountDir().add(adopterManager);
         adoptOrg.getEmployeeDir().add(adopter);
         Main.controller.saveOrUpdate(adoptOrg);
 
         //6
-        EmployeeDetails delivery = new EmployeeDetails("Bhavik Bhosle");
-        UserAccount deliveryManager = new UserAccount("delivery", "delivery", new DeliveryPersonRole(), delivery);
+        EmployeeDetails delivery = new EmployeeDetails().getOrCreateByEmail("Bhavik Bhosle", "bhavik@gmail.com");
         Main.controller.saveOrUpdate(delivery);
+        AllRoles dpr = new DeliveryPersonRole();
+        Main.controller.saveOrUpdate(dpr);
+
+        //6
+        UserAccount deliveryManager = new UserAccount().getOrCreate("delivery", "delivery", dpr, delivery);
+
         Main.controller.saveOrUpdate(deliveryManager);
         deliveryOrg.getUserAccountDir().add(deliveryManager);
         deliveryOrg.getEmployeeDir().add(delivery);
         Main.controller.saveOrUpdate(deliveryOrg);
 
         //7
-        EmployeeDetails veteAssistant = new EmployeeDetails("Mayuri More");
-        UserAccount veteAssistantManager = new UserAccount("vete", "vete", new VetAssistantRole(), veteAssistant);
+        EmployeeDetails veteAssistant = new EmployeeDetails().getOrCreateByEmail("Mayuri More", "mayuri@gmail.com");
         Main.controller.saveOrUpdate(veteAssistant);
+        AllRoles vr = new VetAssistantRole();
+        Main.controller.saveOrUpdate(vr);
+        UserAccount veteAssistantManager = new UserAccount().getOrCreate("vete", "vete", vr, veteAssistant);
+
         Main.controller.saveOrUpdate(veteAssistantManager);
         vetOrg.getUserAccountDir().add(veteAssistantManager);
         vetOrg.getEmployeeDir().add(veteAssistant);
@@ -142,7 +163,7 @@ public class PreConfigure {
 
 
         for(int i=0; i<10; i++) {
-            CageDetail c = new CageDetail().getOrCreateByName(cities.get(i));
+            CageDetail c = new CageDetail().getByName(cities.get(i));
             if (c != null) {
                 enterpriseRescueCenter.getCageCellDirectory().add(c);
                 Main.controller.saveOrUpdate(enterpriseRescueCenter);
@@ -152,7 +173,7 @@ public class PreConfigure {
         Collections.shuffle(cities);
 
         for(int i=0; i<50; i++) {
-            ShelterCellDetails c = new ShelterCellDetails().getOrCreateByName(cities.get(i));
+            ShelterCellDetails c = new ShelterCellDetails().getByLocation(cities.get(i));
             if (c != null) {
                 enterpriseRescueCenter.getShelterCellDirectory().add(c);
                 Main.controller.saveOrUpdate(enterpriseRescueCenter);
@@ -160,8 +181,6 @@ public class PreConfigure {
         }
 
         AddressDetails address = new AddressDetails("3 Atherton Street", "Boston", "MA");
-        Main.controller.saveOrUpdate(address);
-
         AdopterDetails adopterDetails = new AdopterDetails("jshef923238r", "mohit", "chauhan", "+91 7024892702", address, "i.vaibhavmahajan@gmail.com");
         Main.controller.saveOrUpdate(adopterDetails);
 
@@ -178,12 +197,12 @@ public class PreConfigure {
 
         Main.controller.saveOrUpdate(animal);
 
-        RescueRecordDetails rr = new RescueRecordDetails();
-        rr.setDate(new Date(10,10,2022));
-        rr.setRescuedanimal(animal);
-        rr.setFoundlocation("Boston");
-        Main.controller.saveOrUpdate(rr);
-        enterpriseRescueCenter.getRecordDirectory().add(rr);
+        RescueRecordDetails rrd = new RescueRecordDetails();
+        rrd.setDate(new Date(10,10,2022));
+        rrd.setRescuedanimal(animal);
+        rrd.setFoundlocation("Boston");
+        Main.controller.saveOrUpdate(rrd);
+        enterpriseRescueCenter.getRecordDirectory().add(rrd);
         Main.controller.saveOrUpdate(enterpriseRescueCenter);
         
         // Close Sessions

@@ -59,20 +59,20 @@
       <mapping class = "model.Organisation.DeliveryOrganisation"/>
       <mapping class = "model.Organisation.PharmacyOrganisation"/>
       <mapping class = "model.Organisation.ShelterOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      <mapping class = "model.Organisation.DeliveryOrganisation"/>
-      
-      
-
-      
-      
+      <mapping class = "model.Role.SystemAdministratorRole"/>
+      <mapping class = "model.Role.ReceptionistRole"/>
+      <mapping class = "model.Role.PharmacistRole"/>
+      <mapping class = "model.Role.ShelterEmpRole"/>
+      <mapping class = "model.Role.AdoptionManagerRole"/>
+      <mapping class = "model.Role.DeliveryPersonRole"/>
+      <mapping class = "model.Role.VetAssistantRole"/>
+      <mapping class = "model.Medicines.AnestheticsDetails"/>
+      <mapping class = "model.Medicines.AntibioticsDetails"/>
+      <mapping class = "model.Medicines.OtherMedicineDetails"/>
+      <mapping class = "model.Medicines.VaccinationDetails"/>
+      <mapping class = "model.Animal.DogDetails"/>
+      <mapping class = "model.Animal.CatDetails"/>
+      <mapping class = "model.Animal.OtherAnimalDetails"/>
    </session-factory>
 </hibernate-configuration>
 
