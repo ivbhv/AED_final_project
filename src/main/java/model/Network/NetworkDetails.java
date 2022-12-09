@@ -78,9 +78,10 @@ public class NetworkDetails implements Serializable {
     }
     
     public NetworkDetails getOrCreateByName(String name) {
-        Session s = Main.controller.getSession();
-        NetworkDetails n = (NetworkDetails) s.createQuery("from NetworkDetails n where n.name = :name ").setParameter("name", name).uniqueResult();
-        s.close();
+        NetworkDetails n;
+        try (Session s = Main.controller.getSession()) {
+            n = (NetworkDetails) s.createQuery("from NetworkDetails n where n.name = :name ").setParameter("name", name).uniqueResult();
+        }
         if (n != null) {
             return n;
 
@@ -89,6 +90,6 @@ public class NetworkDetails implements Serializable {
         }
         Main.controller.saveObject(n);
         
-        return new NetworkDetails(name);
+        return n;
     }
 }

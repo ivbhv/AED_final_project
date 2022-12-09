@@ -5,6 +5,7 @@
  */
 package model.Role;
 
+import javax.persistence.Entity;
 import javax.swing.JPanel;
 import model.Enterprises.EnterpriseDetails;
 import model.Organisation.AdoptionOrganisation;
@@ -15,6 +16,8 @@ import model.UserAccount.UserAccount;
  *
  * @author manohar
  */
+
+@Entity
 public class AdoptionManagerRole extends AllRoles
 {
     @Override
@@ -24,7 +27,7 @@ public class AdoptionManagerRole extends AllRoles
             UserAccount userAccount) 
     {
         
-        return new AdoptInspectorWorkpage(container, enterprise, (AdoptionOrganisation)organization, userAccount);
+        return new JPanel();
         
     }
 }

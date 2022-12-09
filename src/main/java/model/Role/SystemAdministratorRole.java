@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model.Role;
+import javax.persistence.Entity;
 import javax.swing.JPanel;
 
 import model.Enterprises.EnterpriseDetails;
@@ -14,6 +15,8 @@ import model.UserAccount.UserAccount;
  *
  * @author manohar
  */
+
+@Entity
 public class SystemAdministratorRole extends AllRoles 
 {
     

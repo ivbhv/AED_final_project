@@ -4,20 +4,25 @@
      * and open the template in the editor.
      */
 package model.Role;
+import javax.persistence.Entity;
 import javax.swing.JPanel;
+
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
 
     /**
  *
  * @author manohar
  */
+
+@Entity
 public class VetAssistantRole extends AllRoles 
 {
     public JPanel createWorkArea(JPanel container, 
-            EnterpriseDetails enterprise, 
-            OrganisationMain organization, 
-            UserAccount userAccount, 
-            EcoSystem business) {
-        return new VeteAssistantWorkAreaJPanel(container, enterprise, (CageOrganisation)organization, userAccount);
+            EnterpriseDetails enterprise,
+            OrganisationMain organization,
+            UserAccount userAccount) {
+        return new JPanel();
     }
 }
