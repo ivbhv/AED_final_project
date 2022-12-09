@@ -16,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import model.Organisation.AdoptionOrganisation;
 import model.Organisation.CageOrganisation;
 import model.Organisation.CenterRegistrationOrganisation;
@@ -24,6 +27,8 @@ import model.Organisation.OrganisationMain;
 import model.Organisation.PharmacyOrganisation;
 import model.Organisation.ShelterOrganisation;
 import model.Organisation.VeterinarianOrganisation;
+import model.UserAccount.UserAccount;
+import org.hibernate.Session;
 import view.Main.Main;
 
 /**
@@ -32,7 +37,7 @@ import view.Main.Main;
  */
 
 @Entity
-public class EnterpriseDetails implements Serializable {
+public class EnterpriseDetails extends OrganisationMain{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -117,5 +122,15 @@ public class EnterpriseDetails implements Serializable {
             return value;
         }
         
+    }
+    
+    public UserAccount authenticateUser(String username, String password) {
+
+        for (UserAccount ua : getUserAccountDir())
+            if (ua.getUsername().equals(username) && ua.getPass().equals(password)){
+                return ua;
+            }
+        return null;
+
     }
 }
