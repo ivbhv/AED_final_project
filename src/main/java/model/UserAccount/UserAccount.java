@@ -124,4 +124,28 @@ public class UserAccount implements Serializable {
         return u;
     }
     
+    public UserAccount authenticateUser(String username, String password) {
+
+        UserAccount u;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<UserAccount> criteriaQuery = criteriaBuilder.createQuery(UserAccount.class);
+            Root<UserAccount> root = criteriaQuery.from(UserAccount.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
+            u = s.createQuery(criteriaQuery).uniqueResult();
+            s.close();
+        }
+
+        if(u == null) {
+            return null;
+        }
+
+        if (u.getPass().equals(password)) {
+            return u;
+        }
+
+        return null;
+
+    }
+    
 }

@@ -106,6 +106,16 @@ public class OrganisationMain implements Serializable {
     public void setUserAccountDir(ArrayList<UserAccount> userAccountDir) {
         this.userAccountDir = userAccountDir;
     }
+    
+    public UserAccount authenticateUser(String username, String password) {
+
+        for (UserAccount ua : getUserAccountDir())
+            if (ua.getUsername().equals(username) && ua.getPass().equals(password)){
+                return ua;
+            }
+        return null;
+
+    }
 
     @Override
     public String toString() {
