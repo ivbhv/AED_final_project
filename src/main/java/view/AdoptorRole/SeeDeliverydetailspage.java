@@ -5,12 +5,6 @@
  */
 package view.AdoptorRole;
 
-import Business.Adopt.AdoptHistory;
-import Business.EcoSystem.EcoSystem;
-import Business.Enterprises.EnterpriseDetails;
-import Business.Enterprises.RescueCenterEntDetails;
-import Business.Network.NetworkDetails;
-import Business.Deliver.DeliveryHistoryDetails;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -18,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author user
+ * @author manohar
  */
 public class SeeDeliverydetailspage extends javax.swing.JPanel {
 

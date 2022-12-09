@@ -5,21 +5,7 @@
  */
 package view.AdoptorRole;
 
-import Business.Adopt.AdoptHistory;
-import Business.Adopt.AdoptionOffered;
-import Business.Adopt.AdoptRecord;
-import Business.Adopt.AdopterDetail;
-import Business.Animals.AnimalDetails;
-import Business.Animals.CatDetails;
-import Business.Animals.DogDetails;
-import Business.Date.Date;
-import Business.EcoSystem.EcoSystem;
-import Business.Enterprises.EnterpriseDetails;
-import Business.Enterprises.RescueCenterEntDetails;
-import Business.Network.NetworkDetails;
-import Business.Organisation.AdoptionOrganisation;
-import Business.Organisation.OrganisationMain;
-import Business.RescueRecord.RescueRecordDetails;
+
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Calendar;
@@ -28,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author user
+ * @author manohar
  */
 public class SeeOfferinginfoPage extends javax.swing.JPanel {
 

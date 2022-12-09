@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author user
+ * @author manohar
  */
 public class MyAdoptPage extends javax.swing.JPanel {
 

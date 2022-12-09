@@ -5,16 +5,13 @@
  */
 package view.AdoptorRole;
 
-import Business.Adopt.AdoptionOffered;
-import Business.Adopt.AdopterDetail;
-import Business.EcoSystem.EcoSystem;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author user
+ * @author manohar
  */
 public class AdoptInfoPage extends javax.swing.JPanel {
 

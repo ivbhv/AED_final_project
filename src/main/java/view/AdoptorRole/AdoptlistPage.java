@@ -5,21 +5,13 @@
  */
 package view.AdoptorRole;
 
-import Business.Adopt.AdoptionOfferedList;
-import Business.Adopt.AdoptionOffered;
-import Business.Adopt.AdopterDetail;
-import Business.EcoSystem.EcoSystem;
-import Business.Enterprises.EnterpriseDetails;
-import Business.Enterprises.RescueCenterEntDetails;
-import Business.Network.NetworkDetails;
-import Business.UserAccount.UserAccountDetails;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author user
+ * @author manohar
  */
 public class AdoptlistPage extends javax.swing.JPanel {
 

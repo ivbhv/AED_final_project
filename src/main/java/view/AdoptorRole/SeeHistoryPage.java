@@ -5,22 +5,13 @@
  */
 package view.AdoptorRole;
 
-import Business.Adopt.AdoptHistory;
-import Business.Animals.AnimalDetails;
-import Business.Animals.CatDetails;
-import Business.Animals.DogDetails;
-import Business.EcoSystem.EcoSystem;
-import Business.Enterprises.EnterpriseDetails;
-import Business.Enterprises.RescueCenterEntDetails;
-import Business.Network.NetworkDetails;
-import Business.RescueRecord.RescueRecordDetails;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
  *
- * @author user
+ * @author manohar
  */
 public class SeeHistoryPage extends javax.swing.JPanel {
 
