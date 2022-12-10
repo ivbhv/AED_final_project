@@ -5,12 +5,12 @@
  */
 package model.Enterprises;
 
-import controller.Hibernate.HibernateController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +24,9 @@ import model.Organisation.OrganisationMain;
 import model.Organisation.PharmacyOrganisation;
 import model.Organisation.ShelterOrganisation;
 import model.Organisation.VeterinarianOrganisation;
+import model.UserAccount.UserAccount;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import view.Main.Main;
 
 /**
@@ -32,7 +35,7 @@ import view.Main.Main;
  */
 
 @Entity
-public class EnterpriseDetails implements Serializable {
+public class EnterpriseDetails implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -42,8 +45,30 @@ public class EnterpriseDetails implements Serializable {
     private EnterpriseType enterpriseType;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<OrganisationMain> organisationDirectory;
+    
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name="enterprise_id")
+    private List<UserAccount> userAccountDir;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<UserAccount> getUserAccountDir() {
+        return userAccountDir;
+    }
+
+    public void setUserAccountDir(List<UserAccount> userAccountDir) {
+        this.userAccountDir = userAccountDir;
+    }
 
     public EnterpriseDetails() {
     }
@@ -117,5 +142,15 @@ public class EnterpriseDetails implements Serializable {
             return value;
         }
         
+    }
+    
+    public UserAccount authenticateUser(String username, String password) {
+
+        for (UserAccount ua : getUserAccountDir())
+            if (ua.getUsername().equals(username) && ua.getPass().equals(password)){
+                return ua;
+            }
+        return null;
+
     }
 }

@@ -23,6 +23,8 @@ import model.Employees.EmployeeDetails;
 import model.Role.AllRoles;
 import model.WorkQueue.AllWorkRequest;
 import org.hibernate.Session;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import view.Main.Main;
 
 /**
@@ -47,6 +49,7 @@ public class UserAccount implements Serializable {
     private AllRoles roles;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private List<AllWorkRequest> workQueue;
     
@@ -122,6 +125,30 @@ public class UserAccount implements Serializable {
         u = new UserAccount(username, password, role, employee);
         Main.controller.saveObject(u);
         return u;
+    }
+    
+    public UserAccount authenticateUser(String username, String password) {
+
+        UserAccount u;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<UserAccount> criteriaQuery = criteriaBuilder.createQuery(UserAccount.class);
+            Root<UserAccount> root = criteriaQuery.from(UserAccount.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
+            u = s.createQuery(criteriaQuery).uniqueResult();
+            s.close();
+        }
+
+        if(u == null) {
+            return null;
+        }
+
+        if (u.getPass().equals(password)) {
+            return u;
+        }
+
+        return null;
+
     }
     
 }

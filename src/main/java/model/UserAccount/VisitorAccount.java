@@ -9,7 +9,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import model.AdoptDetails.AdopterDetails;
+import org.hibernate.Session;
+import view.Main.Main;
 
 /**
  *
@@ -71,5 +76,27 @@ public class VisitorAccount implements Serializable {
         this.adoptor = adoptor;
     }
     
-    
+    public VisitorAccount authenticateUser(String username, String password) {
+
+        VisitorAccount u;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<VisitorAccount> criteriaQuery = criteriaBuilder.createQuery(VisitorAccount.class);
+            Root<VisitorAccount> root = criteriaQuery.from(VisitorAccount.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
+            u = s.createQuery(criteriaQuery).uniqueResult();
+            s.close();
+        }
+
+        if(u == null) {
+            return null;
+        }
+
+        if (u.getPassword().equals(password)) {
+            return u;
+        }
+
+        return null;
+
+    }
 }

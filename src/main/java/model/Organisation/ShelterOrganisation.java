@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import model.Role.AllRoles;
 import model.Role.ShelterEmpRole;
 import model.ShelterCell.ShelterCellDetails;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -21,6 +23,7 @@ import model.ShelterCell.ShelterCellDetails;
 public class ShelterOrganisation extends OrganisationMain{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<ShelterCellDetails> shelterCellDirectory;
     

@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import model.Deliver.VehicleDetails;
 import model.Role.AllRoles;
 import model.Role.DeliveryPersonRole;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -22,6 +24,7 @@ import model.Role.DeliveryPersonRole;
 public class DeliveryOrganisation extends OrganisationMain{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<VehicleDetails> vehicleDirectory;
     

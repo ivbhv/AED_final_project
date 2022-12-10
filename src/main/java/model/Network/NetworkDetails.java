@@ -16,8 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import model.Enterprises.EnterpriseDetails;
 import org.hibernate.Session;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import view.Main.Main;
 
 /**
@@ -36,7 +40,8 @@ public class NetworkDetails implements Serializable {
     @Column(unique = true)
     private String name;
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="network_id")
     private List<EnterpriseDetails> enterpriseDirectory;
 
@@ -91,5 +96,17 @@ public class NetworkDetails implements Serializable {
         Main.controller.saveObject(n);
         
         return n;
+    }
+
+    public List<NetworkDetails> getNetworkList() {
+        List<NetworkDetails> networkList;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder builder = s.getCriteriaBuilder();
+            CriteriaQuery<NetworkDetails> criteria = builder.createQuery(NetworkDetails.class);
+            criteria.from(NetworkDetails.class);
+            networkList = s.createQuery(criteria).getResultList();
+        }
+        return networkList;
+
     }
 }

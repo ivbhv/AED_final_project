@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package model.WorkQueue;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -21,6 +24,7 @@ public class PharmacyWre extends AllWorkRequest {
     private boolean assigned;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "work_request_id")
     private List<PharmacyUnitWre> medicineList;
 
