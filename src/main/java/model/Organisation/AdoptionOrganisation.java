@@ -14,6 +14,8 @@ import model.AdoptDetails.AdopterDetails;
 import model.AdoptDetails.AdoptionOffered;
 import model.Role.AdoptionManagerRole;
 import model.Role.AllRoles;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -24,14 +26,17 @@ import model.Role.AllRoles;
 public class AdoptionOrganisation extends OrganisationMain{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<AdoptRecord> adoptionRecordDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<AdopterDetails> adopterDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<AdoptionOffered> adoptionlist;
     

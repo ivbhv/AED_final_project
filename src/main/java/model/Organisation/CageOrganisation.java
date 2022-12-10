@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import model.Cages.CageDetail;
 import model.Role.AllRoles;
 import model.Role.VetAssistantRole;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -22,6 +24,7 @@ import model.Role.VetAssistantRole;
 public class CageOrganisation extends OrganisationMain{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<CageDetail> cageCellDirectory;
     

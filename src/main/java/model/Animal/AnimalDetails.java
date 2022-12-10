@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import model.Treatment.TreatmentRecord;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -51,9 +53,11 @@ public class AnimalDetails implements Serializable {
     private Date nextCheck;
     
     @OneToMany(mappedBy = "animalDeatils")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<TreatmentRecord> treatmentRecord;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "animal_id")
     private List<AnimalStatusDetails> statusDirectory;
 

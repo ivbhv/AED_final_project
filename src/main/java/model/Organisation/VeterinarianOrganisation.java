@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import model.Role.AllRoles;
 import model.Role.VeterinarianRole;
 import model.Treatment.TreatmentRecord;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -22,6 +24,7 @@ import model.Treatment.TreatmentRecord;
 public class VeterinarianOrganisation extends OrganisationMain{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<TreatmentRecord> treatmentRecordDir;
     

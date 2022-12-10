@@ -18,6 +18,8 @@ import model.Employees.EmployeeDetails;
 import model.Role.AllRoles;
 import model.UserAccount.UserAccount;
 import model.WorkQueue.AllWorkRequest;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -35,14 +37,17 @@ public class OrganisationMain implements Serializable {
     private String orgname;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<AllWorkRequest> workQueue;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<EmployeeDetails> employeeDir;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<UserAccount> userAccountDir;
 

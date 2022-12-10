@@ -23,7 +23,7 @@ public class HibernateController {
     private SessionFactory factory;
     
     public void startFactory() {
-        if (this.factory == null) {
+        if (this.factory == null || this.factory.isClosed()) {
             this.factory = new Configuration().configure().buildSessionFactory();
         }
     }

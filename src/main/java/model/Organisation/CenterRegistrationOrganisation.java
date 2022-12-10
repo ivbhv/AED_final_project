@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import model.RescueRecord.RescueRecordDetails;
 import model.Role.AllRoles;
 import model.Role.ReceptionistRole;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -22,6 +24,7 @@ import model.Role.ReceptionistRole;
 public class CenterRegistrationOrganisation extends OrganisationMain {
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<RescueRecordDetails> rescueRecordDirectory;
     

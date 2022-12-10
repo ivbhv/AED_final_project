@@ -18,6 +18,8 @@ import model.Place.PlaceDetails;
 import model.RescueRecord.RescueRecordDetails;
 import model.Role.AllRoles;
 import model.ShelterCell.ShelterCellDetails;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -28,34 +30,42 @@ import model.ShelterCell.ShelterCellDetails;
 public class RescueCenterEntDetails extends EnterpriseDetails{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<PlaceDetails> roomDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<RescueRecordDetails> recordDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<AnimalDetails> animalDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<MedicineDetails> medicineDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<CageDetail> cageCellDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<ShelterCellDetails> shelterCellDirectory;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<AdoptionOffered> adoptionList;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<DeliveryDetails> deliveryHistoryDirectory;
 
