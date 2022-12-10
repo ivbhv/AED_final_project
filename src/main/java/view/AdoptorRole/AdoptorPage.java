@@ -76,7 +76,7 @@ public class AdoptorPage extends javax.swing.JPanel {
         });
         add(btnEditInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 680, 214, 43));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\All Animals.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/All Animals.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.setMaximumSize(new java.awt.Dimension(1920, 1080));
         jLabel1.setMinimumSize(new java.awt.Dimension(1920, 1080));

@@ -156,7 +156,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 470, 80));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\Enterprise.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Enterprise.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents

@@ -269,7 +269,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\91833\Downloads\ezgif-1-421fde06f4.jpg"/>
+          <Image iconType="3" name="/ezgif-1-421fde06f4.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>

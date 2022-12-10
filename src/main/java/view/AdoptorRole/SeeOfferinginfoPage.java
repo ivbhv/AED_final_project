@@ -266,7 +266,7 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
         });
         add(btnAdoption, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 80, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\jpgtopngconverter-com.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpgtopngconverter-com.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents

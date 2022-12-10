@@ -105,9 +105,9 @@ public class AnalysisJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, -1, 230));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\Analysis.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Analysis.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1930, 1090));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1930, 1100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalsActionPerformed
