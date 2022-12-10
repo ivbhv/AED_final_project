@@ -20,6 +20,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import model.Enterprises.EnterpriseDetails;
 import org.hibernate.Session;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import view.Main.Main;
 
 /**
@@ -38,7 +40,8 @@ public class NetworkDetails implements Serializable {
     @Column(unique = true)
     private String name;
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="network_id")
     private List<EnterpriseDetails> enterpriseDirectory;
 

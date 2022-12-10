@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import model.Medicines.MedicineDetails;
 import model.Role.AllRoles;
 import model.Role.PharmacistRole;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -22,6 +24,7 @@ import model.Role.PharmacistRole;
 public class PharmacyOrganisation extends OrganisationMain{
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="organisation_id")
     private List<MedicineDetails> medicine;
     

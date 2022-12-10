@@ -5,20 +5,17 @@
  */
 package model.Enterprises;
 
-import controller.Hibernate.HibernateController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import model.Organisation.AdoptionOrganisation;
 import model.Organisation.CageOrganisation;
 import model.Organisation.CenterRegistrationOrganisation;
@@ -28,7 +25,8 @@ import model.Organisation.PharmacyOrganisation;
 import model.Organisation.ShelterOrganisation;
 import model.Organisation.VeterinarianOrganisation;
 import model.UserAccount.UserAccount;
-import org.hibernate.Session;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import view.Main.Main;
 
 /**
@@ -37,7 +35,7 @@ import view.Main.Main;
  */
 
 @Entity
-public class EnterpriseDetails extends OrganisationMain{
+public class EnterpriseDetails implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -47,8 +45,30 @@ public class EnterpriseDetails extends OrganisationMain{
     private EnterpriseType enterpriseType;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<OrganisationMain> organisationDirectory;
+    
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name="enterprise_id")
+    private List<UserAccount> userAccountDir;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<UserAccount> getUserAccountDir() {
+        return userAccountDir;
+    }
+
+    public void setUserAccountDir(List<UserAccount> userAccountDir) {
+        this.userAccountDir = userAccountDir;
+    }
 
     public EnterpriseDetails() {
     }

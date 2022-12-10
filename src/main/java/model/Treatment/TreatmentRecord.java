@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 import model.Animal.AnimalDetails;
 import model.Medicines.MedicineDetails;
 import model.Place.PlaceDetails;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -47,6 +49,7 @@ public class TreatmentRecord implements Serializable {
     private PlaceDetails room;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "treatment_id")
     private List<MedicineDetails> medicineList;
     

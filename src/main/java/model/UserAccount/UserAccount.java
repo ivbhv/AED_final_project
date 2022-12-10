@@ -23,6 +23,8 @@ import model.Employees.EmployeeDetails;
 import model.Role.AllRoles;
 import model.WorkQueue.AllWorkRequest;
 import org.hibernate.Session;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import view.Main.Main;
 
 /**
@@ -47,6 +49,7 @@ public class UserAccount implements Serializable {
     private AllRoles roles;
     
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private List<AllWorkRequest> workQueue;
     

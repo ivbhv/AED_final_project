@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.swing.JPanel;
 
 import model.Enterprises.EnterpriseDetails;
+import model.Organisation.DeliveryOrganisation;
 import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
+import view.DeliverRole.DeliveryWorkspace;
 
 /**
  *
@@ -27,6 +29,6 @@ public class DeliveryPersonRole  extends AllRoles
             OrganisationMain organization,
             UserAccount userAccount)
     {
-        return new JPanel();
+        return new DeliveryWorkspace(container, enterprise, (DeliveryOrganisation)organization, userAccount);
     }
 }
