@@ -59,7 +59,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setText("User Name");
 
-        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setForeground(new java.awt.Color(255, 0, 0));
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +71,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Password");
 
-        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
         btnLogout.setForeground(new java.awt.Color(255, 51, 51));
         btnLogout.setText("Logout");
         btnLogout.setEnabled(false);
@@ -118,7 +116,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btnLogin)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(1022, Short.MAX_VALUE))
         );
 
         splitPane1.setLeftComponent(signIn);
@@ -129,7 +127,7 @@ public class Main extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Telugu MN", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GettyImages-162308647-hero-83747d1.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/The-bond-between-humans-and-dogs-dates-back-20000-years.jpg"))); // NOI18N
         container.add(jLabel4, "card2");
 
         splitPane1.setRightComponent(container);
