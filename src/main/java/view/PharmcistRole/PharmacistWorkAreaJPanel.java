@@ -8,6 +8,12 @@ package view.PharmcistRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.PharmacyOrganisation;
+import model.UserAccount.UserAccount;
+import model.WorkQueue.AllWorkRequest;
+import model.WorkQueue.PharmacyWre;
 
 /**
  *
@@ -22,9 +28,9 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private PharmacyOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public PharmacistWorkAreaJPanel(JPanel container, EnterpriseDetails enterprise, PharmacyOrganisation organization, UserAccountDetails userAccount, EcoSystem business) {
+    public PharmacistWorkAreaJPanel(JPanel container, EnterpriseDetails enterprise, PharmacyOrganisation organization, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = (RescueCenterEntDetails)enterprise;
@@ -37,11 +43,11 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
         model.setRowCount(0);
-        for(AllWorkRequest request: organization.getWorkQueue().getWorkRequestList()) {
+        for(AllWorkRequest request: organization.getWorkQueue()) {
             Object[] row = new Object[4];
             row[0] = request;
-            row[1] = request.getWresender().getEmployee().getEmpname();
-            row[2] = request.getWrereceiver() == null ? null : request.getWrereceiver().getEmployee().getEmpname();
+            row[1] = request.getWresender().getEmployee().getName();
+            row[2] = request.getWrereceiver() == null ? null : request.getWrereceiver().getEmployee().getName();
             row[3] = request.getWrestatus();
 
             model.addRow(row);

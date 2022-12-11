@@ -5,24 +5,31 @@
  */
 package view.EntAdminRole;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Employees.EmployeeDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationDirectory;
+import model.Organisation.OrganisationMain;
 /**
  *
  * @author manohar
  */
 public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
-    private OrganisationDirectory organizationDir;
+    private EnterpriseDetails enterprise;
     private JPanel userProcessContainer;
     
     /**
      * Creates new form ManageOrganizationJPanel
+     * @param userProcessContainer
+     * @param organizationDir
      */
-    public ManageEmployeeJPanel(JPanel userProcessContainer,OrganisationDirectory organizationDir) {
+    public ManageEmployeeJPanel(JPanel userProcessContainer, EnterpriseDetails enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.organizationDir = organizationDir;
+        this.enterprise = enterprise;
         
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
@@ -31,7 +38,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     public void populateOrganizationComboBox(){
         cboxOrganization.removeAllItems();
         
-        for (OrganisationMain organization : organizationDir.getOrganisationList()){
+        for (OrganisationMain organization : enterprise.getOrganisationDirectory()){
             cboxOrganization.addItem(organization);
         }
     }
@@ -39,7 +46,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     public void populateOrganizationEmpComboBox(){
         cboxOrganizationEmployee.removeAllItems();
         
-        for (OrganisationMain organization : organizationDir.getOrganisationList()){
+        for (OrganisationMain organization : enterprise.getOrganisationDirectory()){
             cboxOrganizationEmployee.addItem(organization);
         }
     }
@@ -49,10 +56,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (EmployeeDetails employee : organization.getEmployeeDir().getEmployeeList()){
+        for (EmployeeDetails employee : organization.getEmployeeDir()){
             Object[] row = new Object[2];
-            row[0] = employee.getEmpid();
-            row[1] = employee.getEmpname();
+            row[0] = employee.getId();
+            row[1] = employee.getName();
             model.addRow(row);
         }
     }
@@ -245,7 +252,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         OrganisationMain organization = (OrganisationMain) cboxOrganizationEmployee.getSelectedItem();
         String name = nameJTextField.getText();
 
-        organization.getEmployeeDir().createEmployee(name);
+        organization.getEmployeeDir().add(new EmployeeDetails(name, "i.vaibhavmahajan@gmail.com"));
         
         if (organization != null){
             populateTable(organization);

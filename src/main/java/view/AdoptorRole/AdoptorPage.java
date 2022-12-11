@@ -110,14 +110,14 @@ public class AdoptorPage extends javax.swing.JPanel {
     private void btnMyAdoptionlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyAdoptionlistActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add("MyAdoptionsJPanel", new MyAdoptPage(container, business, adoptor));
+        container.add("MyAdoptionsJPanel", new MyAdoptPage(container, adoptor));
         layout.next(container);
     }//GEN-LAST:event_btnMyAdoptionlistActionPerformed
 
     private void btnAdoptListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdoptListActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add("AdoptorListJPanel", new AdoptlistPage(container, business, adoptor));
+        container.add("AdoptorListJPanel", new AdoptlistPage(container, adoptor));
         layout.next(container);
     }//GEN-LAST:event_btnAdoptListActionPerformed
 

@@ -34,11 +34,12 @@ public class PharmacyOrganisation extends OrganisationMain{
         medicine = new ArrayList();
     }
     
-//    public ArrayList<AllRoles> getSupportedRole() {
-//        ArrayList<AllRoles> roles = new ArrayList();
-//        roles.add(new PharmacistRole());
-//        return roles;
-//    }
+    @Override
+    public ArrayList<AllRoles> getSupportedRole() {
+        ArrayList<AllRoles> roles = new ArrayList();
+        roles.add(new PharmacistRole());
+        return roles;
+    }
 
     public List<MedicineDetails> getMedicine() {
         return medicine;

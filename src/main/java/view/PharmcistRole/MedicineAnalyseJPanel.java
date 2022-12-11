@@ -8,6 +8,12 @@ package view.PharmcistRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Medicines.MedicineDetails;
+import model.Organisation.PharmacyOrganisation;
+import model.WorkQueue.AllWorkRequest;
+import model.WorkQueue.PharmacyUnitWre;
+import model.WorkQueue.PharmacyWre;
 
 /**
  *
@@ -35,11 +41,11 @@ public class MedicineAnalyseJPanel extends javax.swing.JPanel {
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
         model.setRowCount(0);
-        for(MedicineDetails m: enterprise.getMedicineDirectory().getMedicineList()) {
+        for(MedicineDetails m: enterprise.getMedicineDirectory()) {
             int count = 0;
             Object[] row = new Object[2];
             row[0] = m;
-            for(AllWorkRequest wr: organization.getWorkQueue().getWorkRequestList()) {
+            for(AllWorkRequest wr: organization.getWorkQueue()) {
                 if(wr instanceof PharmacyWre) {
                     if(((PharmacyWre) wr).getMedicineList() != null) {
                         for(PharmacyUnitWre ru: ((PharmacyWre) wr).getMedicineList()) {

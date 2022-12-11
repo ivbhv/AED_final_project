@@ -5,14 +5,14 @@
  */
 package view.AdoptInspectRole;
 
-import Business.Adopt.AdoptRecord;
-import Business.Employees.EmployeeDetails;
-import Business.Enterprises.RescueCenterEntDetails;
-import Business.Organisation.AdoptionOrganisation;
-import Business.UserAccount.UserAccountDetails;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.AdoptDetails.AdoptRecord;
+import model.Employees.EmployeeDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.AdoptionOrganisation;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -26,9 +26,9 @@ public class MyInspectPanel extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private AdoptionOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    MyInspectPanel(JPanel container, RescueCenterEntDetails enterprise, AdoptionOrganisation organization, UserAccountDetails userAccount) {
+    MyInspectPanel(JPanel container, RescueCenterEntDetails enterprise, AdoptionOrganisation organization, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = (RescueCenterEntDetails)enterprise;
@@ -43,34 +43,38 @@ public class MyInspectPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         EmployeeDetails me = userAccount.getEmployee();
         
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
-            if(ar.getInspectorName() != null)  {
-                if(ar.getStatus().equals(AdoptRecord.PROCESSING_STATUS) && ar.getInspectorName() == me) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
+            if(ar.getEmployee() != null)  {
+                if(ar.getStatus().equals(AdoptRecord.Status.Processing) && ar.getEmployee() == me) {
                     Object[] row = new Object[4];
                     row[0] = ar;
-                    row[1] = ar.getAdoptorName().getFirstName() + " " + ar.getAdoptorName().getLastName();
-                    row[2] = ar.getAnimal().getAnimalid();
+                    row[1] = ar.getAdoptor().getFirstName() + " " + ar.getAdoptor().getLastName();
+                    row[2] = ar.getAnimal().getId();
                     row[3] = "Processing";
                     model.addRow(row);
                 }
             }
         }
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
-            if( (ar.getStatus().equals(AdoptRecord.APPROVED_STATUS) 
-                    || ar.getStatus().equals(AdoptRecord.REJECTED_STATUS)) 
-                    && ar.getInspectorName() == me ) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
+            if( (ar.getStatus().equals(AdoptRecord.Status.Approved) 
+                    || ar.getStatus().equals(AdoptRecord.Status.Rejected)) 
+                    && ar.getEmployee() == me ) {
                 Object[] row = new Object[4];
                 row[0] = ar;
-                row[1] = ar.getAdoptorName().getFirstName() + " " + ar.getAdoptorName().getLastName();
-                row[2] = ar.getAnimal().getAnimalid();
-                if(ar.getStatus().equals(AdoptRecord.APPROVED_STATUS)) {
-                    row[3] = "Approved";
-                }
-                else if(ar.getStatus().equals(AdoptRecord.REJECTED_STATUS)) {
-                    row[3] = "Rejected";
-                }
-                else if(ar.getStatus().equals(AdoptRecord.INPROGRESS_STATUS)) {
-                    row[3] = "Adopting";
+                row[1] = ar.getAdoptor().getFirstName() + " " + ar.getAdoptor().getLastName();
+                row[2] = ar.getAnimal().getId();
+                switch (ar.getStatus()) {
+                    case Approved:
+                        row[3] = "Approved";
+                        break;
+                    case Rejected:
+                        row[3] = "Rejected";
+                        break;
+                    case In_Progress:
+                        row[3] = "Adopting";
+                        break;
+                    default:
+                        break;
                 }
                 model.addRow(row);
             }

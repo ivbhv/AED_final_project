@@ -10,6 +10,8 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.WorkQueue.PharmacyUnitWre;
+import model.WorkQueue.PharmacyWre;
 
 /**
  *
@@ -38,7 +40,7 @@ public class DispenseMedicineJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(PharmacyUnitWre unit: request.getMedicineList()) {
             Object[] row = new Object[2];
-            row[0] = unit.getMedicine().getMedID();
+            row[0] = unit.getMedicine().getId();
             row[1] = unit.getQuantity();
             model.addRow(row);
         }

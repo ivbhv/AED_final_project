@@ -9,8 +9,22 @@ package view.AdoptorRole;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.AdoptDetails.AdoptHistory;
+import model.AdoptDetails.AdoptRecord;
+import model.AdoptDetails.AdopterDetails;
+import model.AdoptDetails.AdoptionOffered;
+import model.Animal.AnimalDetails;
+import model.Animal.CatDetails;
+import model.Animal.DogDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Network.NetworkDetails;
+import model.Organisation.AdoptionOrganisation;
+import model.Organisation.OrganisationMain;
+import model.RescueRecord.RescueRecordDetails;
 
 /**
  *
@@ -24,43 +38,41 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
     
     private JPanel container;
     private AdoptionOffered ao;
-    private AdopterDetail adoptor;
-    private EcoSystem business;
+    private AdopterDetails adoptor;
     
-    public SeeOfferinginfoPage(JPanel container, EcoSystem business, AdopterDetail adoptor, AdoptionOffered ao) {
+    public SeeOfferinginfoPage(JPanel container, AdopterDetails adoptor, AdoptionOffered ao) {
         initComponents();
         this.container = container;
         this.ao = ao;
         this.adoptor = adoptor;
-        this.business = business;
         
         populateValues();
     }
 
     public void populateValues() {
         AnimalDetails a = ao.getAnimal();
-        lblType.setText(a.getAnimaltype().getValue());
-        lblColor.setText(a.getAnimalcolor());
-        lblAge.setText(String.valueOf(a.getAnimalage()));
+        lblType.setText(a.getType().toString());
+        lblColor.setText(a.getColor());
+        lblAge.setText(String.valueOf(a.getAge()));
         if(a instanceof DogDetails) {
-            lblBreed.setText(((DogDetails) a).getDogbreed());
+            lblBreed.setText(((DogDetails) a).getBreed());
         } 
         else if(a instanceof CatDetails) {
-            lblBreed.setText(((CatDetails) a).getCatbreed());
+            lblBreed.setText(((CatDetails) a).getBreed());
         }
         else {
             lblBreed.setText("None");
         }
         
-        int size = ao.getAnimal().getStatusDirectory().getStatusDir().size();
-        double weight = ao.getAnimal().getStatusDirectory().getStatusDir().get(size-1).getAnimalweight();
+        int size = ao.getAnimal().getStatusDirectory().size();
+        double weight = ao.getAnimal().getStatusDirectory().get(size-1).getWeight();
         lblWeight.setText(String.valueOf(weight));
         
         String location = "Unknown";
-        for(NetworkDetails n: business.getNetworkList()) {
-            for(EnterpriseDetails e: n.getEnterpriseDirectory().getEnterpriseList()) {
+        for(NetworkDetails n: new NetworkDetails().getNetworkList()) {
+            for(EnterpriseDetails e: n.getEnterpriseDirectory()) {
                 if(e instanceof RescueCenterEntDetails) {
-                    for(RescueRecordDetails rr: ((RescueCenterEntDetails) e).getRecordDirectory().getRescueRecordList()) {
+                    for(RescueRecordDetails rr: ((RescueCenterEntDetails) e).getRecordDirectory()) {
                         location = rr.getFoundlocation();
                     }
                 }
@@ -285,34 +297,31 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
     private void btnAdoptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdoptionActionPerformed
         // TODO add your handling code here:
         AdoptHistory history = new AdoptHistory();
-        history.setAnimalname(ao.getAnimal());
-        history.setStatus(AdoptHistory.SUBMITTED_STATUS);
+        history.setDetails(ao.getAnimal());
+        history.setStatus(AdoptHistory.Status.Submitted);
         
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR); 
         int month = c.get(Calendar.MONTH); 
         int date = c.get(Calendar.DATE); 
-        Date hd = new Date();
-        hd.setYear(year);
-        hd.setMonth(month);
-        hd.setDate(date);
-        history.setDate(hd);
+        Date hd = new Date(year, month, date);
+        history.setAdoptDate(hd);
         
-        adoptor.getHistoryDirectory().addAdoptionHistory(history);
-        ao.setStatus(AdoptionOffered.CLOSE_STATUS);
+        adoptor.getHistory().add(history);
+        ao.setStatus(AdoptionOffered.Status.Close);
         
         AdoptRecord adoptionRecord = new AdoptRecord();
-        adoptionRecord.setAdoptorName(adoptor);
+        adoptionRecord.setAdoptor(adoptor);
         adoptionRecord.setAnimal(ao.getAnimal());
         adoptionRecord.setDate(hd);
-        adoptionRecord.setStatus(AdoptRecord.SUBMITTED_STATUS);
+        adoptionRecord.setStatus(AdoptRecord.Status.Submitted);
         
-        for(NetworkDetails n: business.getNetworkList()) {
-            for(EnterpriseDetails e: n.getEnterpriseDirectory().getEnterpriseList()) {
+        for(NetworkDetails n: new NetworkDetails().getNetworkList()) {
+            for(EnterpriseDetails e: n.getEnterpriseDirectory()) {
                 if(e instanceof RescueCenterEntDetails) {
-                    for(OrganisationMain o: e.getOrganisationDirectory().getOrganisationList()) {
+                    for(OrganisationMain o: e.getOrganisationDirectory()) {
                          if(o instanceof AdoptionOrganisation) {
-                             ((AdoptionOrganisation) o).getAdoptionRecordDirectory().addAdoptionRecord(adoptionRecord);
+                             ((AdoptionOrganisation) o).getAdoptionRecordDirectory().add(adoptionRecord);
                          }
                     }
                 }

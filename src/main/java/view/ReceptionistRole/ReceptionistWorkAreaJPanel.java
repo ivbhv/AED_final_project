@@ -9,6 +9,10 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.CenterRegistrationOrganisation;
+import model.RescueRecord.RescueRecordDetails;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -22,9 +26,9 @@ public class ReceptionistWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private CenterRegistrationOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public ReceptionistWorkAreaJPanel(JPanel container, RescueCenterEntDetails enterprise, CenterRegistrationOrganisation organization, UserAccountDetails userAccount) {
+    public ReceptionistWorkAreaJPanel(JPanel container, RescueCenterEntDetails enterprise, CenterRegistrationOrganisation organization, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = enterprise;
@@ -40,16 +44,16 @@ public class ReceptionistWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblAnimal.getModel();
 
         model.setRowCount(0);
-        for (RescueRecordDetails r : enterprise.getRecordDirectory().getRescueRecordList()) {
+        for (RescueRecordDetails r : enterprise.getRecordDirectory()) {
             Object[] row = new Object[4];
             row[0] = r;
-            row[1] = r.getRescuedanimal().getAnimalid();
-            row[2] = r.getRescuedanimal().getAnimaltype();
+            row[1] = r.getRescuedanimal().getId();
+            row[2] = r.getRescuedanimal().getType().toString();
             if(r.getRescueroom() == null) {
                 row[3] = "Waiting...";
             }
             else {
-                row[3] = r.getRescueroom().getRoomno();
+                row[3] = r.getRescueroom().getRoomNumber();
             } 
             
             model.addRow(row);

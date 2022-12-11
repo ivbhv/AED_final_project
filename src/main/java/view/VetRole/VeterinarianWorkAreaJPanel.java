@@ -6,8 +6,15 @@
 package view.VetRole;
 
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.VeterinarianOrganisation;
+import model.Place.PlaceDetails;
+import model.RescueRecord.RescueRecordDetails;
+import model.Treatment.TreatmentRecord;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -22,15 +29,15 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private VeterinarianOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
 
-    public VeterinarianWorkAreaJPanel(JPanel container, RescueCenterEntDetails enterprise, VeterinarianOrganisation veterinarianOrg, UserAccountDetails userAccount) {
+    public VeterinarianWorkAreaJPanel(JPanel container, RescueCenterEntDetails enterprise, VeterinarianOrganisation veterinarianOrg, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = enterprise;
         this.organization = veterinarianOrg;
         this.userAccount = userAccount;
-        System.out.println(enterprise.getOrgname());
+        System.out.println(enterprise.getName());
         
         populateTable();
     }
@@ -39,13 +46,13 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblTreatmentRequest.getModel();
         model.setRowCount(0);
         
-        for(RescueRecordDetails r: enterprise.getRecordDirectory().getRescueRecordList()){
+        for(RescueRecordDetails r: enterprise.getRecordDirectory()){
             if(r.getRescueroom() == null) {
                 Object[] row = new Object[4];
                 row[0] = r;
                 row[1] = r.getRescuedanimal();
-                row[2] = r.getRescuedanimal().getAnimaltype();
-                row[3] = r.getRescuedanimal().getAnimalcolor();
+                row[2] = r.getRescuedanimal().getType();
+                row[3] = r.getRescuedanimal().getColor();
                 model.addRow(row);
             }
         }
@@ -224,8 +231,8 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         RescueRecordDetails record = (RescueRecordDetails)tblTreatmentRequest.getValueAt(selectedRow, 0);
-        UserAccountDetails ua = userAccount;
-        for(PlaceDetails r: enterprise.getRoomDirectory().getRoomList()) {
+        UserAccount ua = userAccount;
+        for(PlaceDetails r: enterprise.getRoomDirectory()) {
             if(r.getVet() == ua.getEmployee()) {
                 record.setRescueroom(r);
             }
@@ -237,16 +244,16 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         d.setDate(record.getDate().getDate());
         record.setDate(d);
         Date after = getDateAfterNDays(record.getDate(),7);
-        record.getRescuedanimal().setNextcheck(after);
+        record.getRescuedanimal().setNextCheck(after);
         
-        TreatmentRecordDetails treatment = new TreatmentRecordDetails();
-        treatment.setAnimal(record.getRescuedanimal());
+        TreatmentRecord treatment = new TreatmentRecord();
+        treatment.setAnimalDeatils(record.getRescuedanimal());
         treatment.setRoom(record.getRescueroom());
         treatment.setDate(record.getDate());
-        System.out.println("treatment animal: " + treatment.getAnimal().getAnimalid());
+        System.out.println("treatment animal: " + treatment.getAnimalDeatils().getId());
         System.out.println("treatment date: " + treatment.getDate());
-        System.out.println("treatmentDir: " + record.getRescuedanimal().getTreatmentDirectory());
-        treatment.getAnimal().getTreatmentDirectory().addTreatmentRecord(treatment);
+        System.out.println("treatmentDir: " + record.getRescuedanimal().getTreatmentRecord());
+        treatment.getAnimalDeatils().getTreatmentRecord().add(treatment);
         
         CardLayout layout = (CardLayout) container.getLayout();
         container.add("TreatJPanel", new TreatJPanel(container, enterprise, userAccount, record, treatment));

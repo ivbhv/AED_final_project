@@ -9,8 +9,16 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Animal.AnimalDetails;
+import model.Animal.CatDetails;
+import model.Animal.DogDetails;
+import model.Animal.OtherAnimalDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.RescueRecord.RescueRecordDetails;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -24,9 +32,9 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
     
     private JPanel container;
     private RescueCenterEntDetails enterprise;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public RegisterAnimalJPanel(JPanel container, RescueCenterEntDetails enterprise, UserAccountDetails userAccount) {
+    public RegisterAnimalJPanel(JPanel container, RescueCenterEntDetails enterprise, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = enterprise;
@@ -256,23 +264,23 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
         AnimalDetails a;
         if(cboxType.getSelectedItem() == AnimalDetails.AnimalType.Cat) {
             a = new CatDetails();
-            a.setAnimalcolor(txtColor.getText());
-            a.setAnimaltype(AnimalDetails.AnimalType.Cat);
-            enterprise.getAnimalDirectory().addAnimal(a);
+            a.setColor(txtColor.getText());
+            a.setType(AnimalDetails.AnimalType.Cat);
+            enterprise.getAnimalDirectory().add(a);
             r.setRescuedanimal(a);
         }
         else if(cboxType.getSelectedItem() == AnimalDetails.AnimalType.Dog) {
             a = new DogDetails();
-            a.setAnimalcolor(txtColor.getText());
-            a.setAnimaltype(AnimalDetails.AnimalType.Dog);
-            enterprise.getAnimalDirectory().addAnimal(a);
+            a.setColor(txtColor.getText());
+            a.setType(AnimalDetails.AnimalType.Dog);
+            enterprise.getAnimalDirectory().add(a);
             r.setRescuedanimal(a);
         }
         else if(cboxType.getSelectedItem() == AnimalDetails.AnimalType.Other) {
             a = new OtherAnimalDetails();
-            a.setAnimalcolor(txtColor.getText());
-            a.setAnimaltype(AnimalDetails.AnimalType.Other);
-            enterprise.getAnimalDirectory().addAnimal(a);
+            a.setColor(txtColor.getText());
+            a.setType(AnimalDetails.AnimalType.Other);
+            enterprise.getAnimalDirectory().add(a);
             r.setRescuedanimal(a);
         }
         
@@ -286,15 +294,15 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
         d.setDate(date);
         
         if(rbtnM.isSelected() == true) {
-            r.getRescuedanimal().setAnimalgender("M");
+            r.getRescuedanimal().setGender("M");
         }
         else {
-            r.getRescuedanimal().setAnimalgender("F");
+            r.getRescuedanimal().setGender("F");
         }
         
         r.setDate(d);
         r.setFoundlocation(txtLocationFound.getText());
-        enterprise.getRecordDirectory().addRescueRecord(r);
+        enterprise.getRecordDirectory().add(r);
         JOptionPane.showMessageDialog(null, "Registered Successfully!");
         clearFields();
         return;

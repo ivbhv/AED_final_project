@@ -9,6 +9,13 @@ package view.EntAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Employees.EmployeeDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.OrganisationMain;
+import model.Place.PlaceDetails;
+import model.UserAccount.UserAccount;
+import view.Main.Main;
 
 /**
  *
@@ -36,9 +43,9 @@ public class ManageRoomsJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (PlaceDetails room : enterprise.getRoomDirectory().getRoomList()){
+        for (PlaceDetails room : enterprise.getRoomDirectory()){
             Object[] row = new Object[2];
-            row[0] = room.getRoomno();
+            row[0] = room.getRoomNumber();
             row[1] = room.getVet();
             
             model.addRow(row);
@@ -47,8 +54,8 @@ public class ManageRoomsJPanel extends javax.swing.JPanel {
     
     public void populateComboBox() {
         cboxVete.removeAllItems();
-        for(OrganisationMain org: enterprise.getOrganisationDirectory().getOrganisationList()) {
-            for (UserAccountDetails ua : org.getUserAccountDir().getUserAccountList()){
+        for(OrganisationMain org: enterprise.getOrganisationDirectory()) {
+            for (UserAccount ua : org.getUserAccountDir()){
                 //if(ua.getRole() instanceof VeterinarianRole) {
                     cboxVete.addItem(ua.getEmployee());
                // }
@@ -241,10 +248,12 @@ public class ManageRoomsJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         String id = txtId.getText();
         PlaceDetails r = new PlaceDetails();
-        r.setRoomno(id);
+        r.setRoomNumber(id);
         r.setVet((EmployeeDetails)cboxVete.getSelectedItem());
-        r.setStatus(PlaceDetails.AVAIL_STATUS);
-        enterprise.getRoomDirectory().addRoom(r);
+        r.setStatus(PlaceDetails.Status.AVAILABLE);
+        Main.controller.saveObject(r);
+        enterprise.getRoomDirectory().add(r);
+        Main.controller.saveOrUpdate(enterprise);
         populateTable();
     }//GEN-LAST:event_btnCreateActionPerformed
 

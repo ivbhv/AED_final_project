@@ -8,6 +8,13 @@ package view.EntAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Medicines.AnestheticsDetails;
+import model.Medicines.AntibioticsDetails;
+import model.Medicines.MedicineDetails;
+import model.Medicines.OtherMedicineDetails;
+import model.Medicines.VaccinationDetails;
 
 /**
  *
@@ -35,9 +42,9 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (MedicineDetails medicine : enterprise.getMedicineDirectory().getMedicineList()){
+        for (MedicineDetails medicine : enterprise.getMedicineDirectory()){
             Object[] row = new Object[3];
-            row[0] = medicine.getMedID();
+            row[0] = medicine.getId();
             row[1] = medicine.getMedname();
             row[2] = medicine.getMedtype();
             
@@ -267,7 +274,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         }
         m.setMedname(name);
         m.setMedvendor(vendor);
-        enterprise.getMedicineDirectory().addMedicine(m);
+        enterprise.getMedicineDirectory().add(m);
         populateTable();
     }//GEN-LAST:event_btnCreateActionPerformed
 

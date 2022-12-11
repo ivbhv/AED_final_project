@@ -5,6 +5,7 @@
 package model.UserAccount;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -97,6 +98,18 @@ public class VisitorAccount implements Serializable {
         }
 
         return null;
+
+    }
+    
+    public List<VisitorAccount> getVisitorList() {
+        List<VisitorAccount> networkList;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder builder = s.getCriteriaBuilder();
+            CriteriaQuery<VisitorAccount> criteria = builder.createQuery(VisitorAccount.class);
+            criteria.from(VisitorAccount.class);
+            networkList = s.createQuery(criteria).getResultList();
+        }
+        return networkList;
 
     }
 }

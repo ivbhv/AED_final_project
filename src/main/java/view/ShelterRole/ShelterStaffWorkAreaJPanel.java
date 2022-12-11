@@ -7,6 +7,12 @@ package view.ShelterRole;
 
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Animal.AnimalDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.ShelterOrganisation;
+import model.ShelterCell.ShelterCellDetails;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -21,9 +27,9 @@ public class ShelterStaffWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private ShelterOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public ShelterStaffWorkAreaJPanel(JPanel container, EnterpriseDetails enterprise, ShelterOrganisation shelterOrg, UserAccountDetails userAccount, EcoSystem business) {
+    public ShelterStaffWorkAreaJPanel(JPanel container, EnterpriseDetails enterprise, ShelterOrganisation shelterOrg, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = (RescueCenterEntDetails)enterprise;
@@ -37,14 +43,14 @@ public class ShelterStaffWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblShelter.getModel();
         model.setRowCount(0);
         
-        for(ShelterCellDetails sc: enterprise.getShelterCellDirectory().getShelterCellList()){
-            if(sc.getShelterstatus() == ShelterCellDetails.OCCUPIED_STATUS) {
+        for(ShelterCellDetails sc: enterprise.getShelterCellDirectory()){
+            if(sc.getStatus() == ShelterCellDetails.Status.OCCUPIED) {
                 Object[] row = new Object[5];
                 row[0] = sc;
-                row[1] = sc.getShelterlocation();
-                row[2] = sc.getAnimal().getAnimaltype();
-                row[3] = sc.getAnimal().getAnimalcolor();
-                if(sc.getAnimal().getAnimalstatus() == AnimalDetails.ADOPTED_STATUS) {
+                row[1] = sc.getLocation();
+                row[2] = sc.getAnimal().getType().toString();
+                row[3] = sc.getAnimal().getColor();
+                if(sc.getAnimal().getStatus() == AnimalDetails.Status.ADOPTED) {
                     row[4] = "Yes";
                 }
                 else {

@@ -5,11 +5,18 @@
  */
 package view.AdoptInspectRole;
 
-import Interface.AdoptorRole.MyAdoptPage;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.AdoptDetails.AdoptHistory;
+import model.AdoptDetails.AdoptRecord;
+import model.AdoptDetails.AdopterDetails;
+import model.AdoptDetails.AdoptionOffered;
+import model.Animal.AnimalDetails;
+import model.Deliver.DeliveryDetails;
+import model.Enterprises.RescueCenterEntDetails;
 
 /**
  *
@@ -301,33 +308,30 @@ public class EvaluationPage extends javax.swing.JPanel {
         }
         
         if(rbtnApprove.isSelected() == true) {
-            ar.setStatus(AdoptRecord.APPROVED_STATUS);
-            int size = ar.getAdoptorName().getHistoryDirectory().getHistoryList().size();
-            ar.getAdoptorName().getHistoryDirectory().getHistoryList().get(size-1).setStatus(AdoptHistory.APPROVED_STATUS);
-            ar.getAnimal().setAnimalstatus(AnimalDetails.ADOPTED_STATUS);
-            DeliveryHistoryDetails dh = new DeliveryHistoryDetails();
-            dh.setAdoptername(ar.getAdoptorName());
+            ar.setStatus(AdoptRecord.Status.Approved);
+            int size = ar.getAdoptor().getHistory().size();
+            ar.getAdoptor().getHistory().get(size-1).setStatus(AdoptHistory.Status.Approved);
+            ar.getAnimal().setStatus(AnimalDetails.Status.ADOPTED);
+            DeliveryDetails dh = new DeliveryDetails();
+            dh.setAdoptername(ar.getAdoptor());
             dh.setAnimal(ar.getAnimal());
-            dh.setStatus(DeliveryHistoryDetails.WAITING_STATUS);
+            dh.setStatus(DeliveryDetails.Status.WAITING);
 
             int year = Integer.parseInt(txtYear.getText());
             int month = Integer.parseInt(txtMonth.getText());
             int date = Integer.parseInt(txtDate.getText());
-            Date d = new Date();
-            d.setYear(year);
-            d.setMonth(month);
-            d.setDate(date);
+            Date d = new Date(year, month, date);
             dh.setDate(d);
-            enterprise.getDeliveryHistoryDirectory().addDeliveryHistory(dh);
+            enterprise.getDeliveryHistoryDirectory().add(dh);
         }
         else if(rbtnReject.isSelected() == true) {
-            ar.setStatus(AdoptRecord.REJECTED_STATUS);
-            int size = ar.getAdoptorName().getHistoryDirectory().getHistoryList().size();
-            ar.getAdoptorName().getHistoryDirectory().getHistoryList().get(size-1).setMessage(txtMessage.getText());
-            ar.getAdoptorName().getHistoryDirectory().getHistoryList().get(size-1).setStatus(AdoptHistory.REJECTED_STATUS);
-            for(AdoptionOffered ao: enterprise.getAdoptionList().getAdoptionOfferingList()) {
+            ar.setStatus(AdoptRecord.Status.Rejected);
+            int size = ar.getAdoptor().getHistory().size();
+            ar.getAdoptor().getHistory().get(size-1).setMessage(txtMessage.getText());
+            ar.getAdoptor().getHistory().get(size-1).setStatus(AdoptHistory.Status.Rejected);
+            for(AdoptionOffered ao: enterprise.getAdoptionList()) {
                 if(ao.getAnimal() == ar.getAnimal()) {
-                    ao.setStatus(AdoptionOffered.OPEN_STATUS);
+                    ao.setStatus(AdoptionOffered.Status.Open);
                 }
             }
         }

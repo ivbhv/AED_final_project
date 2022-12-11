@@ -9,6 +9,11 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.AdoptDetails.AdoptRecord;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.AdoptionOrganisation;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -22,9 +27,9 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private AdoptionOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public AdoptInspectorWorkpage(JPanel container, EnterpriseDetails enterprise, AdoptionOrganisation adoptionOrg, UserAccountDetails userAccount, EcoSystem business) {
+    public AdoptInspectorWorkpage(JPanel container, EnterpriseDetails enterprise, AdoptionOrganisation adoptionOrg, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = (RescueCenterEntDetails)enterprise;
@@ -34,18 +39,18 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
         populateTable();
     }
 
-    public void populateTable() {
+    private void populateTable() {
         DefaultTableModel model = (DefaultTableModel)tblApplication.getModel();
         model.setRowCount(0);
         
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
-            if(ar.getStatus() == AdoptRecord.SUBMITTED_STATUS) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
+            if(ar.getStatus() == AdoptRecord.Status.Submitted) {
                 Object[] row = new Object[5];
                 row[0] = ar;
-                row[1] = ar.getAnimal().getAnimalid();
-                row[2] = ar.getAdoptorName().getFirstName() + " " + ar.getAdoptorName().getLastName();
-                row[3] = ar.getAdoptorName().getPhoneNumber();
-                row[4] = ar.getAdoptorName().getEmail();
+                row[1] = ar.getAnimal().getId();
+                row[2] = ar.getAdoptor().getFirstName() + " " + ar.getAdoptor().getLastName();
+                row[3] = ar.getAdoptor().getPhoneNumber();
+                row[4] = ar.getAdoptor().getEmail();
                 model.addRow(row);
             }
         }
@@ -145,9 +150,9 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
         }
 
         AdoptRecord ar = (AdoptRecord)tblApplication.getValueAt(selectedRow, 0);
-        UserAccountDetails ua = userAccount;
-        ar.setInspectorName(ua.getEmployee());
-        ar.setStatus(AdoptRecord.PROCESSING_STATUS);
+        UserAccount ua = userAccount;
+        ar.setEmployee(ua.getEmployee());
+        ar.setStatus(AdoptRecord.Status.Processing);
         
         populateTable();
         JOptionPane.showMessageDialog(null, "Work has been assigned to you. Please view it in My Inspections panel.");

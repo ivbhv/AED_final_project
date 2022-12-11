@@ -9,6 +9,14 @@ package view.AdoptInspectRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.AdoptDetails.AdoptRecord;
+import model.AdoptDetails.AdopterDetails;
+import model.Animal.AnimalDetails;
+import model.Animal.CatDetails;
+import model.Animal.DogDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.AdoptionOrganisation;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -23,9 +31,9 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private AdoptionOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public AdoptOrganalyze(JPanel container, RescueCenterEntDetails enterprise, AdoptionOrganisation organization, UserAccountDetails userAccount) {
+    public AdoptOrganalyze(JPanel container, RescueCenterEntDetails enterprise, AdoptionOrganisation organization, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = (RescueCenterEntDetails)enterprise;
@@ -36,13 +44,13 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
         populateTypeTable();
     }
     
-    public void populateValues() {
+    private void populateValues() {
         lblAdoptions.setText(String.valueOf(getTotalAdoptions()));
         lblAdopters.setText(String.valueOf(getAdoptersCount()));
         lblPercentage.setText(String.valueOf((getAdoptedCount() / getTotalValue()) * 100) + "%");
     }
     
-    public void populateTypeTable() {
+    private void populateTypeTable() {
         DefaultTableModel model = (DefaultTableModel) tblTypes.getModel();
         model.setRowCount(0);
         Object[] row = new Object[3];
@@ -61,7 +69,7 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public int getTotalAdoptions() {
         int count = 0;
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
             count++;
         }
         return count;
@@ -69,7 +77,7 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public int getAdoptersCount() {
         int count = 0;
-        for(AdopterDetail a: organization.getAdopterDirectory().getAdoptorList()) {
+        for(AdopterDetails a: organization.getAdopterDirectory()) {
             count++;
         }
         return count;
@@ -77,8 +85,8 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public float getAdoptedCount() {
         float count = 0;
-        for(AnimalDetails a: enterprise.getAnimalDirectory().getAnimalList()) {
-            if(a.getAnimalstatus().equals(AnimalDetails.ADOPTED_STATUS)) {
+        for(AnimalDetails a: enterprise.getAnimalDirectory()) {
+            if(a.getStatus().equals(AnimalDetails.Status.ADOPTED)) {
                 count++;
             }
         }
@@ -87,7 +95,7 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public int getTotalValue() {
         int sum = 0;
-        sum += enterprise.getRecordDirectory().getRescueRecordList().size();
+        sum += enterprise.getRecordDirectory().size();
            
         return sum;
     }
@@ -95,8 +103,8 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public float getDogCount() {
         float count = 0;
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
-            if(ar.getAnimal().getAnimaltype().equals(AnimalDetails.AnimalType.Dog)) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
+            if(ar.getAnimal().getType().equals(AnimalDetails.AnimalType.Dog)) {
                 count++;
             }
         } 
@@ -105,10 +113,10 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public float getMaleCount() {
         float count = 0;
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
-            if(ar.getAnimal().getAnimalgender() != null) {
-                System.out.println(ar.getAnimal().getAnimalgender());
-                if(ar.getAnimal().getAnimalgender().equals("M")) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
+            if(ar.getAnimal().getGender() != null) {
+                System.out.println(ar.getAnimal().getGender());
+                if(ar.getAnimal().getGender().equals("M")) {
                     count++;
                 }
             }
@@ -118,15 +126,15 @@ public class AdoptOrganalyze extends javax.swing.JPanel {
     
     public float getBreedCount() {
         float count = 0;
-        for(AdoptRecord ar: organization.getAdoptionRecordDirectory().getAdoptionRecordList()) {
+        for(AdoptRecord ar: organization.getAdoptionRecordDirectory()) {
             AnimalDetails a = ar.getAnimal();
-            if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Dog)) {
-                if(!((DogDetails)a).getDogbreed().equals("None")) {
+            if(a.getType().equals(AnimalDetails.AnimalType.Dog)) {
+                if(!((DogDetails)a).getBreed().equals("None")) {
                     count++;
                 }
             }
-            else if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Cat)) {
-                if(!((CatDetails)a).getCatbreed().equals("None")) {
+            else if(a.getType().equals(AnimalDetails.AnimalType.Cat)) {
+                if(!((CatDetails)a).getBreed().equals("None")) {
                     count++;
                 }
             }

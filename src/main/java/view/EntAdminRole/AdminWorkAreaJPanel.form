@@ -103,9 +103,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnUser">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -117,9 +114,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnManageEmployee">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -131,9 +125,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnManageOrganization">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -167,9 +158,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRoom">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -181,9 +169,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMedicine">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -195,9 +180,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCage">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -209,9 +191,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnShelter">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>
@@ -223,9 +202,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAnalyse">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color type="null"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="15" style="0"/>
         </Property>

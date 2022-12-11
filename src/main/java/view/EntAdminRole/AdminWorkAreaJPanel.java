@@ -5,6 +5,8 @@
  */
 package view.EntAdminRole;
 
+import model.Enterprises.EnterpriseDetails;
+
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 
@@ -14,14 +16,14 @@ import java.awt.CardLayout;
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
-   JPanel userProcessContainer;
+    JPanel userProcessContainer;
     EnterpriseDetails enterprise;
     /** Creates new form AdminWorkAreaJPanel */
     public AdminWorkAreaJPanel(JPanel userProcessContainer, EnterpriseDetails enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        lblValue.setText(enterprise.getOrgname());
+        lblValue.setText(enterprise.getName());
     }
     
     /**
@@ -200,7 +202,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeeActionPerformed
 
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganisationDirectory());
+        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise);
         userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -210,7 +212,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
 
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganisationDirectory());
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise);
         userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -14,7 +14,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
- * @author manohar
+ * @author sejal
  */
 public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -22,12 +22,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form AdminWorkAreaJPanel
      */
     JPanel userProcessContainer;
-    EcoSystem system;
     
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.system = system;
     }
 
     /**
@@ -146,7 +144,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
         // TODO add your handling code here:
-        ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel=new ManageEnterpriseAdminJPanel(userProcessContainer,system);
+        ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel=new ManageEnterpriseAdminJPanel(userProcessContainer);
         userProcessContainer.add("manageEnterpriseAdminJPanel",manageEnterpriseAdminJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -154,7 +152,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
-        ManageNetworkJPanel manageNetworkJPanel=new ManageNetworkJPanel(userProcessContainer,system);
+        ManageNetworkJPanel manageNetworkJPanel=new ManageNetworkJPanel(userProcessContainer);
         userProcessContainer.add("manageNetworkJPanel",manageNetworkJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -162,7 +160,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageUserActionPerformed
         // TODO add your handling code here:
-        ManageEnterpriseJPanel manageEnterpriseJPanel=new ManageEnterpriseJPanel(userProcessContainer,system);
+        ManageEnterpriseJPanel manageEnterpriseJPanel=new ManageEnterpriseJPanel(userProcessContainer);
         userProcessContainer.add("manageEnterpriseJPanel",manageEnterpriseJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -170,7 +168,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAnalysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalysisActionPerformed
         // TODO add your handling code here:
-        AnalysisJPanel analysisJPanel=new AnalysisJPanel(userProcessContainer,system);
+        AnalysisJPanel analysisJPanel=new AnalysisJPanel(userProcessContainer);
         userProcessContainer.add("analysisJPanel",analysisJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

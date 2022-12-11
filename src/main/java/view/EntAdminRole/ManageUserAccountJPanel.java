@@ -8,6 +8,11 @@ package view.EntAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Employees.EmployeeDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationMain;
+import model.Role.AllRoles;
+import model.UserAccount.UserAccount;
 /**
  *
  * @author manohar
@@ -30,7 +35,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public void popOrganizationComboBox() {
         cboxOrganization.removeAllItems();
 
-        for (OrganisationMain organization : enterprise.getOrganisationDirectory().getOrganisationList()) {
+        for (OrganisationMain organization : enterprise.getOrganisationDirectory()) {
             cboxOrganization.addItem(organization);
         }
     }
@@ -38,7 +43,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public void populateEmployeeComboBox(OrganisationMain organization){
         cboxEmployee.removeAllItems();
         
-        for (EmployeeDetails employee : organization.getEmployeeDir().getEmployeeList()){
+        for (EmployeeDetails employee : organization.getEmployeeDir()){
             cboxEmployee.addItem(employee);
         }
     }
@@ -56,8 +61,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
 
-        for (OrganisationMain organization : enterprise.getOrganisationDirectory().getOrganisationList()) {
-            for (UserAccountDetails ua : organization.getUserAccountDir().getUserAccountList()) {
+        for (OrganisationMain organization : enterprise.getOrganisationDirectory()) {
+            for (UserAccount ua : organization.getUserAccountDir()) {
                 Object row[] = new Object[2];
                 row[0] = ua;
                 row[1] = ua.getRole();
@@ -280,8 +285,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         OrganisationMain organization = (OrganisationMain) cboxOrganization.getSelectedItem();
         EmployeeDetails employee = (EmployeeDetails) cboxEmployee.getSelectedItem();
         AllRoles role = (AllRoles) cboxRole.getSelectedItem();
+        
+        UserAccount ac = new UserAccount(userName, password, role, employee);
 
-        organization.getUserAccountDir().createUserAccount(userName, password, employee, role);
+        organization.getUserAccountDir().add(ac);
 
         popData();
     }//GEN-LAST:event_btnCreateActionPerformed

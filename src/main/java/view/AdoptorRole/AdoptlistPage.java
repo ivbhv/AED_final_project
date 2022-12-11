@@ -8,6 +8,11 @@ package view.AdoptorRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.AdoptDetails.AdopterDetails;
+import model.AdoptDetails.AdoptionOffered;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Network.NetworkDetails;
 
 /**
  *
@@ -20,13 +25,11 @@ public class AdoptlistPage extends javax.swing.JPanel {
      */
     
     private JPanel container;
-    private EcoSystem business;
-    private AdopterDetail adoptor;
+    private AdopterDetails adoptor;
     
-    public AdoptlistPage(JPanel container, EcoSystem business, AdopterDetail adoptor) {
+    public AdoptlistPage(JPanel container, AdopterDetails adoptor) {
         initComponents();
         this.container = container;
-        this.business = business;
         this.adoptor = adoptor;
         
         populateTable();
@@ -36,27 +39,26 @@ public class AdoptlistPage extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblOffering.getModel();
         model.setRowCount(0);
         
-        for(NetworkDetails n: business.getNetworkList()) {
-            for(EnterpriseDetails e: n.getEnterpriseDirectory().getEnterpriseList()) {
+        for(NetworkDetails n: new NetworkDetails().getNetworkList()) {
+            for(EnterpriseDetails e: n.getEnterpriseDirectory()) {
                 if(e instanceof RescueCenterEntDetails) {
-                    for(AdoptionOffered ao: ((RescueCenterEntDetails) e).getAdoptionList().getAdoptionOfferingList()) {
-                        System.out.println(ao.getAnimal().getAnimalid());
+                    for(AdoptionOffered ao: ((RescueCenterEntDetails) e).getAdoptionList()) {
+                        System.out.println(ao.getAnimal().getId());
                         System.out.println(ao.getPublishDate());
                         System.out.println(ao.getStatus());
                     }
-                    AdoptionOfferedList list = ((RescueCenterEntDetails) e).getAdoptionList();
-                    for(AdoptionOffered ao: list.getAdoptionOfferingList()) {
+                    for(AdoptionOffered ao: ((RescueCenterEntDetails) e).getAdoptionList()) {
                         System.out.println(ao.getStatus());
-                        System.out.println(AdoptionOffered.OPEN_STATUS);
+                        System.out.println(AdoptionOffered.Status.Open);
                         if(ao.getStatus() != null) {
-                            if(ao.getStatus().equals(AdoptionOffered.OPEN_STATUS)) {
+                            if(ao.getStatus().equals(AdoptionOffered.Status.Open)) {
                                 Object[] row = new Object[5];
                                 row[0] = ao;
-                                row[1] = ao.getAnimal().getAnimalcolor();
-                                row[2] = ao.getAnimal().getAnimalage();
+                                row[1] = ao.getAnimal().getColor();
+                                row[2] = ao.getAnimal().getAge();
 
-                                int size = ao.getAnimal().getStatusDirectory().getStatusDir().size();
-                                row[3] = ao.getAnimal().getStatusDirectory().getStatusDir().get(size-1).getAnimalweight();
+                                int size = ao.getAnimal().getStatusDirectory().size();
+                                row[3] = ao.getAnimal().getStatusDirectory().get(size-1).getWeight();
 
                                 row[4] = ao.getPublishDate().getMonth()
                                         + "/" + ao.getPublishDate().getDate()
@@ -197,7 +199,7 @@ public class AdoptlistPage extends javax.swing.JPanel {
         AdoptionOffered ao = (AdoptionOffered)tblOffering.getValueAt(selectedRow, 0);
         
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add("SeeOfferingDetailJPanel", new SeeOfferinginfoPage(container, business, adoptor, ao));
+        container.add("SeeOfferingDetailJPanel", new SeeOfferinginfoPage(container, adoptor, ao));
         layout.next(container);
     }//GEN-LAST:event_btnDetailsActionPerformed
 

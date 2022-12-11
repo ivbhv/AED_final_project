@@ -41,10 +41,11 @@ public class DeliveryOrganisation extends OrganisationMain{
         this.vehicleDirectory = vehicleDirectory;
     }
     
-//    public ArrayList<AllRoles> getSupportedRole() {
-//        ArrayList<AllRoles> roles = new ArrayList<>();
-//        roles.add(new DeliveryPersonRole());
-//        return roles;
-//    }
+    @Override
+    public ArrayList<AllRoles> getSupportedRole() {
+        ArrayList<AllRoles> roles = new ArrayList<>();
+        roles.add(new DeliveryPersonRole());
+        return roles;
+    }
 
 }

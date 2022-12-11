@@ -41,10 +41,11 @@ public class CageOrganisation extends OrganisationMain{
         this.cageCellDirectory = cageCellDirectory;
     }
 
-//    public ArrayList<AllRoles> getSupportedRole() {
-//        ArrayList<AllRoles> roles = new ArrayList<>();
-//        roles.add(new VetAssistantRole());
-//        return roles;
-//    }
+    @Override
+    public ArrayList<AllRoles> getSupportedRole() {
+        ArrayList<AllRoles> roles = new ArrayList<>();
+        roles.add(new VetAssistantRole());
+        return roles;
+    }
 
 }
