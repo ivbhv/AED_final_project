@@ -41,9 +41,8 @@ public class ShelterOrganisation extends OrganisationMain{
     }
     
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList();
-        roles.add(new ShelterEmpRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new ShelterEmpRole();
     }
 }

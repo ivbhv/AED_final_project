@@ -42,10 +42,9 @@ public class VeterinarianOrganisation extends OrganisationMain{
     }
     
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList();
-        roles.add(new VeterinarianRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new VeterinarianRole();
     }
 
 }

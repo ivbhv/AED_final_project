@@ -11,6 +11,7 @@ import model.Enterprises.EnterpriseDetails;
 import model.Organisation.AdoptionOrganisation;
 import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
+import view.AdoptInspectRole.AdoptInspectorWorkpage;
 
 /**
  *
@@ -27,7 +28,12 @@ public class AdoptionManagerRole extends AllRoles
             UserAccount userAccount) 
     {
         
-        return new JPanel();
+        return new AdoptInspectorWorkpage(container, enterprise, (AdoptionOrganisation)organization, userAccount);
         
+    }
+    
+    @Override
+    public String toString() {
+        return "Adoption Manager"; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

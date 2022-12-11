@@ -14,12 +14,15 @@ import model.Animal.AnimalDetails;
 import model.Cages.CageDetail;
 import model.Deliver.DeliveryDetails;
 import model.Medicines.MedicineDetails;
+import model.Organisation.OrganisationMain;
 import model.Place.PlaceDetails;
 import model.RescueRecord.RescueRecordDetails;
 import model.Role.AllRoles;
 import model.ShelterCell.ShelterCellDetails;
+import org.hibernate.Session;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import view.Main.Main;
 
 /**
  *
@@ -146,5 +149,32 @@ public class RescueCenterEntDetails extends EnterpriseDetails{
 
     public void setDeliveryHistoryDirectory(List<DeliveryDetails> deliveryHistoryDirectory) {
         this.deliveryHistoryDirectory = deliveryHistoryDirectory;
+    }
+    
+    public RescueCenterEntDetails addOrGetByName(String name) {
+        RescueCenterEntDetails n;
+        try (Session s = Main.controller.getSession()) {
+            n = (RescueCenterEntDetails) s.createQuery("from RescueCenterEntDetails n where n.name = :name ").setParameter("name", name).uniqueResult();
+            Main.controller.closeSession(s);
+        }
+        if (n != null) {
+            return n;
+
+        } else {
+            n = new RescueCenterEntDetails(name);
+        }
+        Main.controller.saveObject(n);
+        
+        return n;
+    }
+    
+    public void addOrUpdateMedicineList(ArrayList<MedicineDetails> args) {
+        
+        for (MedicineDetails m : args) {
+            if (!medicineDirectory.contains(m)) {
+                medicineDirectory.add(m);
+            }
+        }
+        
     }
 }

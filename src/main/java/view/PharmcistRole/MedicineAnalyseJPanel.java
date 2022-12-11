@@ -46,10 +46,10 @@ public class MedicineAnalyseJPanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = m;
             for(AllWorkRequest wr: organization.getWorkQueue()) {
-                if(wr instanceof PharmacyWre) {
-                    if(((PharmacyWre) wr).getMedicineList() != null) {
-                        for(PharmacyUnitWre ru: ((PharmacyWre) wr).getMedicineList()) {
-                            if(ru.getMedicine() == m) {
+                if(wr instanceof PharmacyWre pharmacyWre) {
+                    if(pharmacyWre.getMedicineList() != null) {
+                        for(PharmacyUnitWre ru: pharmacyWre.getMedicineList()) {
+                            if(ru.getMedicine().getId() == m.getId()) {
                                 count += ru.getQuantity();
                             }
                         }
@@ -75,10 +75,13 @@ public class MedicineAnalyseJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicine = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setForeground(new java.awt.Color(255, 51, 51));
         btnBack.setText(" Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +89,13 @@ public class MedicineAnalyseJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 500, 81, 32));
 
         lblmedicineanalysis.setBackground(new java.awt.Color(255, 255, 255));
         lblmedicineanalysis.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblmedicineanalysis.setForeground(new java.awt.Color(255, 0, 0));
+        lblmedicineanalysis.setForeground(new java.awt.Color(51, 0, 51));
         lblmedicineanalysis.setText("MEDICINE ANALYSIS");
+        add(lblmedicineanalysis, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 130, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -111,55 +116,24 @@ public class MedicineAnalyseJPanel extends javax.swing.JPanel {
             }
         });
         tblMedicine.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        tblMedicine.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblMedicine);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addComponent(lblmedicineanalysis)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(lblmedicineanalysis)))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 200, 550, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pharmacy.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -10, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -172,6 +146,7 @@ public class MedicineAnalyseJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblmedicineanalysis;

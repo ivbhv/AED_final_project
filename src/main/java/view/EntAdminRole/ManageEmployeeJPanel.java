@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package view.EntAdminRole;
+import controller.Helper.Helper;
 import java.awt.CardLayout;
-import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Employees.EmployeeDetails;
 import model.Enterprises.EnterpriseDetails;
-import model.Organisation.OrganisationDirectory;
 import model.Organisation.OrganisationMain;
+import view.Main.Main;
 /**
  *
  * @author manohar
@@ -20,6 +20,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private EnterpriseDetails enterprise;
     private JPanel userProcessContainer;
+    Helper validations;
     
     /**
      * Creates new form ManageOrganizationJPanel
@@ -30,7 +31,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        
+        this.validations = new Helper();
         populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
     }
@@ -83,12 +84,20 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nameJTextField = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         cboxOrganizationEmployee = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        valName = new javax.swing.JLabel();
+        valEmail = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
         btnAdd.setForeground(new java.awt.Color(255, 51, 51));
         btnAdd.setText("Create Employee");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -96,17 +105,18 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
 
-        cboxOrganization.setBackground(new java.awt.Color(255, 255, 255));
         cboxOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboxOrganizationActionPerformed(evt);
             }
         });
+        add(cboxOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 159, -1));
 
         jLabel1.setText("Organization");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, -1, -1));
 
-        backJButton.setBackground(new java.awt.Color(255, 255, 255));
         backJButton.setForeground(new java.awt.Color(255, 51, 51));
         backJButton.setText("Previous");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +124,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 640, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -141,7 +152,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         organizationJTable.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        organizationJTable.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(organizationJTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -161,6 +171,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -168,10 +180,39 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Name");
 
-        cboxOrganizationEmployee.setBackground(new java.awt.Color(255, 255, 255));
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
+
         cboxOrganizationEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboxOrganizationEmployeeActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Email");
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
+            }
+        });
+
+        valName.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valName.setForeground(new java.awt.Color(255, 0, 0));
+        valName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valNameKeyReleased(evt);
+            }
+        });
+
+        valEmail.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valEmail.setForeground(new java.awt.Color(255, 0, 0));
+        valEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valEmailKeyReleased(evt);
             }
         });
 
@@ -183,12 +224,21 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 .addGap(117, 117, 117)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboxOrganizationEmployee, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboxOrganizationEmployee, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,65 +248,59 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(cboxOrganizationEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton)
-                .addContainerGap(498, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(319, 319, 319)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cboxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(1, 1, 1)))
-                    .addComponent(btnAdd)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton)
-                .addGap(36, 36, 36)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboxOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 216, 690, 140));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/slider_2.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, -60, 1920, 1190));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         OrganisationMain organization = (OrganisationMain) cboxOrganizationEmployee.getSelectedItem();
-        String name = nameJTextField.getText();
-
-        organization.getEmployeeDir().add(new EmployeeDetails(name, "i.vaibhavmahajan@gmail.com"));
         
-        if (organization != null){
-            populateTable(organization);
+        boolean valid = true;
+        if (!this.validations.ValidateName(txtName.getText()) ) {
+            valName.setText("Name is Invalid");
+            valid = false;
         }
+        
+        if (!this.validations.ValidateEmail(txtEmail.getText()) ) {
+            valEmail.setText("Email address is Invalid");
+            valid = false;
+        } else if (new EmployeeDetails().isEmailExist(txtEmail.getText())) {
+            valEmail.setText("Email address already exist");
+            valid = false;
+        }
+        
+        if (valid) {
+            String name = txtName.getText();
+            String email = txtEmail.getText();
+
+        EmployeeDetails e = new EmployeeDetails(name, email);
+        Main.controller.saveObject(e);
+        organization.getEmployeeDir().add(e);
+        Main.controller.saveOrUpdate(organization);
+        
+        cboxOrganization.setSelectedItem(organization);
+            populateTable(organization);
+        
+        }
+        
         
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -278,6 +322,35 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboxOrganizationEmployeeActionPerformed
 
+    private void valNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valNameKeyReleased
+
+    }//GEN-LAST:event_valNameKeyReleased
+
+    private void valEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valEmailKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valEmailKeyReleased
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        if (!this.validations.ValidateName(txtName.getText()) ) {
+            valName.setText("Name is Invalid");
+        }
+        else {
+            valName.setText(null);
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        if (!this.validations.ValidateEmail(txtEmail.getText()) ) {
+            valEmail.setText("Email address is Invalid");
+        } else if (new EmployeeDetails().isEmailExist(txtEmail.getText())) {
+            valEmail.setText("Email address already exist");
+        }
+
+        else {
+            valEmail.setText(null);
+        }
+    }//GEN-LAST:event_txtEmailKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
@@ -287,10 +360,15 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameJTextField;
     private javax.swing.JTable organizationJTable;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JLabel valEmail;
+    private javax.swing.JLabel valName;
     // End of variables declaration//GEN-END:variables
 }

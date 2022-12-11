@@ -42,10 +42,9 @@ public class CageOrganisation extends OrganisationMain{
     }
 
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList<>();
-        roles.add(new VetAssistantRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new VetAssistantRole();
     }
 
 }

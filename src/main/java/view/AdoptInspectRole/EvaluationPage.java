@@ -5,6 +5,7 @@
  */
 package view.AdoptInspectRole;
 
+import controller.Helper.Helper;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
@@ -17,6 +18,7 @@ import model.AdoptDetails.AdoptionOffered;
 import model.Animal.AnimalDetails;
 import model.Deliver.DeliveryDetails;
 import model.Enterprises.RescueCenterEntDetails;
+import view.Main.Main;
 
 /**
  *
@@ -31,12 +33,14 @@ public class EvaluationPage extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private AdoptRecord ar;
+    Helper validations;
     
     EvaluationPage(JPanel container, RescueCenterEntDetails enterprise, AdoptRecord ar) {
         initComponents();
         this.container = container;
         this.enterprise = enterprise;
         this.ar = ar;
+        this.validations = new Helper();
         rbtnApprove.setSelected(true);
         txtMessage.setEnabled(false);
     }
@@ -50,6 +54,7 @@ public class EvaluationPage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnResult = new javax.swing.ButtonGroup();
         btnPrevious = new javax.swing.JButton();
         lblEvaluateApp = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
@@ -58,40 +63,39 @@ public class EvaluationPage extends javax.swing.JPanel {
         rbtnApprove = new javax.swing.JRadioButton();
         rbtnReject = new javax.swing.JRadioButton();
         lblDeliveryDate = new javax.swing.JLabel();
-        lblMonth = new javax.swing.JLabel();
-        lblDate = new javax.swing.JLabel();
-        txtYear = new javax.swing.JTextField();
-        txtMonth = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
-        lblYear = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMessage = new javax.swing.JTextArea();
         lblReason = new javax.swing.JLabel();
+        txtDate = new com.github.lgooddatepicker.components.DatePicker();
+        valDate = new javax.swing.JLabel();
+        valResult = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
-        btnPrevious.setForeground(new java.awt.Color(255, 0, 51));
         btnPrevious.setText("Previous");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPreviousActionPerformed(evt);
             }
         });
+        add(btnPrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, -1, 30));
 
         lblEvaluateApp.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblEvaluateApp.setForeground(new java.awt.Color(255, 51, 51));
+        lblEvaluateApp.setForeground(new java.awt.Color(51, 0, 51));
         lblEvaluateApp.setText("APPLICANT EVALUATION");
+        add(lblEvaluateApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, -1, -1));
 
-        btnSubmit.setBackground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnSubmit.setForeground(new java.awt.Color(255, 51, 0));
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 560, -1, 30));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -100,41 +104,17 @@ public class EvaluationPage extends javax.swing.JPanel {
         lblResult.setText("Result:");
 
         rbtnApprove.setBackground(new java.awt.Color(255, 255, 255));
+        btnResult.add(rbtnApprove);
         rbtnApprove.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rbtnApprove.setText("Approve");
-        rbtnApprove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnApproveActionPerformed(evt);
-            }
-        });
 
         rbtnReject.setBackground(new java.awt.Color(255, 255, 255));
+        btnResult.add(rbtnReject);
         rbtnReject.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rbtnReject.setText("Reject");
-        rbtnReject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnRejectActionPerformed(evt);
-            }
-        });
 
         lblDeliveryDate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblDeliveryDate.setText("Delivery Date:");
-
-        lblMonth.setBackground(new java.awt.Color(255, 255, 255));
-        lblMonth.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        lblMonth.setText("MM");
-
-        lblDate.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        lblDate.setText("DD");
-
-        txtYear.setSelectionColor(new java.awt.Color(255, 204, 204));
-
-        txtMonth.setSelectionColor(new java.awt.Color(255, 204, 204));
-
-        txtDate.setSelectionColor(new java.awt.Color(255, 204, 204));
-
-        lblYear.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        lblYear.setText("YYYY");
 
         txtMessage.setColumns(20);
         txtMessage.setRows(5);
@@ -144,6 +124,12 @@ public class EvaluationPage extends javax.swing.JPanel {
 
         lblReason.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblReason.setText("Reason:");
+
+        valDate.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valDate.setForeground(new java.awt.Color(255, 0, 0));
+
+        valResult.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valResult.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,89 +142,47 @@ public class EvaluationPage extends javax.swing.JPanel {
                     .addComponent(lblDeliveryDate)
                     .addComponent(lblResult))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rbtnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnReject, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(rbtnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rbtnReject, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(lblYear))
-                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(4, 4, 4)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(lblMonth)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblDate)
-                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(145, Short.MAX_VALUE))
+                    .addComponent(valDate, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valResult, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblResult)
-                    .addComponent(rbtnApprove)
-                    .addComponent(rbtnReject))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblResult)
+                        .addComponent(rbtnApprove)
+                        .addComponent(rbtnReject))
+                    .addComponent(valResult, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDeliveryDate)
-                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblYear)
-                    .addComponent(lblMonth)
-                    .addComponent(lblDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDeliveryDate)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valDate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblReason)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPrevious)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSubmit)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblEvaluateApp)
-                .addGap(150, 150, 150))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPrevious)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEvaluateApp)
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 620, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OBl3g7.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1940, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
@@ -254,129 +198,89 @@ public class EvaluationPage extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        if(rbtnApprove.isSelected() == true) {
-            if(!txtYear.getText().matches("\\d{4}")) {
-                JOptionPane.showMessageDialog(null, "Year is invalid");
-                return;
-            }
-            if(txtYear.getText().matches("\\d{4}")) {
-                if(Integer.parseInt(txtYear.getText()) < 2016) {
-                    JOptionPane.showMessageDialog(null, "Year is invalid");
-                    return;
-                }
-            }
-            if(!txtMonth.getText().matches("\\d{1,2}")){
-                JOptionPane.showMessageDialog(null, "Month is invalid");
-                return;
-            }
-            if(txtMonth.getText().matches("\\d{1,2}")) {
-                if(Integer.parseInt(txtMonth.getText()) > 12 
-                        || Integer.parseInt(txtMonth.getText()) <= 0 ) {
-                    JOptionPane.showMessageDialog(null, "Month is invalid");
-                    return;
-                }
-                else if(Integer.parseInt(txtYear.getText()) == 2016
-                         && Integer.parseInt(txtMonth.getText()) < 12) {
-                    JOptionPane.showMessageDialog(null, "Month is invalid");
-                    return;
-                }
-            }
-            if(!txtDate.getText().matches("\\d{1,2}")){
-                JOptionPane.showMessageDialog(null, "Date is invalid");
-                return;
-            }
-            if(txtDate.getText().matches("\\d{1,2}")) {
-                if(Integer.parseInt(txtDate.getText()) > 31
-                        || Integer.parseInt(txtDate.getText()) <= 0 ) {
-                    JOptionPane.showMessageDialog(null, "Date is invalid");
-                    return;
-                }
-                else if(Integer.parseInt(txtYear.getText()) == 2016
-                         && Integer.parseInt(txtMonth.getText()) == 12
-                        && Integer.parseInt(txtDate.getText()) < 16) {
-                    JOptionPane.showMessageDialog(null, "Date is invalid");
-                    return;
-                }
-            }
+        
+        var valid = true;
+        if (!this.validations.ValidateEmpty(txtDate.getDateStringOrEmptyString()) ) {
+            valDate.setText("Date is required");
+            valid = false;
         }
         
-        if(rbtnReject.isSelected() == true) {
-            if(txtMessage.getText().equals("")) {
+        if (btnResult.getSelection() == null) {
+            valResult.setText("Gender is required");
+            valid = false;
+        }
+
+        
+        if(rbtnReject.isSelected()) {
+            if(!this.validations.ValidateEmpty(txtMessage.getText())) {
                 JOptionPane.showMessageDialog(null, "Please fill out the reason for rejection.");
                 return;
             }
         }
-        
-        if(rbtnApprove.isSelected() == true) {
+        if (valid) {
+        if(rbtnApprove.isSelected()) {
             ar.setStatus(AdoptRecord.Status.Approved);
             int size = ar.getAdoptor().getHistory().size();
             ar.getAdoptor().getHistory().get(size-1).setStatus(AdoptHistory.Status.Approved);
             ar.getAnimal().setStatus(AnimalDetails.Status.ADOPTED);
+            Main.controller.saveOrUpdate(ar.getAdoptor().getHistory().get(size-1));
+            Main.controller.saveOrUpdate(ar.getAnimal());
+            Main.controller.saveOrUpdate(ar);
+            
             DeliveryDetails dh = new DeliveryDetails();
             dh.setAdoptername(ar.getAdoptor());
             dh.setAnimal(ar.getAnimal());
             dh.setStatus(DeliveryDetails.Status.WAITING);
-
-            int year = Integer.parseInt(txtYear.getText());
-            int month = Integer.parseInt(txtMonth.getText());
-            int date = Integer.parseInt(txtDate.getText());
-            Date d = new Date(year, month, date);
-            dh.setDate(d);
+            
+            Date date = this.validations.getFormattedDate(txtDate);
+            dh.setDate(date);
+            Main.controller.saveObject(dh);
             enterprise.getDeliveryHistoryDirectory().add(dh);
+            Main.controller.saveOrUpdate(enterprise);
         }
-        else if(rbtnReject.isSelected() == true) {
+        else if(rbtnReject.isSelected()) {
             ar.setStatus(AdoptRecord.Status.Rejected);
             int size = ar.getAdoptor().getHistory().size();
             ar.getAdoptor().getHistory().get(size-1).setMessage(txtMessage.getText());
             ar.getAdoptor().getHistory().get(size-1).setStatus(AdoptHistory.Status.Rejected);
+            Main.controller.saveOrUpdate(ar.getAdoptor().getHistory().get(size-1));
+            Main.controller.saveOrUpdate(ar.getAnimal());
+            Main.controller.saveOrUpdate(ar);
             for(AdoptionOffered ao: enterprise.getAdoptionList()) {
-                if(ao.getAnimal() == ar.getAnimal()) {
+                if(ao.getAnimal().getId() == ar.getAnimal().getId()) {
                     ao.setStatus(AdoptionOffered.Status.Open);
+                    Main.controller.saveOrUpdate(ao);
                 }
             }
         }
         
         btnSubmit.setVisible(false);
+        setTextNull();
         JOptionPane.showMessageDialog(null, "Evaluated Successfully.\nResult has been sent.");
-        
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void rbtnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnApproveActionPerformed
-        // TODO add your handling code here:
-        rbtnReject.setSelected(false);
-        txtMessage.setEnabled(false);
-        txtYear.setEnabled(true);
-        txtMonth.setEnabled(true);
-        txtDate.setEnabled(true);
-    }//GEN-LAST:event_rbtnApproveActionPerformed
-
-    private void rbtnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRejectActionPerformed
-        // TODO add your handling code here:
-        rbtnApprove.setSelected(false);
-        txtMessage.setEnabled(true);
-        txtYear.setEnabled(false);
-        txtMonth.setEnabled(false);
-        txtDate.setEnabled(false);
-    }//GEN-LAST:event_rbtnRejectActionPerformed
-
+    private void setTextNull() {
+        btnResult.clearSelection();
+        txtDate.setDate(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPrevious;
+    private javax.swing.ButtonGroup btnResult;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblDeliveryDate;
     private javax.swing.JLabel lblEvaluateApp;
-    private javax.swing.JLabel lblMonth;
     private javax.swing.JLabel lblReason;
     private javax.swing.JLabel lblResult;
-    private javax.swing.JLabel lblYear;
     private javax.swing.JRadioButton rbtnApprove;
     private javax.swing.JRadioButton rbtnReject;
-    private javax.swing.JTextField txtDate;
+    private com.github.lgooddatepicker.components.DatePicker txtDate;
     private javax.swing.JTextArea txtMessage;
-    private javax.swing.JTextField txtMonth;
-    private javax.swing.JTextField txtYear;
+    private javax.swing.JLabel valDate;
+    private javax.swing.JLabel valResult;
     // End of variables declaration//GEN-END:variables
 }

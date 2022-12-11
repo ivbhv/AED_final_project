@@ -44,6 +44,7 @@ public class AnimalStatusDetails implements Serializable {
     }
 
     public AnimalStatusDetails() {
+        this.status_date = new Date();
     }
 
     public Date getDate() {

@@ -74,6 +74,11 @@ public class EnterpriseDetails implements Serializable{
         return id;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -120,32 +125,87 @@ public class EnterpriseDetails implements Serializable{
     
     public OrganisationMain addOrganisation(OrganisationMain.Type type) {
         OrganisationMain organization = null;
+        boolean found = false;
         if (type.getValue().equals(OrganisationMain.Type.CenterRegistration.getValue())){
-            organization = new CenterRegistrationOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof CenterRegistrationOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new CenterRegistrationOrganisation();}
+            
         }
         else if (type.getValue().equals(OrganisationMain.Type.Vete.getValue())){
-            organization = new VeterinarianOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof VeterinarianOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new VeterinarianOrganisation();}
         }
         else if (type.getValue().equals(OrganisationMain.Type.Pharmacy.getValue())){
-            organization = new PharmacyOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof PharmacyOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new PharmacyOrganisation();}
+            
         }
         else if (type.getValue().equals(OrganisationMain.Type.Cage.getValue())){
-            organization = new CageOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof CageOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new CageOrganisation();}
+            
         }
         else if (type.getValue().equals(OrganisationMain.Type.Delivery.getValue())){
-            organization = new DeliveryOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof DeliveryOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new DeliveryOrganisation();}
         }
         else if (type.getValue().equals(OrganisationMain.Type.Shelter.getValue())){
-            organization = new ShelterOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof ShelterOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new ShelterOrganisation();}
         }
         else if (type.getValue().equals(OrganisationMain.Type.Adoption.getValue())){
-            organization = new AdoptionOrganisation();
+            for (OrganisationMain o : organisationDirectory) {
+                if (o instanceof AdoptionOrganisation) {
+                    found = true;
+                    organization = o;
+                    break;
+                }
+            }
+            if(!found) {organization = new AdoptionOrganisation();}
         }
-        Main.controller.saveObject(organization);
-        this.organisationDirectory.add(organization);
+        Main.controller.saveOrUpdate(organization);
         
+        if (!found) {this.organisationDirectory.add(organization);}
+            
         return organization;
     }
+    
     
     public enum EnterpriseType {
         RescueCenter("Rescue");

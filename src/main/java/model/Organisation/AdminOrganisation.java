@@ -21,10 +21,9 @@ public class AdminOrganisation extends OrganisationMain{
     }
     
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList();
-        roles.add(new EnterpriseAdministratorRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new EnterpriseAdministratorRole();
     }
 
 }

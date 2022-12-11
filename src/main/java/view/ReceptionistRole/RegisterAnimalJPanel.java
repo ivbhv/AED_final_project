@@ -7,7 +7,6 @@ package view.ReceptionistRole;
 
 import java.awt.CardLayout;
 import java.awt.Component;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -19,6 +18,7 @@ import model.Animal.OtherAnimalDetails;
 import model.Enterprises.RescueCenterEntDetails;
 import model.RescueRecord.RescueRecordDetails;
 import model.UserAccount.UserAccount;
+import view.Main.Main;
 
 /**
  *
@@ -85,36 +85,41 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
         rbtnF = new javax.swing.JRadioButton();
         rbtnM = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblregisteranimal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblregisteranimal.setForeground(new java.awt.Color(255, 0, 0));
         lblregisteranimal.setText("REGISTER NEW ANIMAL");
+        add(lblregisteranimal, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, -1, -1));
 
-        btnRegister.setForeground(new java.awt.Color(255, 51, 51));
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
+        add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 580, -1, 32));
 
-        btnClear.setForeground(new java.awt.Color(255, 0, 51));
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
             }
         });
+        add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 580, 81, 32));
 
-        btnBack.setForeground(new java.awt.Color(255, 0, 0));
         btnBack.setText(" Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 580, 81, 32));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -207,46 +212,11 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(lblregisteranimal)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(btnRegister)
-                .addContainerGap(202, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(36, Short.MAX_VALUE)
-                        .addComponent(lblregisteranimal)
-                        .addGap(18, 18, 18)))
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/All Animals.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 0, 1930, 1080));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -266,32 +236,25 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
             a = new CatDetails();
             a.setColor(txtColor.getText());
             a.setType(AnimalDetails.AnimalType.Cat);
-            enterprise.getAnimalDirectory().add(a);
-            r.setRescuedanimal(a);
+            
         }
         else if(cboxType.getSelectedItem() == AnimalDetails.AnimalType.Dog) {
             a = new DogDetails();
             a.setColor(txtColor.getText());
             a.setType(AnimalDetails.AnimalType.Dog);
-            enterprise.getAnimalDirectory().add(a);
-            r.setRescuedanimal(a);
         }
-        else if(cboxType.getSelectedItem() == AnimalDetails.AnimalType.Other) {
+        else {
             a = new OtherAnimalDetails();
             a.setColor(txtColor.getText());
             a.setType(AnimalDetails.AnimalType.Other);
-            enterprise.getAnimalDirectory().add(a);
-            r.setRescuedanimal(a);
         }
+        a.setStatus(AnimalDetails.Status.NOT_READY);
+        Main.controller.saveObject(a);
+        enterprise.getAnimalDirectory().add(a);
         
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR); 
-        int month = c.get(Calendar.MONTH); 
-        int date = c.get(Calendar.DATE);
+        r.setRescuedanimal(a);
+        
         Date d = new Date();
-        d.setYear(year);
-        d.setMonth(month+1);
-        d.setDate(date);
         
         if(rbtnM.isSelected() == true) {
             r.getRescuedanimal().setGender("M");
@@ -300,12 +263,16 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
             r.getRescuedanimal().setGender("F");
         }
         
+        
+        
         r.setDate(d);
         r.setFoundlocation(txtLocationFound.getText());
+        Main.controller.saveObject(r);
+        Main.controller.saveOrUpdate(r.getRescuedanimal());
         enterprise.getRecordDirectory().add(r);
+        Main.controller.saveOrUpdate(enterprise);
         JOptionPane.showMessageDialog(null, "Registered Successfully!");
         clearFields();
-        return;
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -351,6 +318,7 @@ public class RegisterAnimalJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRegister;
     private javax.swing.JComboBox cboxType;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import model.Enterprises.EnterpriseDetails;
 import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
+import view.EntAdminRole.AdminWorkAreaJPanel;
 
 /**
  *
@@ -26,8 +27,12 @@ public class EnterpriseAdministratorRole extends AllRoles
             OrganisationMain organization,
             UserAccount userAccount)
     {
-        return new JPanel();
+        return new AdminWorkAreaJPanel(container, enterprise);
     }
 
+    @Override
+    public String toString() {
+        return "Enterprise Admin"; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
     
 }

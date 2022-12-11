@@ -107,6 +107,12 @@ public class AdoptRecord implements Serializable {
     public void setStatus(Status status) {
         this.status = status;
     }
+    
+    @Override
+    public String toString() {
+        
+        return date.toString();
+    }
 
     
 }

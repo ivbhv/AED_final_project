@@ -50,6 +50,7 @@ public class AdoptionOffered implements Serializable {
     }
 
     public AdoptionOffered() {
+        this.status = Status.Open;
     }
 
     public AnimalDetails getAnimal() {
@@ -82,6 +83,11 @@ public class AdoptionOffered implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    @Override
+    public String toString() {
+        return animal.getType().toString();
     }
     
 }

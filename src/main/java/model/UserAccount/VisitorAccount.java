@@ -86,7 +86,7 @@ public class VisitorAccount implements Serializable {
             Root<VisitorAccount> root = criteriaQuery.from(VisitorAccount.class);
             criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
             u = s.createQuery(criteriaQuery).uniqueResult();
-            s.close();
+            Main.controller.closeSession(s);
         }
 
         if(u == null) {
@@ -108,6 +108,7 @@ public class VisitorAccount implements Serializable {
             CriteriaQuery<VisitorAccount> criteria = builder.createQuery(VisitorAccount.class);
             criteria.from(VisitorAccount.class);
             networkList = s.createQuery(criteria).getResultList();
+            Main.controller.closeSession(s);
         }
         return networkList;
 

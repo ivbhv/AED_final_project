@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
 import org.hibernate.Session;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -86,6 +87,7 @@ public class NetworkDetails implements Serializable {
         NetworkDetails n;
         try (Session s = Main.controller.getSession()) {
             n = (NetworkDetails) s.createQuery("from NetworkDetails n where n.name = :name ").setParameter("name", name).uniqueResult();
+            Main.controller.closeSession(s);
         }
         if (n != null) {
             return n;
@@ -105,8 +107,39 @@ public class NetworkDetails implements Serializable {
             CriteriaQuery<NetworkDetails> criteria = builder.createQuery(NetworkDetails.class);
             criteria.from(NetworkDetails.class);
             networkList = s.createQuery(criteria).getResultList();
-        }
+            Main.controller.closeSession(s);
+        }   
         return networkList;
 
+    }
+    
+    public boolean isExistByName(String name) {
+        NetworkDetails n;
+        try (Session s = Main.controller.getSession()) {
+            n = (NetworkDetails) s.createQuery("from NetworkDetails n where n.name = :name ").setParameter("name", name).uniqueResult();
+            Main.controller.closeSession(s);
+        }   
+        return n != null;
+
+    }
+    
+    public void addOrUpdateEnterprise (RescueCenterEntDetails r) {
+        for (EnterpriseDetails e: enterpriseDirectory) {
+            if (e.equals(r)) {
+                return;
+            }
+        }
+        enterpriseDirectory.add(r);
+        
+    }
+    
+    public boolean isEnterpriseExistByName (String name) {
+        for (EnterpriseDetails e: enterpriseDirectory) {
+            if (e.getName().toLowerCase().equals(name.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+        
     }
 }

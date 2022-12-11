@@ -94,10 +94,10 @@ public class CageDetail implements Serializable {
             Root<CageDetail> root = criteriaQuery.from(CageDetail.class);
             criteriaQuery.where(criteriaBuilder.equal(root.get("cagelocation"), name));
             result = s.createQuery(criteriaQuery).getResultList();
-            s.close();
+            Main.controller.closeSession(s);
         }
 
-        if(result.size() < 10){
+        if(result.size() < 100){
             CageDetail cageDetail = new CageDetail();
             cageDetail.setCagelocation(name);
             cageDetail.setCagestatus(Status.AVAILABLE);
@@ -107,6 +107,11 @@ public class CageDetail implements Serializable {
         }
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(cellno);
     }
 }
 

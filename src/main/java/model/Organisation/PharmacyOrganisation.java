@@ -35,10 +35,9 @@ public class PharmacyOrganisation extends OrganisationMain{
     }
     
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList();
-        roles.add(new PharmacistRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new PharmacistRole();
     }
 
     public List<MedicineDetails> getMedicine() {

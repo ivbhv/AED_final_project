@@ -73,6 +73,16 @@
       <mapping class = "model.Animal.DogDetails"/>
       <mapping class = "model.Animal.CatDetails"/>
       <mapping class = "model.Animal.OtherAnimalDetails"/>
+      <mapping class = "model.Role.EnterpriseAdministratorRole"/>
+      <mapping class = "model.Role.VeterinarianRole"/>
+      <mapping class = "model.WorkQueue.PharmacyWre"/>
+      <mapping class = "model.WorkQueue.AdoptionVisitWre"/>
+      <mapping class = "model.WorkQueue.DailyExaminationWre"/>
+      <mapping class = "model.WorkQueue.PharmacyUnitWre"/>
+      <mapping class = "model.WorkQueue.ReturnVisitWre"/>
+      <mapping class = "model.WorkQueue.TreatmentWre"/>
+      <mapping class = "model.Organisation.AdminOrganisation"/>
+      
    </session-factory>
 </hibernate-configuration>
 

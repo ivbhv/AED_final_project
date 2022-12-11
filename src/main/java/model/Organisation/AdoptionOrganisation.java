@@ -72,10 +72,9 @@ public class AdoptionOrganisation extends OrganisationMain{
     }
 
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList<>();
-        roles.add(new AdoptionManagerRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new AdoptionManagerRole();
     }
  
 }

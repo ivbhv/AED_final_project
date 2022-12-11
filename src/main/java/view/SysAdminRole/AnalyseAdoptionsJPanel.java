@@ -50,15 +50,15 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         Object[] row = new Object[3];
         row[0] = "Dogs";
-        row[1] = (getDogCount() / getTotalAdoptions()) * 100 + "%";
+        row[1] = String.valueOf((getDogCount() / getTotalAdoptions()) * 100) + "%";
         model.addRow(row);
         
         row[0] = "Male";
-        row[1] = (getMaleCount() / getTotalAdoptions()) * 100 + "%";
+        row[1] = String.valueOf((getMaleCount() / getTotalAdoptions()) * 100) + "%";
         model.addRow(row);
         
         row[0] = "Has Breed";
-        row[1] = (getBreedCount() / getTotalAdoptions()) * 100 + "%";
+        row[1] = String.valueOf((getBreedCount() / getTotalAdoptions()) * 100) + "%";
         model.addRow(row);
     }
     
@@ -162,7 +162,6 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
                         if(org instanceof AdoptionOrganisation) {
                             for(AdoptRecord ar: ((AdoptionOrganisation) org).getAdoptionRecordDirectory()) {
                                 if(ar.getAnimal().getGender() != null) {
-                                    System.out.println(ar.getAnimal().getGender());
                                     if(ar.getAnimal().getGender().equals("M")) {
                                         count++;
                                     }
@@ -224,18 +223,23 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTypes = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backJButton.setForeground(new java.awt.Color(255, 51, 51));
+        backJButton.setBackground(new java.awt.Color(204, 204, 255));
         backJButton.setText("Previous");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 660, 93, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -262,7 +266,7 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 123, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,14 +299,18 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 587, -1));
+
         lblanalyzeadoptions.setBackground(new java.awt.Color(255, 255, 255));
         lblanalyzeadoptions.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblanalyzeadoptions.setForeground(new java.awt.Color(255, 51, 51));
+        lblanalyzeadoptions.setForeground(new java.awt.Color(153, 204, 255));
         lblanalyzeadoptions.setText("ADOPTIONS ANALYSIS");
+        add(lblanalyzeadoptions, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANIMAL STATUS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 15), new java.awt.Color(255, 51, 51))); // NOI18N
 
+        tblTypes.setBackground(new java.awt.Color(204, 204, 255));
         tblTypes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -340,40 +348,11 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(lblanalyzeadoptions))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backJButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(31, Short.MAX_VALUE)
-                        .addComponent(lblanalyzeadoptions)
-                        .addGap(12, 12, 12)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Analysis.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -385,6 +364,7 @@ public class AnalyseAdoptionsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -44,6 +44,19 @@ public class UserAccount implements Serializable {
     private String username;
     
     private String pass;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return username;
+    }
     
     @OneToOne
     private AllRoles roles;
@@ -116,7 +129,7 @@ public class UserAccount implements Serializable {
             Root<UserAccount> root = criteriaQuery.from(UserAccount.class);
             criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
             u = s.createQuery(criteriaQuery).uniqueResult();
-            s.close();
+            Main.controller.closeSession(s);
         }
 
         if(u != null) {
@@ -136,9 +149,8 @@ public class UserAccount implements Serializable {
             Root<UserAccount> root = criteriaQuery.from(UserAccount.class);
             criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
             u = s.createQuery(criteriaQuery).uniqueResult();
-            s.close();
+            Main.controller.closeSession(s);
         }
-
         if(u == null) {
             return null;
         }
@@ -149,6 +161,20 @@ public class UserAccount implements Serializable {
 
         return null;
 
+    }
+    
+    public boolean isUsernameExist(String username) {
+        UserAccount u;
+        try (Session s = Main.controller.getSession()) {
+            CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
+            CriteriaQuery<UserAccount> criteriaQuery = criteriaBuilder.createQuery(UserAccount.class);
+            Root<UserAccount> root = criteriaQuery.from(UserAccount.class);
+            criteriaQuery.where(criteriaBuilder.equal(root.get("username"), username));
+            u = s.createQuery(criteriaQuery).uniqueResult();
+            Main.controller.closeSession(s);
+        }
+        
+        return u != null;
     }
     
 }

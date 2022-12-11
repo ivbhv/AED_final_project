@@ -7,7 +7,6 @@ package view.Main;
 import controller.Configure.PreConfigure;
 import controller.Hibernate.HibernateController;
 import java.awt.CardLayout;
-import static java.time.InstantSource.system;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Enterprises.EnterpriseDetails;
@@ -30,6 +29,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents(); 
         PreConfigure.configure();
+        this.getRootPane().setDefaultButton(btnLogin);
     }
 
     /**
@@ -59,7 +59,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setText("User Name");
 
-        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setForeground(new java.awt.Color(255, 0, 0));
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +71,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Password");
 
-        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
         btnLogout.setForeground(new java.awt.Color(255, 51, 51));
         btnLogout.setText("Logout");
         btnLogout.setEnabled(false);
@@ -118,7 +116,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(btnLogin)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(1067, Short.MAX_VALUE))
         );
 
         splitPane1.setLeftComponent(signIn);
@@ -127,10 +125,15 @@ public class Main extends javax.swing.JFrame {
         container.setLayout(new java.awt.CardLayout());
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Telugu MN", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GettyImages-162308647-hero-83747d1.jpg"))); // NOI18N
-        container.add(jLabel4, "card2");
+        jLabel4.setFont(new java.awt.Font("KoHo", 3, 60)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/The-bond-between-humans-and-dogs-dates-back-20000-years.jpg"))); // NOI18N
+        jLabel4.setText("Human for Animal");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel4.setAlignmentY(0.0F);
+        jLabel4.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        container.add(jLabel4, "card3");
 
         splitPane1.setRightComponent(container);
 
@@ -164,12 +167,12 @@ public class Main extends javax.swing.JFrame {
             for(NetworkDetails network: new NetworkDetails().getNetworkList()) {
                 for(EnterpriseDetails enterprise: network.getEnterpriseDirectory()) {
                     //step 2-a: Check against each enterprise
-                    userAccount = enterprise.authenticateUser(userName, password);
+                    UserAccount test = enterprise.authenticateUser(userName, password);
                     //step 3: Check against each organization
-                    if(userAccount == null) {
+                    if(test == null) {
                         for(OrganisationMain organization: enterprise.getOrganisationDirectory()) {
-                            userAccount = organization.authenticateUser(userName, password);
-                            if(userAccount != null) {
+                            test = organization.authenticateUser(userName, password);
+                            if(test != null) {
                                 inEnterprise = enterprise;
                                 inOrganization = organization;
                                 break;
@@ -227,9 +230,11 @@ public class Main extends javax.swing.JFrame {
 
         container.removeAll();
         JPanel blankJP = new JPanel();
+        blankJP.add(jLabel4);
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
+        
         //        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
 

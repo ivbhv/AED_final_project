@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 
 import model.Enterprises.EnterpriseDetails;
 import model.Organisation.OrganisationMain;
+import model.Organisation.PharmacyOrganisation;
 import model.UserAccount.UserAccount;
+import view.PharmcistRole.PharmacistWorkAreaJPanel;
 
 /**
  *
@@ -26,6 +28,11 @@ public class PharmacistRole extends AllRoles
             OrganisationMain organization,
             UserAccount userAccount)
     {
-        return new JPanel();
+        return new PharmacistWorkAreaJPanel(container, enterprise, (PharmacyOrganisation)organization, userAccount);
+    }
+    
+    @Override
+    public String toString() {
+        return "Pharmacist"; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

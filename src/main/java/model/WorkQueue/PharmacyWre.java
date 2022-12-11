@@ -29,6 +29,7 @@ public class PharmacyWre extends AllWorkRequest {
     private List<PharmacyUnitWre> medicineList;
 
     public PharmacyWre() {
+        this.medicineList = new ArrayList();
     }
 
     public PharmacyWre(boolean assigned) {

@@ -30,6 +30,7 @@ public class MedicineDetails implements Serializable {
     }
 
     public MedicineDetails(String medname, String medvendor, MedicineType medtype) {
+        
         this.medname = medname;
         this.medvendor = medvendor;
         this.medtype = medtype;
@@ -70,4 +71,10 @@ public class MedicineDetails implements Serializable {
     public enum MedicineType {
         Anesthetics, Antibiotics, Vaccination, Other
     }
+
+    @Override
+    public String toString() {
+        return medname;
+    }
+    
 }

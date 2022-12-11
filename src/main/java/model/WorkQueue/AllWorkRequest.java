@@ -104,6 +104,11 @@ public class AllWorkRequest implements Serializable {
     public void setWreresolveDate(Date wreresolveDate) {
         this.wreresolveDate = wreresolveDate;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
     
     
 }

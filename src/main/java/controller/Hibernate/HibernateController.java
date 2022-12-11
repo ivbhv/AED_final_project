@@ -52,6 +52,7 @@ public class HibernateController {
     
     public void closeSession(Session s) {
         s.close();
+        this.factory.close();
     }
     
     public void closeFactory() {
@@ -64,6 +65,16 @@ public class HibernateController {
         this.session.save(o);
         this.session.getTransaction().commit();
         this.session.close();
+        this.factory.close();
+    }
+    
+    public void delete(Object o) {
+        this.startSession();
+        this.session.beginTransaction();
+        this.session.delete(o);
+        this.session.getTransaction().commit();
+        this.session.close();
+        this.factory.close();
     }
     
     public void saveOrUpdate(Object o) {
@@ -72,6 +83,7 @@ public class HibernateController {
         this.session.saveOrUpdate(o);
         this.session.getTransaction().commit();
         this.session.close();
+        this.factory.close();
     }
 
     public void saveOrUpdateArray(Object[] args) {

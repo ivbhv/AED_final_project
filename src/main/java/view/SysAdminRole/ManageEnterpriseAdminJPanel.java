@@ -1,4 +1,5 @@
 /*
+  ̨
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -10,6 +11,7 @@ package view.SysAdminRole;
  * @author sejal
  */
 
+import controller.Helper.Helper;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -19,6 +21,7 @@ import model.Enterprises.EnterpriseDetails;
 import model.Network.NetworkDetails;
 import model.Role.EnterpriseAdministratorRole;
 import model.UserAccount.UserAccount;
+import view.Main.Main;
 
 /**
  *
@@ -31,11 +34,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageEnterpriseJPanel
      */
+    Helper validations;
     public ManageEnterpriseAdminJPanel(JPanel userProcessContainer) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
-
+        this.validations = new Helper();
         populateTable();
         populateNetworkComboBox();
     }
@@ -103,19 +107,31 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         cboxEnterprise = new javax.swing.JComboBox();
         lblpassword = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
+        valUsername = new javax.swing.JLabel();
+        valPassword = new javax.swing.JLabel();
+        valName = new javax.swing.JLabel();
+        lblname1 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        valEmail = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        submitbtn.setForeground(new java.awt.Color(255, 51, 51));
+        submitbtn.setBackground(new java.awt.Color(204, 204, 255));
         submitbtn.setText("Submit");
         submitbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitbtnActionPerformed(evt);
             }
         });
+        add(submitbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 410, 78, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
+        tblEnterprise.setBackground(new java.awt.Color(204, 204, 255));
         tblEnterprise.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -133,157 +149,270 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
         tblEnterprise.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        tblEnterprise.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblEnterprise);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
         );
 
-        backbtn.setForeground(new java.awt.Color(255, 51, 51));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, -1, -1));
+
+        backbtn.setBackground(new java.awt.Color(204, 204, 255));
         backbtn.setText("Previous");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
             }
         });
+        add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 690, 83, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblname.setText("Name");
+
+        txtPassword.setBackground(new java.awt.Color(204, 204, 255));
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyReleased(evt);
+            }
+        });
 
         lblusername.setText("Username");
 
         lblnetwork.setText("Network");
 
+        txtUsername.setBackground(new java.awt.Color(204, 204, 255));
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyReleased(evt);
+            }
+        });
+
         lblenterprise.setText("Enterprise");
 
+        cboxNetwork.setBackground(new java.awt.Color(204, 204, 255));
         cboxNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboxNetworkActionPerformed(evt);
             }
         });
 
+        cboxEnterprise.setBackground(new java.awt.Color(204, 204, 255));
+        cboxEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxEnterpriseActionPerformed(evt);
+            }
+        });
+
         lblpassword.setText("Password");
+
+        txtName.setBackground(new java.awt.Color(204, 204, 255));
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
+
+        valUsername.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valUsername.setForeground(new java.awt.Color(255, 0, 0));
+        valUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valUsernameKeyReleased(evt);
+            }
+        });
+
+        valPassword.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valPassword.setForeground(new java.awt.Color(255, 0, 0));
+        valPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valPasswordKeyReleased(evt);
+            }
+        });
+
+        valName.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valName.setForeground(new java.awt.Color(255, 0, 0));
+        valName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valNameKeyReleased(evt);
+            }
+        });
+
+        lblname1.setText("Email");
+
+        txtEmail.setBackground(new java.awt.Color(204, 204, 255));
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
+            }
+        });
+
+        valEmail.setFont(new java.awt.Font("Helvetica Neue", 2, 13)); // NOI18N
+        valEmail.setForeground(new java.awt.Color(255, 0, 0));
+        valEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valEmailKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblpassword)
-                            .addComponent(lblname))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(180, 180, 180)
-                                .addComponent(lblnetwork))
-                            .addComponent(lblenterprise, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblusername, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboxNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboxEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(180, 180, 180)
+                .addComponent(lblnetwork)
+                .addGap(44, 44, 44)
+                .addComponent(cboxNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(lblenterprise)
+                .addGap(44, 44, 44)
+                .addComponent(cboxEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(lblusername)
+                .addGap(44, 44, 44)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(valUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(lblpassword)
+                .addGap(38, 38, 38)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(valPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(lblname)
+                .addGap(38, 38, 38)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(valName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(lblname1)
+                .addGap(38, 38, 38)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(valEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnetwork)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblnetwork))
                     .addComponent(cboxNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblenterprise)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblenterprise))
                     .addComponent(cboxEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblusername)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblusername))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblpassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblpassword))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblname)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblname))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblname1))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(submitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backbtn)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submitbtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 700, 260));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Enterprise.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbtnActionPerformed
         EnterpriseDetails enterprise = (EnterpriseDetails) cboxEnterprise.getSelectedItem();
 
-        String username = txtUsername.getText();
+        boolean valid = true;
+        
+        if (!this.validations.ValidateName(txtName.getText()) ) {
+            valName.setText("Name is Invalid");
+            valid = false;
+        }
+        
+        if (!this.validations.ValidateEmail(txtEmail.getText()) ) {
+            valEmail.setText("Email address is Invalid");
+            valid = false;
+        } else if (new EmployeeDetails().isEmailExist(txtEmail.getText())) {
+            valEmail.setText("Email address already exist");
+            valid = false;
+        }
+        
+        if (!this.validations.ValidateUsername(txtUsername.getText()) ) {
+            valUsername.setText("Username is Invalid");
+            valid = false;
+        } else if (new UserAccount().isUsernameExist(txtUsername.getText())) {
+            valUsername.setText("Username already exist");
+            valid = false;
+        }
+
         String password = String.valueOf(txtPassword.getPassword());
+        if (!this.validations.ValidatePassword(password) ) {
+            valPassword.setText("Should be 5-12 character long");
+            valid = false;
+        }
+        
+        if (valid) {
+        String username = txtUsername.getText();
         String name = txtName.getText();
+        String email = txtEmail.getText();
         
         
 
-        EmployeeDetails employee = new EmployeeDetails(name, "i.vaibhavmahajan@gmail.com");
+        EmployeeDetails employee = new EmployeeDetails(name, email);
+        Main.controller.saveObject(employee);
         enterprise.getEmployeeDirectory().add(employee);
+        
+        
 
         EnterpriseAdministratorRole n = new EnterpriseAdministratorRole();
-        UserAccount account = new UserAccount(username, name,n, employee) ;
+        Main.controller.saveObject(n);
+        UserAccount account = new UserAccount(username, password,n, employee) ;
+        Main.controller.saveObject(account);
         enterprise.getUserAccountDir().add(account);
+        Main.controller.saveOrUpdate(enterprise);
         populateTable();
+        setTextNull();
+        setValidationsNull();
+        
+        }
     }//GEN-LAST:event_submitbtnActionPerformed
 
     private void cboxNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxNetworkActionPerformed
@@ -291,6 +420,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if (network != null){
             populateEnterpriseComboBox(network);
         }
+        
+        setTextNull();
+        setValidationsNull();
+        
     }//GEN-LAST:event_cboxNetworkActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
@@ -299,23 +432,111 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backbtnActionPerformed
 
+    private void valUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valUsernameKeyReleased
+
+    }//GEN-LAST:event_valUsernameKeyReleased
+
+    private void valPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valPasswordKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valPasswordKeyReleased
+
+    private void valNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valNameKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valNameKeyReleased
+
+    private void txtUsernameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyReleased
+        
+        String username = txtUsername.getText();
+        if (!this.validations.ValidateUsername(username)) {
+            valUsername.setText("Username is invalid");
+        }
+        
+        else if (new UserAccount().isUsernameExist(username)) {
+            valUsername.setText("Username already exist");
+        }
+        
+        else {
+            valUsername.setText(null);
+        }
+    }//GEN-LAST:event_txtUsernameKeyReleased
+
+    private void valEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valEmailKeyReleased
+        
+    }//GEN-LAST:event_valEmailKeyReleased
+
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
+        String password = String.valueOf(txtPassword.getPassword());
+        if (!this.validations.ValidatePassword(password) ) {
+            valPassword.setText("Should be 5-12 character long");
+        } else {
+            valPassword.setText(null);
+        }
+    }//GEN-LAST:event_txtPasswordKeyReleased
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        if (!this.validations.ValidateEmail(txtEmail.getText()) ) {
+            valEmail.setText("Email address is Invalid");
+        } else if (new EmployeeDetails().isEmailExist(txtEmail.getText())) {
+            valEmail.setText("Email address already exist");
+        }
+
+        else {
+            valEmail.setText(null);
+        }
+    }//GEN-LAST:event_txtEmailKeyReleased
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        if (!this.validations.ValidateName(txtName.getText()) ) {
+            valName.setText("Name is Invalid");
+        }
+        else {
+            valName.setText(null);
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void cboxEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxEnterpriseActionPerformed
+        setTextNull();
+        setValidationsNull();
+    }//GEN-LAST:event_cboxEnterpriseActionPerformed
+
+    private void setTextNull() {
+        txtEmail.setText(null);
+        txtName.setText(null);
+        txtPassword.setText(null);
+        txtUsername.setText(null);
+                
+    }
+    
+    private void setValidationsNull() {
+        valName.setText(null);
+        valUsername.setText(null);
+        valPassword.setText(null);
+        valEmail.setText(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backbtn;
     private javax.swing.JComboBox cboxEnterprise;
     private javax.swing.JComboBox cboxNetwork;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblenterprise;
     private javax.swing.JLabel lblname;
+    private javax.swing.JLabel lblname1;
     private javax.swing.JLabel lblnetwork;
     private javax.swing.JLabel lblpassword;
     private javax.swing.JLabel lblusername;
     private javax.swing.JButton submitbtn;
     private javax.swing.JTable tblEnterprise;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
+    private javax.swing.JLabel valEmail;
+    private javax.swing.JLabel valName;
+    private javax.swing.JLabel valPassword;
+    private javax.swing.JLabel valUsername;
     // End of variables declaration//GEN-END:variables
 }

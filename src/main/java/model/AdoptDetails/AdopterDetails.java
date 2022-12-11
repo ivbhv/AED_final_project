@@ -7,6 +7,7 @@ package model.AdoptDetails;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,6 +24,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class AdopterDetails implements Serializable {
     
     @Id
+    @Column(name="adoptor_ssn")
     private String ssnNumber;
     
     private String firstName;
@@ -37,6 +39,7 @@ public class AdopterDetails implements Serializable {
     private List<AdoptHistory> history;
 
     public AdopterDetails() {
+        this.history = new ArrayList();
     }
 
     public AdopterDetails(String ssnNumber, String firstName, String lastName, String phoneNumber, AddressDetails address, String email) {

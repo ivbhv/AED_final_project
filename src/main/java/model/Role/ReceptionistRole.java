@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.swing.JPanel;
 
 import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.CenterRegistrationOrganisation;
 import model.Organisation.OrganisationMain;
 import model.UserAccount.UserAccount;
+import view.ReceptionistRole.ReceptionistWorkAreaJPanel;
 
 /**
  *
@@ -26,6 +29,11 @@ public class ReceptionistRole extends AllRoles
             OrganisationMain organization,
             UserAccount userAccount) 
     {
-        return new JPanel();
+        return new ReceptionistWorkAreaJPanel(container, (RescueCenterEntDetails)enterprise, (CenterRegistrationOrganisation)organization, userAccount);
+    }
+    
+    @Override
+    public String toString() {
+        return "Receptionist"; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

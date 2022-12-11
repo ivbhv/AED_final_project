@@ -14,6 +14,7 @@ import model.Enterprises.EnterpriseDetails;
 import model.Enterprises.RescueCenterEntDetails;
 import model.Organisation.AdoptionOrganisation;
 import model.UserAccount.UserAccount;
+import view.Main.Main;
 
 /**
  *
@@ -72,16 +73,19 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
         btnMy = new javax.swing.JButton();
         btnAnalyse = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAdoption.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblAdoption.setForeground(new java.awt.Color(255, 51, 51));
         lblAdoption.setText("ADOPTION INSPECTOR PANEL");
-        add(lblAdoption, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 370, 40));
+        add(lblAdoption, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 370, 40));
 
         tblApplication.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,12 +104,10 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
             }
         });
         tblApplication.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        tblApplication.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblApplication);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 610, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 630, 190));
 
-        btnAssign.setBackground(new java.awt.Color(255, 255, 255));
         btnAssign.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAssign.setForeground(new java.awt.Color(255, 0, 0));
         btnAssign.setText("Assign to Self");
@@ -114,9 +116,8 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
                 btnAssignActionPerformed(evt);
             }
         });
-        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 139, 30));
+        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 139, 30));
 
-        btnMy.setBackground(new java.awt.Color(255, 255, 255));
         btnMy.setForeground(new java.awt.Color(255, 51, 51));
         btnMy.setText("Inspect");
         btnMy.addActionListener(new java.awt.event.ActionListener() {
@@ -124,9 +125,8 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
                 btnMyActionPerformed(evt);
             }
         });
-        add(btnMy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, 30));
+        add(btnMy, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, -1, 30));
 
-        btnAnalyse.setBackground(new java.awt.Color(255, 255, 255));
         btnAnalyse.setForeground(new java.awt.Color(255, 51, 51));
         btnAnalyse.setText("Analyze");
         btnAnalyse.addActionListener(new java.awt.event.ActionListener() {
@@ -134,11 +134,14 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
                 btnAnalyseActionPerformed(evt);
             }
         });
-        add(btnAnalyse, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 95, 30));
+        add(btnAnalyse, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 95, 30));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 630, 190));
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 420));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 630, 190));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img_2.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1650, 1040));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
@@ -153,6 +156,7 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
         UserAccount ua = userAccount;
         ar.setEmployee(ua.getEmployee());
         ar.setStatus(AdoptRecord.Status.Processing);
+        Main.controller.saveOrUpdate(ar);
         
         populateTable();
         JOptionPane.showMessageDialog(null, "Work has been assigned to you. Please view it in My Inspections panel.");
@@ -177,7 +181,7 @@ public class AdoptInspectorWorkpage extends javax.swing.JPanel {
     private javax.swing.JButton btnAnalyse;
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnMy;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdoption;

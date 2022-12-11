@@ -31,4 +31,10 @@ public class DeliveryPersonRole  extends AllRoles
     {
         return new DeliveryWorkspace(container, enterprise, (DeliveryOrganisation)organization, userAccount);
     }
+    
+    @Override
+    public String toString() {
+        return "Delivery"; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
 }

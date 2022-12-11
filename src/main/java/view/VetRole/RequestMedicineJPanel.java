@@ -20,6 +20,7 @@ import model.Treatment.TreatmentRecord;
 import model.UserAccount.UserAccount;
 import model.WorkQueue.PharmacyUnitWre;
 import model.WorkQueue.PharmacyWre;
+import view.Main.Main;
 
 /**
  *
@@ -49,12 +50,14 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         
         btnSend.setEnabled(false);
         
+        
         for(PlaceDetails r: this.enterprise.getRoomDirectory()) {
-            if(r.getVet() == this.userAccount.getEmployee()) {
+            if(r.getVet().getId() == this.userAccount.getEmployee().getId()) {
                 room = r;
             }
         }
         request.setAssigned(true);
+        Main.controller.saveObject(request);
         
         cboxType.setSelectedItem(MedicineDetails.MedicineType.Anesthetics);
         cboxMedicine.setSelectedItem(cboxMedicine.getItemAt(0));
@@ -117,30 +120,35 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         cboxMedicine = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setForeground(new java.awt.Color(51, 0, 51));
         jLabel1.setText("SEND REQUEST TO PHARMACY");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, -1, -1));
 
-        btnBack.setForeground(new java.awt.Color(255, 51, 51));
+        btnBack.setForeground(new java.awt.Color(255, 0, 0));
         btnBack.setText(" Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 610, -1, -1));
 
-        btnAdd.setForeground(new java.awt.Color(255, 51, 51));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 610, -1, -1));
 
-        btnSend.setForeground(new java.awt.Color(255, 0, 0));
         btnSend.setText("Send");
         btnSend.setEnabled(false);
         btnSend.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +156,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                 btnSendActionPerformed(evt);
             }
         });
+        add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -168,7 +177,6 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             }
         });
         tblMedicine.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        tblMedicine.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblMedicine);
         if (tblMedicine.getColumnModel().getColumnCount() > 0) {
             tblMedicine.getColumnModel().getColumn(0).setResizable(false);
@@ -179,18 +187,14 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -255,52 +259,11 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAdd)
-                .addGap(302, 302, 302))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(301, 301, 301)
-                        .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(37, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdd)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinary.jpg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 1930, 1200));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -320,7 +283,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         PharmacyUnitWre unit = new PharmacyUnitWre();
         unit.setMedicine((MedicineDetails)cboxMedicine.getSelectedItem());
         unit.setQuantity(Integer.parseInt(txtQuantity.getText()));
+        Main.controller.saveObject(unit);
         request.getMedicineList().add(unit);
+        Main.controller.saveOrUpdate(request);
         populateTable();
         
         txtQuantity.setText("");
@@ -332,10 +297,17 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
+        
+        if (room == null) {
+            JOptionPane.showMessageDialog(null, "Ask Enterprise admin to alot room");
+            return;
+        }
         request.setWremessage(room.getRoomNumber());
         request.setWresender(userAccount);
         request.setWrestatus("Sent");
         request.setWrerequestDate(record.getDate());
+        
+        Main.controller.saveOrUpdate(request);
         
         OrganisationMain org = null;
         for (OrganisationMain organization : enterprise.getOrganisationDirectory()){
@@ -346,7 +318,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         }
         if (org!=null){
             org.getWorkQueue().add(request);
+            Main.controller.saveOrUpdate(org);
             userAccount.getWorkQueue().add(request);
+            Main.controller.saveOrUpdate(userAccount);
         }
         
         DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
@@ -370,6 +344,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

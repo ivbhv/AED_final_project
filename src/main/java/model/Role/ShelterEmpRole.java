@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 
 import model.Enterprises.EnterpriseDetails;
 import model.Organisation.OrganisationMain;
+import model.Organisation.ShelterOrganisation;
 import model.UserAccount.UserAccount;
+import view.ShelterRole.ShelterStaffWorkAreaJPanel;
 
 /**
  *
@@ -25,6 +27,11 @@ public class ShelterEmpRole extends AllRoles
             OrganisationMain organization,
             UserAccount userAccount)
     {
-        return new JPanel();
+        return new ShelterStaffWorkAreaJPanel(container,  enterprise,  (ShelterOrganisation)organization,  userAccount);
+    }
+    
+    @Override
+    public String toString() {
+        return "shelter Employee"; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

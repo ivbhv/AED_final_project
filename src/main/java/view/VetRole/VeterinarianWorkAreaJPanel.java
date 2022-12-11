@@ -6,15 +6,18 @@
 package view.VetRole;
 
 import java.awt.CardLayout;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Animal.AnimalDetails;
 import model.Enterprises.RescueCenterEntDetails;
 import model.Organisation.VeterinarianOrganisation;
 import model.Place.PlaceDetails;
 import model.RescueRecord.RescueRecordDetails;
 import model.Treatment.TreatmentRecord;
 import model.UserAccount.UserAccount;
+import view.Main.Main;
 
 /**
  *
@@ -37,7 +40,6 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.organization = veterinarianOrg;
         this.userAccount = userAccount;
-        System.out.println(enterprise.getName());
         
         populateTable();
     }
@@ -47,7 +49,7 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(RescueRecordDetails r: enterprise.getRecordDirectory()){
-            if(r.getRescueroom() == null) {
+            if(r.getRescueroom() == null && r.getRescuedanimal().getStatus() == AnimalDetails.Status.NOT_READY) {
                 Object[] row = new Object[4];
                 row[0] = r;
                 row[1] = r.getRescuedanimal();
@@ -56,70 +58,6 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
                 model.addRow(row);
             }
         }
-    }
-
-    public Date getDateAfterNDays(Date d, int n) {
-        Date after = new Date();
-        //runnian Febrary
-        if( ( (d.getYear()%400 != 0 && d.getYear()%4 == 0) || (d.getYear()%400 == 0)) && d.getMonth() == 2) {
-            if(d.getDate() < 29-n) {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth());
-                after.setDate(d.getDate() + n);
-            }
-            else {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth() + 1);
-                after.setDate(d.getDate() + n - 29);
-            }
-        }
-        //pingnian febrary
-        else if(d.getYear()%4 != 0 && d.getMonth() == 2) {
-            if(d.getDate() < 28-n) {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth());
-                after.setDate(d.getDate() + n);
-            }
-            else {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth() + 1);
-                after.setDate(d.getDate() + n - 28);
-            }
-        }
-        //pingnian 30tian
-        else if(d.getMonth() == 4 || d.getMonth() == 6 || d.getMonth() == 9 || d.getMonth() == 11) {
-            if(d.getDate() <= 30-n) {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth());
-                after.setDate(d.getDate() + n);
-            }
-            else {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth() + 1);
-                after.setDate(d.getDate() + n -30);
-            }
-        }
-        //pingnian 31tian
-        else {
-            if(d.getDate() <= 31-n) {
-                after.setYear(d.getYear());
-                after.setMonth(d.getMonth());
-                after.setDate(d.getDate() + n);
-            }
-            else {
-                if(d.getMonth()<=11) {
-                    after.setYear(d.getYear());
-                    after.setMonth(d.getMonth() + 1);
-                    after.setDate(d.getDate() + n - 31);
-                }
-                else {
-                    after.setYear(d.getYear() + 1);
-                    after.setMonth(1);
-                    after.setDate(d.getDate() + n - 31);
-                }
-            }
-        }
-        return after;
     }
     
     /**
@@ -136,20 +74,25 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTreatmentRequest = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblveterwork.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblveterwork.setForeground(new java.awt.Color(255, 51, 51));
+        lblveterwork.setForeground(new java.awt.Color(51, 0, 51));
         lblveterwork.setText("VETERINARIAN WORKPLACE");
+        add(lblveterwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, -1, -1));
 
-        btnAssign.setForeground(new java.awt.Color(255, 51, 51));
         btnAssign.setText("Self Assign");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
+        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 510, 90, 30));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -158,7 +101,7 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Date(MM/DD/YYYY)", "Animal Id", "Animal Type", "Color"
+                "Date", "Animal Id", "Animal Type", "Color"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -170,55 +113,24 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         tblTreatmentRequest.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        tblTreatmentRequest.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblTreatmentRequest);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblveterwork)
-                        .addGap(116, 116, 116))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAssign)
-                .addGap(237, 237, 237))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblveterwork)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinary.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 1930, 1200));
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -227,33 +139,35 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = tblTreatmentRequest.getSelectedRow();
         
         if (selectedRow < 0){
+            
             return;
         }
         
         RescueRecordDetails record = (RescueRecordDetails)tblTreatmentRequest.getValueAt(selectedRow, 0);
         UserAccount ua = userAccount;
         for(PlaceDetails r: enterprise.getRoomDirectory()) {
-            if(r.getVet() == ua.getEmployee()) {
+            if(r.getVet().getId() == ua.getEmployee().getId()) {
                 record.setRescueroom(r);
             }
         }
         
-        Date d = new Date();
-        d.setYear(record.getDate().getYear());
-        d.setMonth(record.getDate().getMonth());
-        d.setDate(record.getDate().getDate());
-        record.setDate(d);
-        Date after = getDateAfterNDays(record.getDate(),7);
-        record.getRescuedanimal().setNextCheck(after);
+        Main.controller.saveOrUpdate(record);
+        
+        Calendar calendar = Calendar.getInstance();  
+        calendar.setTime(record.getDate());  
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        record.getRescuedanimal().setNextCheck(calendar.getTime());
+        
+        Main.controller.saveOrUpdate(record.getRescuedanimal());
         
         TreatmentRecord treatment = new TreatmentRecord();
         treatment.setAnimalDeatils(record.getRescuedanimal());
         treatment.setRoom(record.getRescueroom());
         treatment.setDate(record.getDate());
-        System.out.println("treatment animal: " + treatment.getAnimalDeatils().getId());
-        System.out.println("treatment date: " + treatment.getDate());
-        System.out.println("treatmentDir: " + record.getRescuedanimal().getTreatmentRecord());
         treatment.getAnimalDeatils().getTreatmentRecord().add(treatment);
+        
+        Main.controller.saveOrUpdate(treatment);
+        Main.controller.saveOrUpdate(treatment.getAnimalDeatils());
         
         CardLayout layout = (CardLayout) container.getLayout();
         container.add("TreatJPanel", new TreatJPanel(container, enterprise, userAccount, record, treatment));
@@ -264,6 +178,7 @@ public class VeterinarianWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblveterwork;

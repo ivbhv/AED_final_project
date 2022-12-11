@@ -64,6 +64,8 @@ public class TreatmentRecord implements Serializable {
     }
 
     public TreatmentRecord() {
+        this.medicineList = new ArrayList();
+        this.isReviewed = false;
     }
 
     public int getId() {

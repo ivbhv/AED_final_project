@@ -156,5 +156,10 @@ public class AnimalDetails implements Serializable {
         this.nextCheck = nextCheck;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+
     
 }

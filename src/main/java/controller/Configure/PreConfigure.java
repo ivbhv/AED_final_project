@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -38,9 +38,9 @@ public class PreConfigure {
         NetworkDetails network = new NetworkDetails().getOrCreateByName("New York");
 
         // Add Enterprise
-        RescueCenterEntDetails enterpriseRescueCenter = new RescueCenterEntDetails("Rescue Center");
-        Main.controller.saveObject(enterpriseRescueCenter);
-        network.getEnterpriseDirectory().add(enterpriseRescueCenter);
+        RescueCenterEntDetails enterpriseRescueCenter = new RescueCenterEntDetails().addOrGetByName("Rescue Center");
+        Main.controller.saveOrUpdate(enterpriseRescueCenter);
+        network.addOrUpdateEnterprise(enterpriseRescueCenter);
         Main.controller.saveOrUpdate(network);
 
         // Add organisations
@@ -56,6 +56,8 @@ public class PreConfigure {
 
 
         // Add employees
+        
+        
 
         //1
         EmployeeDetails systemdManager = new EmployeeDetails().getOrCreateByEmail("Professor", "professor@gmail.com");
@@ -63,15 +65,15 @@ public class PreConfigure {
         AllRoles sar = new SystemAdministratorRole();
         Main.controller.saveOrUpdate(sar);
 
-        //2
         UserAccount systemManager = new UserAccount().getOrCreate("sysadmin", "sysadmin", sar, systemdManager);
         Main.controller.saveOrUpdate(systemManager);
+        
+        //2
         EmployeeDetails reception = new EmployeeDetails().getOrCreateByEmail("Vaibhav Mahajan", "vaibhav@gmail.com");
         Main.controller.saveOrUpdate(reception);
         AllRoles rr = new ReceptionistRole();
         Main.controller.saveOrUpdate(rr);
 
-        //3
         UserAccount receptionManager = new UserAccount().getOrCreate("reception", "reception", rr, reception);
         Main.controller.saveOrUpdate(receptionManager);
         centerOrg.getEmployeeDir().add(reception);
@@ -84,11 +86,8 @@ public class PreConfigure {
         AllRoles pr = new PharmacistRole();
         Main.controller.saveOrUpdate(pr);
 
-        //4
         UserAccount pharmaUser = new UserAccount().getOrCreate("pharmacist", "pharmacist", pr, pharmacist);
-
         Main.controller.saveOrUpdate(pharmaUser);
-
         pharmacyOrg.getUserAccountDir().add(pharmaUser);
         pharmacyOrg.getEmployeeDir().add(pharmacist);
         Main.controller.saveOrUpdate(pharmacyOrg);
@@ -99,14 +98,11 @@ public class PreConfigure {
         AllRoles sr = new ShelterEmpRole();
         Main.controller.saveOrUpdate(sr);
 
-        //4
         UserAccount shelterManager = new UserAccount().getOrCreate("shelter", "shelter", sr, shelter);
-
         Main.controller.saveOrUpdate(shelterManager);
         shelterOrg.getUserAccountDir().add(shelterManager);
         shelterOrg.getEmployeeDir().add(shelter);
         Main.controller.saveOrUpdate(shelterOrg);
-
 
         //5
         EmployeeDetails adopter = new EmployeeDetails().getOrCreateByEmail("Mahima Rao", "mahima@gmail.com");
@@ -114,9 +110,7 @@ public class PreConfigure {
         AllRoles ar = new AdoptionManagerRole();
         Main.controller.saveOrUpdate(ar);
 
-        //5
         UserAccount adopterManager = new UserAccount().getOrCreate("adopter", "adopter", ar, adopter);
-
         Main.controller.saveOrUpdate(adopterManager);
         adoptOrg.getUserAccountDir().add(adopterManager);
         adoptOrg.getEmployeeDir().add(adopter);
@@ -128,9 +122,7 @@ public class PreConfigure {
         AllRoles dpr = new DeliveryPersonRole();
         Main.controller.saveOrUpdate(dpr);
 
-        //6
         UserAccount deliveryManager = new UserAccount().getOrCreate("delivery", "delivery", dpr, delivery);
-
         Main.controller.saveOrUpdate(deliveryManager);
         deliveryOrg.getUserAccountDir().add(deliveryManager);
         deliveryOrg.getEmployeeDir().add(delivery);
@@ -144,18 +136,41 @@ public class PreConfigure {
         UserAccount veteAssistantManager = new UserAccount().getOrCreate("vete", "vete", vr, veteAssistant);
 
         Main.controller.saveOrUpdate(veteAssistantManager);
-        vetOrg.getUserAccountDir().add(veteAssistantManager);
-        vetOrg.getEmployeeDir().add(veteAssistant);
+        cageOrg.getUserAccountDir().add(veteAssistantManager);
+        cageOrg.getEmployeeDir().add(veteAssistant);
+        Main.controller.saveOrUpdate(cageOrg);
+        
+        //8
+        EmployeeDetails enterpriseAdmin = new EmployeeDetails().getOrCreateByEmail("payal neema", "payal@gmail.com");
+        Main.controller.saveOrUpdate(enterpriseAdmin);
+        AllRoles mr = new EnterpriseAdministratorRole();
+        Main.controller.saveOrUpdate(mr);
+        UserAccount enterpriseAdminManager = new UserAccount().getOrCreate("ea", "ea", mr, enterpriseAdmin);
+        Main.controller.saveOrUpdate(enterpriseAdminManager);
+        cageOrg.getUserAccountDir().add(enterpriseAdminManager);
+        cageOrg.getEmployeeDir().add(enterpriseAdmin);
+        Main.controller.saveOrUpdate(cageOrg);
+
+        //9
+        EmployeeDetails vete = new EmployeeDetails().getOrCreateByEmail("payal More", "payal.m@gmail.com");
+        Main.controller.saveOrUpdate(vete);
+        AllRoles ve = new VeterinarianRole();
+        Main.controller.saveOrUpdate(ve);
+        UserAccount veteManager = new UserAccount().getOrCreate("vet", "vete", ve, vete);
+
+        Main.controller.saveOrUpdate(veteManager);
+        vetOrg.getUserAccountDir().add(veteManager);
+        vetOrg.getEmployeeDir().add(vete);
         Main.controller.saveOrUpdate(vetOrg);
 
-        // medicine details
-        MedicineDetails m1 = new AnestheticsDetails("avil", "jain", MedicineDetails.MedicineType.Anesthetics);
-        MedicineDetails m2 = new AntibioticsDetails("kalpol", "shree", MedicineDetails.MedicineType.Anesthetics);
-        MedicineDetails m3 = new OtherMedicineDetails("old monk", "ramu", MedicineDetails.MedicineType.Other);
-        MedicineDetails m4 = new VaccinationDetails("covaxin", "bharat biotech", MedicineDetails.MedicineType.Vaccination);
 
-        Main.controller.saveOrUpdateArray(new Object[] {m1, m2, m3, m4});
-        enterpriseRescueCenter.getMedicineDirectory().addAll(new ArrayList<>(Arrays.asList(m1, m2, m3, m4)));
+        // medicine details
+        MedicineDetails m1 = new AnestheticsDetails().getOrCreateMedicine("avil", "jain", MedicineDetails.MedicineType.Anesthetics);
+        MedicineDetails m2 = new AntibioticsDetails().getOrCreateMedicine("kalpol", "shree", MedicineDetails.MedicineType.Antibiotics);
+        MedicineDetails m3 = new OtherMedicineDetails().getOrCreateMedicine("old monk", "ramu", MedicineDetails.MedicineType.Other);
+        MedicineDetails m4 = new VaccinationDetails().getOrCreateMedicine("covaxin", "bharat biotech", MedicineDetails.MedicineType.Vaccination);
+
+        enterpriseRescueCenter.addOrUpdateMedicineList(new ArrayList<>(Arrays.asList(m1, m2, m3, m4)));
 
         List<String> cities = new Helper().getCities();
         Collections.shuffle(cities);
@@ -195,10 +210,10 @@ public class PreConfigure {
         animal.setType(AnimalDetails.AnimalType.Dog);
         animal.setStatus(AnimalDetails.Status.NOT_READY);
 
-        Main.controller.saveOrUpdate(animal);
+        Main.controller.saveObject(animal);
 
         RescueRecordDetails rrd = new RescueRecordDetails();
-        rrd.setDate(new Date(10,10,2022));
+        rrd.setDate(new Date());
         rrd.setRescuedanimal(animal);
         rrd.setFoundlocation("Boston");
         Main.controller.saveOrUpdate(rrd);

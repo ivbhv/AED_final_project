@@ -42,10 +42,9 @@ public class CenterRegistrationOrganisation extends OrganisationMain {
     }
     
     @Override
-    public ArrayList<AllRoles> getSupportedRole() {
-        ArrayList<AllRoles> roles = new ArrayList<>();
-        roles.add(new ReceptionistRole());
-        return roles;
+    public AllRoles getSupportedRole() {
+        
+        return new ReceptionistRole();
     }
 
 }

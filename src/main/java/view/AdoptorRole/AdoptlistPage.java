@@ -43,13 +43,6 @@ public class AdoptlistPage extends javax.swing.JPanel {
             for(EnterpriseDetails e: n.getEnterpriseDirectory()) {
                 if(e instanceof RescueCenterEntDetails) {
                     for(AdoptionOffered ao: ((RescueCenterEntDetails) e).getAdoptionList()) {
-                        System.out.println(ao.getAnimal().getId());
-                        System.out.println(ao.getPublishDate());
-                        System.out.println(ao.getStatus());
-                    }
-                    for(AdoptionOffered ao: ((RescueCenterEntDetails) e).getAdoptionList()) {
-                        System.out.println(ao.getStatus());
-                        System.out.println(AdoptionOffered.Status.Open);
                         if(ao.getStatus() != null) {
                             if(ao.getStatus().equals(AdoptionOffered.Status.Open)) {
                                 Object[] row = new Object[5];
@@ -60,9 +53,7 @@ public class AdoptlistPage extends javax.swing.JPanel {
                                 int size = ao.getAnimal().getStatusDirectory().size();
                                 row[3] = ao.getAnimal().getStatusDirectory().get(size-1).getWeight();
 
-                                row[4] = ao.getPublishDate().getMonth()
-                                        + "/" + ao.getPublishDate().getDate()
-                                        + "/" + ao.getPublishDate().getYear();
+                                row[4] = ao.getPublishDate().toString();
                                 model.addRow(row);
                             }
                         }
@@ -87,15 +78,20 @@ public class AdoptlistPage extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOffering = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAdoptionlist.setBackground(new java.awt.Color(255, 255, 255));
         lblAdoptionlist.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblAdoptionlist.setForeground(new java.awt.Color(255, 51, 51));
         lblAdoptionlist.setText("ADOPTION DETAILS");
+        add(lblAdoptionlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, -1, -1));
 
-        btnDetails.setBackground(new java.awt.Color(255, 255, 255));
         btnDetails.setForeground(new java.awt.Color(255, 0, 0));
         btnDetails.setText("Check Details");
         btnDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +99,8 @@ public class AdoptlistPage extends javax.swing.JPanel {
                 btnDetailsActionPerformed(evt);
             }
         });
+        add(btnDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 750, -1, 31));
 
-        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
         btnPrevious.setForeground(new java.awt.Color(255, 51, 51));
         btnPrevious.setText("Previous");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +108,7 @@ public class AdoptlistPage extends javax.swing.JPanel {
                 btnPreviousActionPerformed(evt);
             }
         });
+        add(btnPrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 750, 102, 32));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setForeground(new java.awt.Color(255, 204, 204));
@@ -133,59 +130,24 @@ public class AdoptlistPage extends javax.swing.JPanel {
             }
         });
         tblOffering.setSelectionBackground(new java.awt.Color(255, 204, 204));
-        tblOffering.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblOffering);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblAdoptionlist)
-                        .addGap(175, 175, 175))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(325, 325, 325)
-                        .addComponent(btnDetails)
-                        .addContainerGap(34, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(lblAdoptionlist)
-                .addGap(22, 22, 22)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpgtopngconverter-com (2).jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
@@ -214,6 +176,7 @@ public class AdoptlistPage extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnPrevious;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdoptionlist;

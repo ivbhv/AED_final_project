@@ -129,7 +129,7 @@ public abstract class OrganisationMain implements Serializable {
         return null;
 
     }
-    public abstract ArrayList<AllRoles> getSupportedRole();
+    public abstract AllRoles getSupportedRole();
 
     @Override
     public String toString() {

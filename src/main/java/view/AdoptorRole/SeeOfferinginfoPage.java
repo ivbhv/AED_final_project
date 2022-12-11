@@ -25,6 +25,7 @@ import model.Network.NetworkDetails;
 import model.Organisation.AdoptionOrganisation;
 import model.Organisation.OrganisationMain;
 import model.RescueRecord.RescueRecordDetails;
+import view.Main.Main;
 
 /**
  *
@@ -116,15 +117,19 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
         lblColor = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         btnAdoption = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAnimalDetails.setBackground(new java.awt.Color(255, 255, 255));
         lblAnimalDetails.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblAnimalDetails.setForeground(new java.awt.Color(255, 51, 51));
         lblAnimalDetails.setText("ADOPTING ANIMAL DETAILS");
+        add(lblAnimalDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, -1, -1));
 
-        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
         btnPrevious.setForeground(new java.awt.Color(255, 51, 51));
         btnPrevious.setText("Previous");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +137,7 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
                 btnPreviousActionPerformed(evt);
             }
         });
+        add(btnPrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 81, 32));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -140,7 +146,7 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
         lblTyp.setText("Type:");
 
         lblSterilized.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
-        lblSterilized.setText("Yes");
+        lblSterilized.setText(" Yes");
 
         lblLocation.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         lblLocation.setText("<value>");
@@ -183,37 +189,37 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblsterilize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblLocat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblAgee)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblbreeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblColour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblTyp)))
+                        .addGap(79, 79, 79)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblType, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblColor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblBreed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblweight)
+                                    .addComponent(lblLocat))
+                                .addGap(79, 79, 79))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblsterilize)
+                                .addGap(71, 71, 71)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSterilized, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblweight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblbreeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblBreed, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblAgee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblColour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblType, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblColor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(215, Short.MAX_VALUE))
+                            .addComponent(lblSterilized, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,10 +252,11 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblsterilize)
                     .addComponent(lblSterilized))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnAdoption.setBackground(new java.awt.Color(255, 255, 255));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 430, 240));
+
         btnAdoption.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnAdoption.setForeground(new java.awt.Color(255, 51, 51));
         btnAdoption.setText("Adopt");
@@ -258,73 +265,45 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
                 btnAdoptionActionPerformed(evt);
             }
         });
+        add(btnAdoption, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 80, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(btnAdoption, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(lblAnimalDetails)))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAnimalDetails)
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(btnAdoption)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jpgtopngconverter-com.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdoptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdoptionActionPerformed
         // TODO add your handling code here:
         AdoptHistory history = new AdoptHistory();
+        Date hd = new Date();
         history.setDetails(ao.getAnimal());
         history.setStatus(AdoptHistory.Status.Submitted);
-        
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR); 
-        int month = c.get(Calendar.MONTH); 
-        int date = c.get(Calendar.DATE); 
-        Date hd = new Date(year, month, date);
         history.setAdoptDate(hd);
         
+        Main.controller.saveObject(history);
         adoptor.getHistory().add(history);
+        Main.controller.saveOrUpdate(adoptor);
         ao.setStatus(AdoptionOffered.Status.Close);
+        Main.controller.saveOrUpdate(ao);
+        
         
         AdoptRecord adoptionRecord = new AdoptRecord();
         adoptionRecord.setAdoptor(adoptor);
         adoptionRecord.setAnimal(ao.getAnimal());
         adoptionRecord.setDate(hd);
         adoptionRecord.setStatus(AdoptRecord.Status.Submitted);
+        Main.controller.saveObject(adoptionRecord);
+        
         
         for(NetworkDetails n: new NetworkDetails().getNetworkList()) {
             for(EnterpriseDetails e: n.getEnterpriseDirectory()) {
-                if(e instanceof RescueCenterEntDetails) {
                     for(OrganisationMain o: e.getOrganisationDirectory()) {
-                         if(o instanceof AdoptionOrganisation) {
-                             ((AdoptionOrganisation) o).getAdoptionRecordDirectory().add(adoptionRecord);
+                         if(o instanceof AdoptionOrganisation adoptionOrganisation) {
+                             adoptionOrganisation.getAdoptionRecordDirectory().add(adoptionRecord);
+                             Main.controller.saveOrUpdate(adoptionOrganisation);
                          }
                     }
-                }
+                
             }
         }
         btnAdoption.setEnabled(false);
@@ -346,6 +325,7 @@ public class SeeOfferinginfoPage extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdoption;
     private javax.swing.JButton btnPrevious;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblAgee;

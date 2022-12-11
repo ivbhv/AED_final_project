@@ -42,6 +42,7 @@ public class ShelterCellDetails implements Serializable {
     private AnimalDetails animal;
 
     public ShelterCellDetails() {
+        this.status = Status.AVAILABLE;
     }
 
     public ShelterCellDetails(String location, AnimalDetails animal) {
@@ -90,7 +91,7 @@ public class ShelterCellDetails implements Serializable {
             Root<ShelterCellDetails> root = criteriaQuery.from(ShelterCellDetails.class);
             criteriaQuery.where(criteriaBuilder.equal(root.get("location"), name));
             result = s.createQuery(criteriaQuery).getResultList();
-            s.close();
+            Main.controller.closeSession(s);
         }
 
         if(result.size() < 10){

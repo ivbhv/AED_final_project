@@ -73,6 +73,7 @@ public class EmployeeDetails implements Serializable {
         EmployeeDetails n;
         try (Session s = Main.controller.getSession()) {
             n = (EmployeeDetails) s.createQuery("from EmployeeDetails n where n.email = :email ").setParameter("email", email).uniqueResult();
+            Main.controller.closeSession(s);
         }
         if (n != null) {
             return n;
@@ -83,5 +84,14 @@ public class EmployeeDetails implements Serializable {
         Main.controller.saveObject(n);
         
         return n;
+    }
+    
+    public boolean isEmailExist(String email) {
+        EmployeeDetails n;
+        try (Session s = Main.controller.getSession()) {
+            n = (EmployeeDetails) s.createQuery("from EmployeeDetails n where n.email = :email ").setParameter("email", email).uniqueResult();
+            Main.controller.closeSession(s);
+        }
+        return n != null;
     }
 }

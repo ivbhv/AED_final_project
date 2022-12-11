@@ -96,7 +96,7 @@ public class DeliveryDetails implements Serializable {
     
     @Override
     public String toString() {
-        return date.getYear() + "/" + date.getDate() + "/" + date.getYear();
+        return date.toString();
     }
     
 }
