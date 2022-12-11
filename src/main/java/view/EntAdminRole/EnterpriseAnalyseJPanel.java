@@ -8,6 +8,12 @@ package view.EntAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Animal.AnimalDetails;
+import model.Animal.CatDetails;
+import model.Animal.DogDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.RescueRecord.RescueRecordDetails;
 
 /**
  *
@@ -33,7 +39,7 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
 
     public int getTotalValue() {
         int sum;
-        sum = enterprise.getRecordDirectory().getRescueRecordList().size();
+        sum = enterprise.getRecordDirectory().size();
         return sum;
     }
     
@@ -74,9 +80,9 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
     
     public float getDogCount() {
         float count = 0;
-        for(RescueRecordDetails rr: enterprise.getRecordDirectory().getRescueRecordList()) {
+        for(RescueRecordDetails rr: enterprise.getRecordDirectory()) {
             AnimalDetails a = rr.getRescuedanimal();
-            if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Dog)) {
+            if(a.getType().equals(AnimalDetails.AnimalType.Dog)) {
                 count++;
             }
         }
@@ -85,10 +91,10 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
     
     public float getCatCount() {
         float count = 0;
-        for(RescueRecordDetails rr: enterprise.getRecordDirectory().getRescueRecordList()) {
+        for(RescueRecordDetails rr: enterprise.getRecordDirectory()) {
             AnimalDetails a = rr.getRescuedanimal();
-            System.out.println(a.getAnimaltype());
-            if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Cat)) {
+            System.out.println(a.getType());
+            if(a.getType().equals(AnimalDetails.AnimalType.Cat)) {
                 count++;
             }
         }
@@ -98,9 +104,9 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
     public float getFemaleRatio() {
         float ratio;
         float fCount = 0;
-        for(RescueRecordDetails rr: enterprise.getRecordDirectory().getRescueRecordList()) {
-            if(rr.getRescuedanimal().getAnimalgender() != null) {
-                if(rr.getRescuedanimal().getAnimalgender().equals("F")) {
+        for(RescueRecordDetails rr: enterprise.getRecordDirectory()) {
+            if(rr.getRescuedanimal().getGender() != null) {
+                if(rr.getRescuedanimal().getGender().equals("F")) {
                     fCount++;
                 }
             }
@@ -113,21 +119,21 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
         float ratio;
         float count = 0;
         
-        if(enterprise.getRecordDirectory().getRescueRecordList() != null) {
+        if(enterprise.getRecordDirectory() != null) {
             return 0;
         }
         else{
-            for(RescueRecordDetails rr: enterprise.getRecordDirectory().getRescueRecordList()) {
+            for(RescueRecordDetails rr: enterprise.getRecordDirectory()) {
                 AnimalDetails a = rr.getRescuedanimal();
-                if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Cat)
-                        ||  a.getAnimaltype().equals(AnimalDetails.AnimalType.Dog)) {
-                    if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Cat)) {
-                        if( ((CatDetails)a).getCatbreed().equals("None")) {
+                if(a.getType().equals(AnimalDetails.AnimalType.Cat)
+                        ||  a.getType().equals(AnimalDetails.AnimalType.Dog)) {
+                    if(a.getType().equals(AnimalDetails.AnimalType.Cat)) {
+                        if( ((CatDetails)a).getBreed().equals("None")) {
                             count++;
                         }
                     }
-                    else if(a.getAnimaltype().equals(AnimalDetails.AnimalType.Dog)) {
-                        if( ((DogDetails)a).getDogbreed().equals("None")) {
+                    else if(a.getType().equals(AnimalDetails.AnimalType.Dog)) {
+                        if( ((DogDetails)a).getBreed().equals("None")) {
                             count++;
                         }
                     }
@@ -141,7 +147,7 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
     public float getUnhealthyRatio() {
         float ratio;
         float count = 0;
-        for(RescueRecordDetails rr: enterprise.getRecordDirectory().getRescueRecordList()) {
+        for(RescueRecordDetails rr: enterprise.getRecordDirectory()) {
             if(rr.isHealth() == false) {
                 count++;
             }

@@ -8,6 +8,9 @@ package view.EntAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.ShelterCell.ShelterCellDetails;
 
 /**
  *
@@ -34,11 +37,11 @@ public class ManageShelterJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (ShelterCellDetails shelter: enterprise.getShelterCellDirectory().getShelterCellList()){
+        for (ShelterCellDetails shelter: enterprise.getShelterCellDirectory()){
             Object[] row = new Object[3];
             row[0] = shelter;
-            row[1] = shelter.getShelterlocation();
-            row[2] = shelter.getShelterstatus();
+            row[1] = shelter.getLocation();
+            row[2] = shelter.getStatus().toString();
             
             model.addRow(row);
         }
@@ -201,9 +204,9 @@ public class ManageShelterJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         String location = txtLocation.getText();
         ShelterCellDetails sc = new ShelterCellDetails();
-        sc.setShelterlocation(location);
+        sc.setLocation(location);
 
-        enterprise.getShelterCellDirectory().addShelterShell(sc);
+        enterprise.getShelterCellDirectory().add(sc);
         populateTable();
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -223,7 +226,7 @@ public class ManageShelterJPanel extends javax.swing.JPanel {
         }
 
         ShelterCellDetails c = (ShelterCellDetails)tblShelter.getValueAt(selectedRow, 0);
-        enterprise.getShelterCellDirectory().removeShelterCell(c);
+        enterprise.getShelterCellDirectory().remove(c);
         populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 

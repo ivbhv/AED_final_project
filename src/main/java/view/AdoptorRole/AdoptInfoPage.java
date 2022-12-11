@@ -8,6 +8,7 @@ package view.AdoptorRole;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.AdoptDetails.AdopterDetails;
 
 /**
  *
@@ -20,9 +21,9 @@ public class AdoptInfoPage extends javax.swing.JPanel {
      */
     
     private JPanel container;
-    private AdopterDetail adoptor;
+    private AdopterDetails adoptor;
     
-    AdoptInfoPage(JPanel container, AdopterDetail adoptor) {
+    AdoptInfoPage(JPanel container, AdopterDetails adoptor) {
         initComponents();
         this.container  = container;
         this.adoptor = adoptor;

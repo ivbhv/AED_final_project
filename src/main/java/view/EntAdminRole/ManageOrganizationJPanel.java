@@ -6,23 +6,27 @@
 package view.EntAdminRole;
 
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Enterprises.EnterpriseDetails;
+import model.Organisation.OrganisationMain;
+import view.Main.Main;
 /**
  *
  * @author manohar
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
- private OrganisationDirectory directory;
+    private EnterpriseDetails enterprise;
     private JPanel userProcessContainer;
     
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganisationDirectory directory) {
+    public ManageOrganizationJPanel(JPanel userProcessContainer,EnterpriseDetails enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.directory = directory;
+        this.enterprise = enterprise;
         
         populateTable();
         populateCombo();
@@ -30,8 +34,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     
     private void populateCombo(){
         organizationJComboBox.removeAllItems();
-        for (Type type : OrganisationMain.Type.values()){
-            if (!type.getValue().equals(Type.EnterpriseAdmin.getValue()))
+        for (OrganisationMain.Type type : OrganisationMain.Type.values()){
+            if (!type.getValue().equals(OrganisationMain.Type.EnterpriseAdmin.getValue()))
                 organizationJComboBox.addItem(type);
         }
     }
@@ -41,9 +45,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (OrganisationMain organization : directory.getOrganisationList()){
+        for (OrganisationMain organization : enterprise.getOrganisationDirectory()){
             Object[] row = new Object[2];
-            row[0] = organization.getOrganisationID();
+            row[0] = organization.getId();
             row[1] = organization.getOrgname();
             
             model.addRow(row);
@@ -203,8 +207,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
-        Type type = (Type) organizationJComboBox.getSelectedItem();
-        directory.createOrganization(type);
+        OrganisationMain.Type type = (OrganisationMain.Type) organizationJComboBox.getSelectedItem();
+        enterprise.addOrganisation(type);
+        Main.controller.saveOrUpdate(enterprise);
         populateTable();
     }//GEN-LAST:event_btnAddActionPerformed
 

@@ -71,10 +71,11 @@ public class AdoptionOrganisation extends OrganisationMain{
         this.adoptionlist = adoptionlist;
     }
 
-//    public ArrayList<AllRoles> getSupportedRole() {
-//        ArrayList<AllRoles> roles = new ArrayList<>();
-//        roles.add(new AdoptionManagerRole());
-//        return roles;
-//    }
+    @Override
+    public ArrayList<AllRoles> getSupportedRole() {
+        ArrayList<AllRoles> roles = new ArrayList<>();
+        roles.add(new AdoptionManagerRole());
+        return roles;
+    }
  
 }

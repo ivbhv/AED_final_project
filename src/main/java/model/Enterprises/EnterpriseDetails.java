@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import model.Employees.EmployeeDetails;
 import model.Organisation.AdoptionOrganisation;
 import model.Organisation.CageOrganisation;
 import model.Organisation.CenterRegistrationOrganisation;
@@ -42,12 +43,27 @@ public class EnterpriseDetails implements Serializable{
     @Column(name="enterprise_id")
     private int id;
     
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     private EnterpriseType enterpriseType;
     
     @OneToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="enterprise_id")
     private List<OrganisationMain> organisationDirectory;
+    
+    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name="enterprise_id")
+    private List<EmployeeDetails> employeeDirectory;
     
     @OneToMany
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -74,13 +90,24 @@ public class EnterpriseDetails implements Serializable{
     }
     
     public EnterpriseDetails(String name, EnterpriseType type) {
-//        super(name);
+        this.name = name;
         this.enterpriseType = type;
         organisationDirectory = new ArrayList<>();
+        userAccountDir = new ArrayList<>();
+        employeeDirectory = new ArrayList<>();
+        
     }   
 
     public List<OrganisationMain> getOrganisationDirectory() {
         return organisationDirectory;
+    }
+
+    public List<EmployeeDetails> getEmployeeDirectory() {
+        return employeeDirectory;
+    }
+
+    public void setEmployeeDirectory(List<EmployeeDetails> employeeDirectory) {
+        this.employeeDirectory = employeeDirectory;
     }
 
     public void setOrganisationDirectory(ArrayList<OrganisationMain> organisationDirectory) {

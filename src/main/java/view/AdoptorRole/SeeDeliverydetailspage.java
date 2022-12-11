@@ -9,6 +9,11 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.AdoptDetails.AdoptHistory;
+import model.Deliver.DeliveryDetails;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Network.NetworkDetails;
 
 /**
  *
@@ -21,28 +26,26 @@ public class SeeDeliverydetailspage extends javax.swing.JPanel {
      */
     
     private JPanel container;
-    private EcoSystem business;
     private AdoptHistory history;
-    private DeliveryHistoryDetails dh;
+    private DeliveryDetails dh;
     
-    SeeDeliverydetailspage(JPanel container, EcoSystem business, AdoptHistory history) {
+    SeeDeliverydetailspage(JPanel container, AdoptHistory history) {
         initComponents();
         this.container = container;
-        this.business = business;
         this.history = history;
-        for(NetworkDetails n: business.getNetworkList()) {
-            for(EnterpriseDetails e: n.getEnterpriseDirectory().getEnterpriseList()) {
-                if(e instanceof RescueCenterEntDetails) {
-                    for(DeliveryHistoryDetails dh: ((RescueCenterEntDetails) e).getDeliveryHistoryDirectory().getDeliveryHistoryList()) {
-                        if(dh.getAnimal() == history.getAnimalname()) {
-                            this.dh = dh;
-                        }
+        for(NetworkDetails n: new NetworkDetails().getNetworkList()) {
+            for(EnterpriseDetails e: n.getEnterpriseDirectory()) {
+                if(e instanceof RescueCenterEntDetails rescueCenterEntDetails) {
+                    for(DeliveryDetails a: rescueCenterEntDetails.getDeliveryHistoryDirectory(    )) {
+                        if(a.getAnimal() == history.getDetails()) {
+                            this.dh = a;
+                        } 
                     }
                 }
             }
         }
         btnRcv.setVisible(false);
-        if(dh.getStatus().equals(DeliveryHistoryDetails.ASSIGNED_STATUS)) {
+        if(dh.getStatus().equals(DeliveryDetails.Status.ASSIGNED)) {
             btnRcv.setVisible(true);
         }
         
@@ -64,16 +67,16 @@ public class SeeDeliverydetailspage extends javax.swing.JPanel {
             lblId.setText("Not Assigned");
         }
         else {
-            lblId.setText(String.valueOf(dh.getCourierdetail().getEmpid()));
+            lblId.setText(String.valueOf(dh.getCourierdetail().getId()));
         }
         
-        if(dh.getStatus().equals(DeliveryHistoryDetails.WAITING_STATUS)) {
+        if(dh.getStatus().equals(DeliveryDetails.Status.WAITING)) {
             lblStatus.setText("Waiting...");
         }
-        else if(dh.getStatus().equals(DeliveryHistoryDetails.ASSIGNED_STATUS)) {
+        else if(dh.getStatus().equals(DeliveryDetails.Status.ASSIGNED)) {
             lblStatus.setText("In Progress");
         }
-        else if(dh.getStatus().equals(DeliveryHistoryDetails.RECEIVED_STATUS)) {
+        else if(dh.getStatus().equals(DeliveryDetails.Status.RECEIVED)) {
             lblStatus.setText("Arrived");
         }
     }
@@ -230,7 +233,7 @@ public class SeeDeliverydetailspage extends javax.swing.JPanel {
 
     private void btnRcvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRcvActionPerformed
         // TODO add your handling code here:
-        dh.setStatus(DeliveryHistoryDetails.RECEIVED_STATUS);
+        dh.setStatus(DeliveryDetails.Status.RECEIVED);
         JOptionPane.showMessageDialog(null, "Thank you for your feedback!");
         btnRcv.setVisible(false);
     }//GEN-LAST:event_btnRcvActionPerformed

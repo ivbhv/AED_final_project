@@ -27,12 +27,20 @@ import org.hibernate.annotations.LazyCollectionOption;
  */
 
 @Entity
-public class OrganisationMain implements Serializable {
+public abstract class OrganisationMain implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="organisation_id")
     private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     private String orgname;
     
@@ -121,6 +129,7 @@ public class OrganisationMain implements Serializable {
         return null;
 
     }
+    public abstract ArrayList<AllRoles> getSupportedRole();
 
     @Override
     public String toString() {

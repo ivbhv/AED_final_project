@@ -8,6 +8,9 @@ package view.EntAdminRole;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Cages.CageDetail;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
 
 /**
  *
@@ -34,7 +37,7 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         
-        for (CageDetail cage: enterprise.getCageCellDirectory().getCageCellList()){
+        for (CageDetail cage: enterprise.getCageCellDirectory()){
             Object[] row = new Object[3];
             row[0] = cage;
             row[1] = cage.getCagelocation();
@@ -217,10 +220,10 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         String location = txtLocation.getText();
         CageDetail c = new CageDetail();
         c.setCagelocation(location);
-        c.setCagestatus(CageDetail.AVAIL_STATUS);
+        c.setCagestatus(CageDetail.Status.AVAILABLE);
         System.out.println("------------------------------");
         System.out.println(c.getCagestatus());
-        enterprise.getCageCellDirectory().addCageShell(c);
+        enterprise.getCageCellDirectory().add(c);
         System.out.println(c.getCagestatus());
         populateTable();
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -234,7 +237,7 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         }
         
         CageDetail c = (CageDetail)tblCage.getValueAt(selectedRow, 0);
-        enterprise.getCageCellDirectory().removeCageCell(c);
+        enterprise.getCageCellDirectory().remove(c);
         populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 

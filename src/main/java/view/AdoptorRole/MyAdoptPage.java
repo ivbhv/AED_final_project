@@ -5,6 +5,9 @@
  */
 package view.AdoptorRole;
 
+import model.AdoptDetails.AdoptHistory;
+import model.AdoptDetails.AdopterDetails;
+
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -16,9 +19,9 @@ import javax.swing.table.DefaultTableModel;
 public class MyAdoptPage extends javax.swing.JPanel {
 
     private JPanel container;
-    private AdopterDetail adoptor;
+    private AdopterDetails adoptor;
     
-    MyAdoptPage(JPanel container, AdopterDetail adoptor) {
+    MyAdoptPage(JPanel container, AdopterDetails adoptor) {
         initComponents();
         this.container = container;
         this.adoptor = adoptor;
@@ -29,11 +32,11 @@ public class MyAdoptPage extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel)tblHistory.getModel();
         model.setRowCount(0);
-        for(AdoptHistory ah: adoptor.getHistoryDirectory().getHistoryList()) {
+        for(AdoptHistory ah: adoptor.getHistory()) {
             Object[] row = new Object[4];
             row[0] = ah;
-            row[1] = ah.getAnimalname().getAnimaltype().getValue();
-            row[2] = ah.getAnimalname().getAnimalcolor();
+            row[1] = ah.getDetails().getType().toString();
+            row[2] = ah.getDetails().getColor();
             row[3] = ah.getStatus();
             
             model.addRow(row);
@@ -176,7 +179,7 @@ public class MyAdoptPage extends javax.swing.JPanel {
         AdoptHistory ah = (AdoptHistory)tblHistory.getValueAt(selectedRow, 0);
 
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add("SeeHistoryDetailJPanel", new SeeHistoryPage(container, business, ah));
+        container.add("SeeHistoryDetailJPanel", new SeeHistoryPage(container, ah));
         layout.next(container);
     }//GEN-LAST:event_btnDetailsActionPerformed
 

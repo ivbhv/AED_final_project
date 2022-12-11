@@ -8,6 +8,10 @@ package view.AdoptorRole;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import model.AdoptDetails.AdoptHistory;
+import model.Animal.AnimalDetails;
+import model.Animal.CatDetails;
+import model.Animal.DogDetails;
 
 /**
  *
@@ -20,16 +24,14 @@ public class SeeHistoryPage extends javax.swing.JPanel {
      */
     
     private JPanel container;
-    private EcoSystem business;
     private AdoptHistory history;
 
-    SeeHistoryPage(JPanel container, EcoSystem business, AdoptHistory ah) {
+    SeeHistoryPage(JPanel container, AdoptHistory ah) {
         initComponents();
         this.container = container;
-        this.business = business;
         this.history = ah;
-        if(history.getStatus() == AdoptHistory.APPROVED_STATUS
-                || history.getStatus() == AdoptHistory.INPROGRESS_STATUS) {
+        if(history.getStatus() == AdoptHistory.Status.Approved
+                || history.getStatus() == AdoptHistory.Status.InProgress) {
             btnDelivery.setEnabled(true);
         }
         else {
@@ -41,27 +43,27 @@ public class SeeHistoryPage extends javax.swing.JPanel {
     }
 
     public void populateValues() {
-        AnimalDetails a = history.getAnimalname();
-        lblType.setText(a.getAnimaltype().getValue());
-        lblColor.setText(a.getAnimalcolor());
+        AnimalDetails a = history.getDetails();
+        lblType.setText(a.getType().toString());
+        lblColor.setText(a.getColor());
         lblDate.setText(history.toString());
         if(a instanceof DogDetails) {
-            lblBreed.setText(((DogDetails) a).getDogbreed());
+            lblBreed.setText(((DogDetails) a).getBreed());
         }
         if(a instanceof CatDetails) {
-            lblBreed.setText(((CatDetails) a).getCatbreed());
+            lblBreed.setText(((CatDetails) a).getBreed());
         }
        
-        if(history.getStatus().equals(AdoptHistory.SUBMITTED_STATUS)) {
+        if(history.getStatus().equals(AdoptHistory.Status.Submitted)) {
             lblStatus.setText("Submitted");
         }
-        else if(history.getStatus().equals(AdoptHistory.ASSIGNED_STATUS)) {
+        else if(history.getStatus().equals(AdoptHistory.Status.Assigned)) {
             lblStatus.setText("Assigned");
         }
-        else if(history.getStatus().equals(AdoptHistory.APPROVED_STATUS)) {
+        else if(history.getStatus().equals(AdoptHistory.Status.Approved)) {
             lblStatus.setText("Approved");
         }
-        else if(history.getStatus().equals(AdoptHistory.INPROGRESS_STATUS)) {
+        else if(history.getStatus().equals(AdoptHistory.Status.InProgress)) {
             lblStatus.setText("In Progress");
         }
         
@@ -274,7 +276,7 @@ public class SeeHistoryPage extends javax.swing.JPanel {
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add("SeeDeliveryInfoJPanel", new SeeDeliverydetailspage(container, business, history));
+        container.add("SeeDeliveryInfoJPanel", new SeeDeliverydetailspage(container, history));
         layout.next(container);
     }//GEN-LAST:event_btnDeliveryActionPerformed
 

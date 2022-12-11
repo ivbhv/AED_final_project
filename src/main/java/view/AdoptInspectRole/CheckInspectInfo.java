@@ -8,6 +8,11 @@ package view.AdoptInspectRole;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import model.AdoptDetails.AdoptRecord;
+import model.AdoptDetails.AdopterDetails;
+import model.Animal.AnimalDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import view.AdoptorRole.AdoptorPage;
 
 /**
  *
@@ -35,9 +40,9 @@ public class CheckInspectInfo extends javax.swing.JPanel {
     }
     
     public void populateButton() {
-        if(ar.getStatus().equals(AdoptRecord.APPROVED_STATUS) 
-                || ar.getStatus().equals(AdoptRecord.REJECTED_STATUS )
-                || ar.getStatus().equals(AdoptRecord.INPROGRESS_STATUS)) {
+        if(ar.getStatus().equals(AdoptRecord.Status.Approved) 
+                || ar.getStatus().equals(AdoptRecord.Status.Rejected )
+                || ar.getStatus().equals(AdoptRecord.Status.In_Progress)) {
             btnEval.setVisible(false);
         }
         else {
@@ -47,11 +52,11 @@ public class CheckInspectInfo extends javax.swing.JPanel {
     
     public void populateValues() {
         AnimalDetails animal = ar.getAnimal();
-        AdopterDetail adopter = ar.getAdoptorName();
+        AdopterDetails adopter = ar.getAdoptor();
         
-        lblAnimalId.setText(String.valueOf(animal.getAnimalid()));
-        lblType.setText(animal.getAnimaltype().getValue());
-        lblColor.setText(animal.getAnimalcolor());
+        lblAnimalId.setText(String.valueOf(animal.getId()));
+        lblType.setText(animal.getType().toString());
+        lblColor.setText(animal.getColor());
         
         lblSsn.setText(adopter.getSsnnumber());
         lblFirstName.setText(adopter.getFirstName());
@@ -62,7 +67,7 @@ public class CheckInspectInfo extends javax.swing.JPanel {
         lblCity.setText(adopter.getAddress().getCityName());
         lblState.setText(adopter.getAddress().getStateName());
         
-        int size = adopter.getHistoryDirectory().getHistoryList().size();
+        int size = adopter.getHistory().size();
         if(size == 1) {
             lblHasHistory.setText("No");
         }

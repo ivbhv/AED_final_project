@@ -6,9 +6,18 @@
 package view.VetAssistRole;
 
 import java.awt.CardLayout;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Animal.AnimalDetails;
+import model.Cages.CageDetail;
+import model.Enterprises.EnterpriseDetails;
+import model.Enterprises.RescueCenterEntDetails;
+import model.Organisation.CageOrganisation;
+import model.Treatment.TreatmentRecord;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -23,9 +32,9 @@ public class VeteAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel container;
     private RescueCenterEntDetails enterprise;
     private CageOrganisation organization;
-    private UserAccountDetails userAccount;
+    private UserAccount userAccount;
     
-    public VeteAssistantWorkAreaJPanel(JPanel container, EnterpriseDetails enterprise, CageOrganisation cageOrg, UserAccountDetails userAccount) {
+    public VeteAssistantWorkAreaJPanel(JPanel container, EnterpriseDetails enterprise, CageOrganisation cageOrg, UserAccount userAccount) {
         initComponents();
         this.container = container;
         this.enterprise = (RescueCenterEntDetails)enterprise;
@@ -39,25 +48,25 @@ public class VeteAssistantWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblCage.getModel();
         model.setRowCount(0);
         
-        for(CageDetail c: enterprise.getCageCellDirectory().getCageCellList()){
-            if(c.getCagestatus() == CageDetail.OCCUPIED_STATUS 
-                    && c.getAnimal().getAnimalstatus() == AnimalDetails.UNREADY_STATUS) {
-                TreatmentRecordDetailsDirectory t = c.getAnimal().getTreatmentDirectory();
-                int size = t.getTreatmentRecordList().size();
-                if(t.getTreatmentRecordList().get(size-1).isReviewed() == true) {
+        for(CageDetail c: enterprise.getCageCellDirectory()){
+            if(c.getCagestatus() == CageDetail.Status.OCCUPIED 
+                    && c.getAnimal().getStatus() == AnimalDetails.Status.NOT_READY) {
+                List<TreatmentRecord> t = c.getAnimal().getTreatmentRecord();
+                int size = t.size();
+                if(t.get(size-1).isIsReviewed() == true) {
                     break;
                 }
                 
                 Object[] row = new Object[5];
                 row[0] = c;
                 row[1] = c.getCagelocation();
-                row[2] = c.getAnimal().getAnimaltype();
-                row[3] = c.getAnimal().getAnimalcolor();
+                row[2] = c.getAnimal().getType();
+                row[3] = c.getAnimal().getColor();
                 
-                Date d = t.getTreatmentRecordList().get(size-1).getDate();
-                row[4] = c.getAnimal().getNextcheck().getMonth()
-                        + "/" + c.getAnimal().getNextcheck().getDate()
-                        + "/" + c.getAnimal().getNextcheck().getYear();
+                Date d = t.get(size-1).getDate();
+                row[4] = c.getAnimal().getNextCheck().getMonth()
+                        + "/" + c.getAnimal().getNextCheck().getDate()
+                        + "/" + c.getAnimal().getNextCheck().getYear();
                 model.addRow(row);
             }
         }
