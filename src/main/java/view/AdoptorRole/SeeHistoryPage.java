@@ -230,7 +230,7 @@ public class SeeHistoryPage extends javax.swing.JPanel {
         });
         add(btnDelivery, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 590, -1, 33));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\ezgif-1-421fde06f4.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ezgif-1-421fde06f4.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 0, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
