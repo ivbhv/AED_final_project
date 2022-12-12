@@ -100,10 +100,13 @@ public class SeeHistoryPage extends javax.swing.JPanel {
         lblType = new javax.swing.JLabel();
         lblBreed = new javax.swing.JLabel();
         btnDelivery = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
         btnPrevious.setForeground(new java.awt.Color(255, 0, 0));
         btnPrevious.setText("Previous");
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -111,12 +114,13 @@ public class SeeHistoryPage extends javax.swing.JPanel {
                 btnPreviousActionPerformed(evt);
             }
         });
+        add(btnPrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, 81, 32));
 
         lblAdoptionHistory.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblAdoptionHistory.setForeground(new java.awt.Color(255, 51, 51));
         lblAdoptionHistory.setText("Adoption History Detail");
+        add(lblAdoptionHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 420, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(249, 242, 242));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblAnimaltype.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
@@ -160,7 +164,7 @@ public class SeeHistoryPage extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addContainerGap(145, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -214,8 +218,9 @@ public class SeeHistoryPage extends javax.swing.JPanel {
                 .addGap(156, 156, 156))
         );
 
-        btnDelivery.setBackground(new java.awt.Color(255, 255, 255));
-        btnDelivery.setForeground(new java.awt.Color(255, 51, 51));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 550, 170));
+
+        btnDelivery.setForeground(new java.awt.Color(255, 0, 0));
         btnDelivery.setText("See Delivery Details");
         btnDelivery.setEnabled(false);
         btnDelivery.addActionListener(new java.awt.event.ActionListener() {
@@ -223,43 +228,11 @@ public class SeeHistoryPage extends javax.swing.JPanel {
                 btnDeliveryActionPerformed(evt);
             }
         });
+        add(btnDelivery, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 590, -1, 33));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(lblAdoptionHistory))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnDelivery)
-                .addGap(213, 213, 213))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblAdoptionHistory)
-                        .addGap(37, 37, 37)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btnDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\ezgif-1-421fde06f4.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 0, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
@@ -284,6 +257,7 @@ public class SeeHistoryPage extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelivery;
     private javax.swing.JButton btnPrevious;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAdoptionHistory;
     private javax.swing.JLabel lblAdoptionSt;

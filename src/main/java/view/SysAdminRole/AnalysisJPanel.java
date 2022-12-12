@@ -39,26 +39,32 @@ public class AnalysisJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnAnimals = new javax.swing.JButton();
         btnAdoptions = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backJButton1.setForeground(new java.awt.Color(255, 51, 51));
+        backJButton1.setBackground(new java.awt.Color(204, 204, 255));
         backJButton1.setText("Previous");
         backJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButton1ActionPerformed(evt);
             }
         });
+        add(backJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 610, 81, -1));
 
         lblanalysisfig.setBackground(new java.awt.Color(255, 255, 255));
         lblanalysisfig.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblanalysisfig.setForeground(new java.awt.Color(255, 51, 51));
+        lblanalysisfig.setForeground(new java.awt.Color(204, 204, 255));
         lblanalysisfig.setText("ANALYSIS FIGURES");
+        add(lblanalysisfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnAnimals.setBackground(new java.awt.Color(255, 255, 255));
+        btnAnimals.setBackground(new java.awt.Color(204, 204, 255));
         btnAnimals.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnAnimals.setText("ANIMALS");
         btnAnimals.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +73,7 @@ public class AnalysisJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAdoptions.setBackground(new java.awt.Color(255, 255, 255));
+        btnAdoptions.setBackground(new java.awt.Color(204, 204, 255));
         btnAdoptions.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnAdoptions.setText(" ADOPTIONS");
         btnAdoptions.addActionListener(new java.awt.event.ActionListener() {
@@ -94,38 +100,14 @@ public class AnalysisJPanel extends javax.swing.JPanel {
                 .addComponent(btnAnimals, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(btnAdoptions, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblanalysisfig)
-                .addGap(87, 87, 87))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton1)
-                .addGap(7, 7, 7)
-                .addComponent(lblanalysisfig)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, -1, 230));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\Analysis.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnimalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalsActionPerformed
@@ -155,6 +137,7 @@ public class AnalysisJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backJButton1;
     private javax.swing.JButton btnAdoptions;
     private javax.swing.JButton btnAnimals;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblanalysisfig;
     // End of variables declaration//GEN-END:variables

@@ -46,14 +46,17 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         btnCage = new javax.swing.JButton();
         btnShelter = new javax.swing.JButton();
         btnAnalyse = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelentworkarea.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabelentworkarea.setForeground(new java.awt.Color(255, 51, 51));
         jLabelentworkarea.setText("Enterprise Admin Work Area");
+        add(jLabelentworkarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, -1, -1));
 
-        btnUser.setBackground(null);
         btnUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnUser.setText("Manage User");
         btnUser.addActionListener(new java.awt.event.ActionListener() {
@@ -61,8 +64,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnUserActionPerformed(evt);
             }
         });
+        add(btnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 171, 50));
 
-        btnManageEmployee.setBackground(null);
         btnManageEmployee.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnManageEmployee.setText("Manage Employee");
         btnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -70,8 +73,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageEmployeeActionPerformed(evt);
             }
         });
+        add(btnManageEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 171, 50));
 
-        btnManageOrganization.setBackground(null);
         btnManageOrganization.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnManageOrganization.setText("Manage Organization");
         btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
@@ -79,16 +82,18 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnManageOrganizationActionPerformed(evt);
             }
         });
+        add(btnManageOrganization, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 310, -1, 50));
 
         enterpriseLabel.setBackground(new java.awt.Color(255, 255, 255));
         enterpriseLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, 105, 20));
 
         lblValue.setBackground(new java.awt.Color(255, 255, 255));
         lblValue.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         lblValue.setText("<value>");
+        add(lblValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 145, 20));
 
-        btnRoom.setBackground(null);
         btnRoom.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnRoom.setText("Manage Room");
         btnRoom.addActionListener(new java.awt.event.ActionListener() {
@@ -96,8 +101,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnRoomActionPerformed(evt);
             }
         });
+        add(btnRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 410, 171, 50));
 
-        btnMedicine.setBackground(null);
         btnMedicine.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnMedicine.setText("Manage Medicine");
         btnMedicine.addActionListener(new java.awt.event.ActionListener() {
@@ -105,8 +110,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnMedicineActionPerformed(evt);
             }
         });
+        add(btnMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, 171, 50));
 
-        btnCage.setBackground(null);
         btnCage.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnCage.setText("Manage Cage");
         btnCage.addActionListener(new java.awt.event.ActionListener() {
@@ -114,8 +119,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnCageActionPerformed(evt);
             }
         });
+        add(btnCage, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, 171, 50));
 
-        btnShelter.setBackground(null);
         btnShelter.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnShelter.setText("Manage Shelter");
         btnShelter.addActionListener(new java.awt.event.ActionListener() {
@@ -123,8 +128,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnShelterActionPerformed(evt);
             }
         });
+        add(btnShelter, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 590, 171, 50));
 
-        btnAnalyse.setBackground(null);
         btnAnalyse.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         btnAnalyse.setText("Analysis");
         btnAnalyse.addActionListener(new java.awt.event.ActionListener() {
@@ -132,63 +137,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnAnalyseActionPerformed(evt);
             }
         });
+        add(btnAnalyse, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 171, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabelentworkarea))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnShelter, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCage, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAnalyse, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(104, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabelentworkarea)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValue)
-                    .addComponent(enterpriseLabel))
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnShelter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAnalyse, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\ezgif-2-8b9f655bd0.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
@@ -269,6 +222,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnShelter;
     private javax.swing.JButton btnUser;
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelentworkarea;
     private javax.swing.JLabel lblValue;
     // End of variables declaration//GEN-END:variables
