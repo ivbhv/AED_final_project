@@ -73,7 +73,6 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 51, 51));
         btnBack.setText("Previous");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +82,6 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, -1, -1));
 
         btnDelete.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(255, 51, 51));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +169,6 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, -1));
 
         btnCreate.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        btnCreate.setForeground(new java.awt.Color(255, 51, 0));
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +177,7 @@ public class ManageCageJPanel extends javax.swing.JPanel {
         });
         add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\African-elephant-pictures-hd.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/African-elephant-pictures-hd.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1920, 1090));
     }// </editor-fold>//GEN-END:initComponents

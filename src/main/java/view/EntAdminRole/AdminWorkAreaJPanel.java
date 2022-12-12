@@ -139,7 +139,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnAnalyse, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 171, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\ezgif-2-8b9f655bd0.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ezgif-2-8b9f655bd0.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1930, 1090));
     }// </editor-fold>//GEN-END:initComponents

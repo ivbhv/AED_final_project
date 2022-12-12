@@ -290,7 +290,7 @@ public class EnterpriseAnalyseJPanel extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 580, 200));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\91833\\Downloads\\system-administrator.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/system-administrator.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -10, 1930, 1130));
     }// </editor-fold>//GEN-END:initComponents
